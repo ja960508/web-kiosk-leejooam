@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import { routerContext } from './Router';
 
 interface LinkProps {
+  className?: string;
   children: React.ReactNode;
   to: string;
 }
 
-function Link({ children, to }: LinkProps) {
+function Link({ className, children, to }: LinkProps) {
   const { changePath } = useContext(routerContext);
 
   const onClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -15,7 +16,7 @@ function Link({ children, to }: LinkProps) {
   };
 
   return (
-    <a href={to} onClick={onClick}>
+    <a className={className} href={to} onClick={onClick}>
       {children}
     </a>
   );
