@@ -1,6 +1,13 @@
 import { IsDecimal } from 'class-validator';
+import { ReceiptByProduct } from 'src/receipt-by-product/entities/receipt-by-product.entity';
 import { Store } from 'src/store/entities/store.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { paymentMethod } from './payment-method-type';
 
 @Entity()
@@ -38,4 +45,10 @@ export class Receipt {
 
   @ManyToOne(() => Store, (store) => store.receipt)
   store: Store;
+
+  @OneToMany(
+    () => ReceiptByProduct,
+    (receiptByProduct) => receiptByProduct.receipt,
+  )
+  receiptByProduct: ReceiptByProduct[];
 }
