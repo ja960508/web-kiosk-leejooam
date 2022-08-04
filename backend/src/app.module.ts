@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import validationSchema from './config/validationScheme';
+import { StoreModule } from './store/store.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import validationSchema from './config/validationScheme';
       }),
       inject: [ConfigService],
     }),
+    StoreModule,
   ],
   controllers: [AppController],
   providers: [AppService],
