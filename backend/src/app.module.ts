@@ -6,6 +6,7 @@ import { StoreModule } from './store/store.module';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
 import { ReceiptModule } from './receipt/receipt.module';
+import { ReceiptByProductModule } from './receipt-by-product/receipt-by-product.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { ReceiptModule } from './receipt/receipt.module';
     CategoryModule,
     ProductModule,
     ReceiptModule,
+    ReceiptByProductModule,
   ],
 })
 export class AppModule {}

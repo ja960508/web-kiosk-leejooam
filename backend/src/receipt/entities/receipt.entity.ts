@@ -1,7 +1,7 @@
 import { IsDecimal } from 'class-validator';
 import { Store } from 'src/store/entities/store.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { paymentMethod } from './paymentMethod';
+import { paymentMethod } from './payment-method-type';
 
 @Entity()
 export class Receipt {
