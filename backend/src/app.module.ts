@@ -5,6 +5,7 @@ import validationSchema from './config/validationScheme';
 import { StoreModule } from './store/store.module';
 import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
+import { ReceiptModule } from './receipt/receipt.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { ProductModule } from './product/product.module';
     StoreModule,
     CategoryModule,
     ProductModule,
+    ReceiptModule,
   ],
 })
 export class AppModule {}

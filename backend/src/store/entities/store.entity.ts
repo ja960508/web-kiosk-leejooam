@@ -1,5 +1,6 @@
 import { IsString, Length } from 'class-validator';
 import { Category } from 'src/category/entities/category.entity';
+import { Receipt } from 'src/receipt/entities/receipt.entity';
 import {
   Column,
   DeleteDateColumn,
@@ -35,4 +36,7 @@ export class Store {
 
   @OneToMany(() => Category, (category) => category.store)
   category: Category[];
+
+  @OneToMany(() => Receipt, (receipt) => receipt.store)
+  receipt: Receipt[];
 }
