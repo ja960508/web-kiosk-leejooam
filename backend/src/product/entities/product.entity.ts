@@ -36,11 +36,11 @@ export class Product {
   @IsString()
   thumbnail: string;
 
-  @Column({ type: 'boolean', nullable: true })
+  @Column({ type: 'boolean', default: false })
   @IsBoolean()
   isPopular: boolean;
 
-  @Column({ type: 'boolean', nullable: true })
+  @Column({ type: 'boolean', default: false })
   @IsBoolean()
   isSoldOut: boolean;
 
