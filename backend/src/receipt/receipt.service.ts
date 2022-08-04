@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ReceiptByProduct } from 'src/receipt-by-product/entities/receipt-by-product.entity';
 import { Store } from 'src/store/entities/store.entity';
 import { Repository } from 'typeorm';
 import { CreateReceiptDto } from './dto/create-receipt.dto';
@@ -13,11 +14,15 @@ export class ReceiptService {
     private receiptRepository: Repository<Receipt>,
     @InjectRepository(Store)
     private storeRepository: Repository<Store>,
+    @InjectRepository(ReceiptByProduct)
+    private receiptByProductRepository: Repository<ReceiptByProduct>,
   ) {}
 
   async create(createReceiptDto: CreateReceiptDto) {
-    const newProduct = this.receiptRepository.create(createReceiptDto);
-    await this.receiptRepository.save(newProduct);
+    const newReceipt = this.receiptRepository.create(createReceiptDto);
+    const { id } = await this.receiptRepository.save(newReceipt);
+
+    // await this.receiptByProductRepository.create()
   }
 
   async getReceiptByStoreId(storeId: number) {

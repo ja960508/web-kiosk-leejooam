@@ -1,11 +1,21 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateReceiptByProductDto } from './dto/create-receipt-by-product.dto';
-import { UpdateReceiptByProductDto } from './dto/update-receipt-by-product.dto';
+import { ReceiptByProduct } from './entities/receipt-by-product.entity';
 
 @Injectable()
 export class ReceiptByProductService {
-  create(createReceiptByProductDto: CreateReceiptByProductDto) {
-    return 'This action adds a new receiptByProduct';
+  constructor(
+    @InjectRepository(ReceiptByProduct)
+    private receiptByProductRepository: Repository<ReceiptByProduct>,
+  ) {}
+
+  async create(createReceiptByProductDto: CreateReceiptByProductDto) {
+    const newReceiptByProduct = await this.receiptByProductRepository.create(
+      createReceiptByProductDto,
+    );
+    await this.receiptByProductRepository.save(newReceiptByProduct);
   }
 
   findAll() {
@@ -14,13 +24,5 @@ export class ReceiptByProductService {
 
   findOne(id: number) {
     return `This action returns a #${id} receiptByProduct`;
-  }
-
-  update(id: number, updateReceiptByProductDto: UpdateReceiptByProductDto) {
-    return `This action updates a #${id} receiptByProduct`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} receiptByProduct`;
   }
 }
