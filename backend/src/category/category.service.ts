@@ -21,7 +21,6 @@ export class CategoryService {
   }
 
   async findOne(storeId: number) {
-    console.log(storeId);
     return await this.storeRepository.findOne({
       relations: {
         category: true,
