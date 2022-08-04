@@ -19,7 +19,7 @@ export class Product {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ type: 'varchar', length: 20 })
   @IsString()
   @Length(2, 20)
   name: string;
@@ -32,15 +32,15 @@ export class Product {
   @IsJSON()
   option: JSON;
 
-  @Column()
+  @Column({ nullable: true })
   @IsString()
   thumbnail: string;
 
-  @Column({ type: 'boolean' })
+  @Column({ type: 'boolean', default: false })
   @IsBoolean()
   isPopular: boolean;
 
-  @Column({ type: 'boolean' })
+  @Column({ type: 'boolean', default: false })
   @IsBoolean()
   isSoldOut: boolean;
 

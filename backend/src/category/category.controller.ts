@@ -24,7 +24,6 @@ export class CategoryController {
 
   @Get()
   findOne(@Req() req: Request) {
-    console.log(req.cookies);
     return this.categoryService.findOne(req.cookies['storeId']);
   }
 
