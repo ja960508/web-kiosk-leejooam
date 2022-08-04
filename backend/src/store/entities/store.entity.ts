@@ -13,15 +13,19 @@ export class Store {
 
   @Column()
   @IsString()
-  @Length(2, 10)
+  @Length(2, 20)
   name: string;
 
+  @IsString()
+  @Length(8, 20)
   @Column({
-    length: 50,
+    length: 20,
   })
   password: string;
 
-  @Column({ nullable: true, length: 45 })
+  @IsString()
+  @Length(2, 20)
+  @Column({ nullable: true, length: 20 })
   branchName: string;
 
   @DeleteDateColumn()
