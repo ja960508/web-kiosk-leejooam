@@ -3,6 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import validationSchema from './config/validationScheme';
 import { StoreModule } from './store/store.module';
+import { CategoryModule } from './category/category.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -28,6 +30,8 @@ import { StoreModule } from './store/store.module';
       inject: [ConfigService],
     }),
     StoreModule,
+    CategoryModule,
+    ProductModule,
   ],
 })
 export class AppModule {}

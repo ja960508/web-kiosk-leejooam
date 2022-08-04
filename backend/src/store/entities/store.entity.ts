@@ -1,8 +1,10 @@
 import { IsString, Length } from 'class-validator';
+import { Category } from 'src/category/entities/category.entity';
 import {
   Column,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -30,4 +32,7 @@ export class Store {
 
   @DeleteDateColumn()
   deleteAt: Date;
+
+  @OneToMany(() => Category, (category) => category.store)
+  category: Category[];
 }
