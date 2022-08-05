@@ -22,9 +22,6 @@ export class ProductService {
 
   async getProductByCategoryId(categoryId: number) {
     return await this.categoryRepository.findOne({
-      relations: {
-        product: true,
-      },
       where: {
         id: categoryId,
       },

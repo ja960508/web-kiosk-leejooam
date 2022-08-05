@@ -6,11 +6,13 @@ import {
   Length,
 } from 'class-validator';
 import { Category } from 'src/category/entities/category.entity';
+import { ReceiptByProduct } from 'src/receipt-by-product/entities/receipt-by-product.entity';
 import {
   Column,
   DeleteDateColumn,
   Entity,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -49,4 +51,10 @@ export class Product {
 
   @ManyToOne(() => Category, (category) => category.product)
   category: Category;
+
+  @OneToMany(
+    () => ReceiptByProduct,
+    (receiptByProduct) => receiptByProduct.product,
+  )
+  receiptByProduct: ReceiptByProduct[];
 }
