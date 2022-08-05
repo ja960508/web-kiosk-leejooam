@@ -7,9 +7,9 @@ import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
 import { ReceiptModule } from './receipt/receipt.module';
 import { ReceiptByProductModule } from './receipt-by-product/receipt-by-product.module';
-import { DaoModule } from './dao/dao.module';
-import { StoreDaoModule } from './dao/store/store.module';
-import { categoryDaoModule } from './dao/category/category.module';
+import { MySQLModule } from './config/mysql/mysql.module';
+import { StoreModule } from './domain/store/store.module';
+import { categoryDaoModule } from './domain/category/category.module';
 
 // @Module({
 //   imports: [
@@ -50,8 +50,8 @@ import { categoryDaoModule } from './dao/category/category.module';
       envFilePath: '.env',
       validationSchema,
     }),
-    DaoModule,
-    StoreDaoModule,
+    MySQLModule,
+    StoreModule,
     categoryDaoModule,
   ],
 })

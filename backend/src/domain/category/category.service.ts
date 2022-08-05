@@ -1,11 +1,11 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { DaoService } from '../dao.service';
+import { MySQLService } from 'src/config/mysql/mysql.service';
 
 @Injectable()
 export class categoryService implements OnModuleInit {
-  constructor(private daoService: DaoService) {}
+  constructor(private mysqlService: MySQLService) {}
   async onModuleInit() {
-    const poolPromise = this.daoService.pool.promise();
+    const poolPromise = this.mysqlService.pool.promise();
     await poolPromise.execute(`
       CREATE TABLE IF NOT EXISTS CATEGORY (
         id INT PRIMARY KEY AUTO_INCREMENT,

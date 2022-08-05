@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { DaoModule } from '../dao.module';
+import { MySQLModule } from '../../config/mysql/mysql.module';
 
 @Module({
-  imports: [DaoModule],
+  imports: [MySQLModule],
 })
 export class categoryDaoModule {}
