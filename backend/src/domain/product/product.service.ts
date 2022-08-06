@@ -26,6 +26,17 @@ export class ProductService implements OnModuleInit {
     `);
   }
 
+  async getProductByCategoryId(categoryId: number) {
+    try {
+      const [rows] = await this.promisePool.execute(`SELECT * FROM PRODUCT
+      WHERE categoryId = ${categoryId}`);
+
+      return rows;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   async createProduct(product: productCreateType) {
     try {
       const [rows] = await this.promisePool.execute(`
