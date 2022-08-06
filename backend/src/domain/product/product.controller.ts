@@ -4,11 +4,12 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
   Query,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
-import { productCreateType } from './product.type';
+import { productCreateType, productUpdateType } from './product.type';
 
 @Controller('product')
 export class ProductController {
@@ -24,6 +25,16 @@ export class ProductController {
     await this.productService.createProduct(product);
 
     return 'created';
+  }
+
+  @Patch(':id')
+  async updateProductById(
+    @Param('id') id: number,
+    @Body() product: productUpdateType,
+  ) {
+    await this.productService.updateProductById(id, product);
+
+    return 'updated';
   }
 
   @Delete(':id')

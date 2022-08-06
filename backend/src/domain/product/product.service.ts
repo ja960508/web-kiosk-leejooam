@@ -1,7 +1,7 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { MySQLService } from 'src/config/mysql/mysql.service';
 import format from '../utils/format';
-import { productCreateType } from './product.type';
+import { productCreateType, productUpdateType } from './product.type';
 
 @Injectable()
 export class ProductService implements OnModuleInit {
@@ -45,6 +45,23 @@ export class ProductService implements OnModuleInit {
       `);
 
       return rows.insertId;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async updateProductById(id: number, product: productUpdateType) {
+    try {
+      const options = Object.entries(product)
+        .map(([key, value]) => `${key} = ${format.formatData(value)}`)
+        .join();
+
+      const [rows] = await this.promisePool.execute(`
+        UPDATE PRODUCT SET ${options} 
+        WHERE id = ${id}
+        `);
+
+      return rows;
     } catch (e) {
       console.error(e);
     }
