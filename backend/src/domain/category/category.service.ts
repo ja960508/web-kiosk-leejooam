@@ -62,4 +62,17 @@ export class CategoryService implements OnModuleInit {
       console.error(e);
     }
   }
+
+  async deleteCategoryById(id: number) {
+    try {
+      const [rows] = await this.promisePool.execute(`
+        DELETE FROM CATEGORY
+        WHERE id = ${id}
+      `);
+
+      return rows;
+    } catch (e) {
+      console.error(e);
+    }
+  }
 }

@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Param,
   Patch,
@@ -34,5 +35,12 @@ export class CategoryController {
     await this.categoryService.updateCategoryById(id, category);
 
     return 'updated';
+  }
+
+  @Delete(':id')
+  async deleteCategoryById(@Param('id') id: number) {
+    await this.categoryService.deleteCategoryById(id);
+
+    return 'deleted';
   }
 }
