@@ -22,10 +22,10 @@ export class CategoryService implements OnModuleInit {
     `);
   }
 
-  async getCategoryByStoreId(stordId: number) {
+  async getCategoryByStoreId(storeId: number) {
     try {
       const [rows] = await this.promisePool.execute(`SELECT * FROM CATEGORY
-      WHERE storeId = ${stordId}`);
+      WHERE storeId = ${storeId}`);
 
       return rows;
     } catch (e) {
