@@ -3,15 +3,16 @@ const enum paymentMethodType {
   cash = 'cash',
 }
 
-interface product {
-  [id: number]: number;
+export interface productType {
+  productId: number;
+  count: number;
 }
 
 export interface receiptCreateType {
   paymentMethod: paymentMethodType;
   cashAmount?: number;
   paymentDate: string;
-  products: product[];
+  products: productType[];
   storeId: number;
 }
 

@@ -2,12 +2,20 @@ import { Injectable, OnModuleInit } from '@nestjs/common';
 import { MySQLService } from 'src/config/mysql/mysql.service';
 import dateUtils from '../utils/date.utils';
 import format from '../utils/format';
-import { receiptCreateType, receiptDataType } from './receipt.type';
+import {
+  productType,
+  receiptCreateType,
+  receiptDataType,
+} from './receipt.type';
+import { ReceiptToProductService } from './receiptToProduct/receiptToProduct.service';
 
 @Injectable()
 export class ReceiptService implements OnModuleInit {
   promisePool: any;
-  constructor(private mysqlService: MySQLService) {
+  constructor(
+    private mysqlService: MySQLService,
+    private rTpService: ReceiptToProductService,
+  ) {
     this.promisePool = this.mysqlService.pool.promise();
   }
   async onModuleInit() {
@@ -41,6 +49,24 @@ export class ReceiptService implements OnModuleInit {
     }
   }
 
+  async createRTP(products: productType[], receiptId: number) {
+    try {
+      const rTpList = products.map(async ({ productId, count }) => {
+        await this.rTpService.createReceipToProduct({
+          productId,
+          count,
+          receiptId,
+        });
+      });
+
+      await Promise.all(rTpList);
+
+      return 'CREATE RTP SUCCESS';
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   async createReceipt(receipt: receiptCreateType) {
     const { products, ...otherInfo } = receipt;
     const receiptData: receiptDataType = {
@@ -56,6 +82,8 @@ export class ReceiptService implements OnModuleInit {
         INSERT INTO RECEIPT (${Object.keys(receiptData).join()})
         VALUES (${Object.values(receiptData).map(format.formatData).join()})
       `);
+
+      await this.createRTP(products, rows.insertId);
 
       return rows.insertId;
     } catch (e) {
