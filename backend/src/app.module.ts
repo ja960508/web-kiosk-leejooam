@@ -5,6 +5,7 @@ import { MySQLModule } from './config/mysql/mysql.module';
 import { StoreModule } from './domain/store/store.module';
 import { CategoryModule } from './domain/category/category.module';
 import { ProductModule } from './domain/product/product.module';
+import { ReceiptModule } from './domain/receipt/receipt.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { ProductModule } from './domain/product/product.module';
     StoreModule,
     CategoryModule,
     ProductModule,
+    ReceiptModule,
   ],
 })
 export class AppModule {}
