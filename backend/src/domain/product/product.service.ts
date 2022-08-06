@@ -1,31 +1,35 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { MySQLService } from 'src/config/mysql/mysql.service';
 import format from '../utils/format';
-import { categoryCreateType, categoryUpdateType } from './category.type';
+import { productCreateType, productUpdateType } from './product.type';
 
 @Injectable()
-export class CategoryService implements OnModuleInit {
+export class ProductService implements OnModuleInit {
   promisePool: any;
   constructor(private mysqlService: MySQLService) {
     this.promisePool = this.mysqlService.pool.promise();
   }
   async onModuleInit() {
-    const poolPromise = this.mysqlService.pool.promise();
-    await poolPromise.execute(`
-      CREATE TABLE IF NOT EXISTS CATEGORY (
-        id INT PRIMARY KEY AUTO_INCREMENT,
+    await this.promisePool.execute(`
+      CREATE TABLE IF NOT EXISTS PRODUCT (
+        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
         name VARCHAR(20) NOT NULL,
-        storeId INT,
+        price DECIMAL(10, 0) NOT NULL,
+        categoryId INT,
+        productOption json,
+        thumbnail VARCHAR(255),
+        isPopular BOOLEAN,
+        isSoldOut BOOLEAN,
         deletedAt DATETIME,
-        FOREIGN KEY (storeId) REFERENCES STORE(id)
+        FOREIGN KEY (categoryId) REFERENCES CATEGORY(id)
       )
     `);
   }
 
-  async getCategoryByStoreId(stordId: number) {
+  async getProductByCategoryId(categoryId: number) {
     try {
-      const [rows] = await this.promisePool.execute(`SELECT * FROM CATEGORY
-      WHERE storeId = ${stordId}`);
+      const [rows] = await this.promisePool.execute(`SELECT * FROM PRODUCT
+      WHERE categoryId = ${categoryId}`);
 
       return rows;
     } catch (e) {
@@ -33,11 +37,11 @@ export class CategoryService implements OnModuleInit {
     }
   }
 
-  async createCategory(category: categoryCreateType) {
+  async createProduct(product: productCreateType) {
     try {
       const [rows] = await this.promisePool.execute(`
-        INSERT INTO CATEGORY (${Object.keys(category).join()})
-        VALUES (${Object.values(category).map(format.formatData).join()})
+        INSERT INTO PRODUCT (${Object.keys(product).join()})
+        VALUES (${Object.values(product).map(format.formatData).join()})
       `);
 
       return rows.insertId;
@@ -46,14 +50,14 @@ export class CategoryService implements OnModuleInit {
     }
   }
 
-  async updateCategoryById(id: number, category: categoryUpdateType) {
+  async updateProductById(id: number, product: productUpdateType) {
     try {
-      const options = Object.entries(category)
+      const options = Object.entries(product)
         .map(([key, value]) => `${key} = ${format.formatData(value)}`)
         .join();
 
       const [rows] = await this.promisePool.execute(`
-        UPDATE CATEGORY SET ${options} 
+        UPDATE PRODUCT SET ${options} 
         WHERE id = ${id}
         `);
 
@@ -63,10 +67,10 @@ export class CategoryService implements OnModuleInit {
     }
   }
 
-  async deleteCategoryById(id: number) {
+  async deleteProductById(id: number) {
     try {
       const [rows] = await this.promisePool.execute(`
-        DELETE FROM CATEGORY
+        DELETE FROM PRODUCT
         WHERE id = ${id}
       `);
 

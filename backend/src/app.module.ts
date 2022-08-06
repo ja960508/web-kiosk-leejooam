@@ -1,46 +1,10 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
 import validationSchema from './config/validationScheme';
-// import { StoreModule } from './store/store.module';
-import { ProductModule } from './product/product.module';
-import { ReceiptModule } from './receipt/receipt.module';
-import { ReceiptByProductModule } from './receipt-by-product/receipt-by-product.module';
 import { MySQLModule } from './config/mysql/mysql.module';
 import { StoreModule } from './domain/store/store.module';
 import { CategoryModule } from './domain/category/category.module';
-
-// @Module({
-//   imports: [
-//     ConfigModule.forRoot({
-//       isGlobal: true,
-//       envFilePath: '.env',
-//       validationSchema,
-//     }),
-//     TypeOrmModule.forRootAsync({
-//       imports: [ConfigModule],
-//       useFactory: (configService: ConfigService) => ({
-//         type: 'mysql',
-//         host: configService.get('DATABASE_HOST'),
-//         port: configService.get<number>('DATABASE_PORT'),
-//         username: configService.get('DATABASE_USERNAME'),
-//         password: configService.get('DATABASE_PASSWORD'),
-//         database: configService.get('DATABASE_DATABASE'),
-//         entities: [],
-//         autoLoadEntities: true,
-//         synchronize: true,
-//         logging: true,
-//       }),
-//       inject: [ConfigService],
-//     }),
-//     StoreModule,
-//     CategoryModule,
-//     ProductModule,
-//     ReceiptModule,
-//     ReceiptByProductModule,
-//   ],
-// })
-// export class AppModule {}
+import { ProductModule } from './domain/product/product.module';
 
 @Module({
   imports: [
@@ -52,6 +16,7 @@ import { CategoryModule } from './domain/category/category.module';
     MySQLModule,
     StoreModule,
     CategoryModule,
+    ProductModule,
   ],
 })
 export class AppModule {}

@@ -26,7 +26,7 @@ export class StoreService implements OnModuleInit {
     try {
       const [rows] = await this.promisePool.execute(`
         INSERT INTO STORE (${Object.keys(store).join()})
-        VALUES (${Object.values(store).map(format.addQuotesToString).join()})
+        VALUES (${Object.values(store).map(format.formatData).join()})
       `);
 
       return rows.insertId;
@@ -50,7 +50,7 @@ export class StoreService implements OnModuleInit {
   async updateById(id: number, store: storeUpdateType) {
     try {
       const options = Object.entries(store)
-        .map(([key, value]) => `${key} = ${format.addQuotesToString(value)}`)
+        .map(([key, value]) => `${key} = ${format.formatData(value)}`)
         .join();
 
       const [rows] = await this.promisePool.execute(`
