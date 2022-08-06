@@ -3,13 +3,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import validationSchema from './config/validationScheme';
 // import { StoreModule } from './store/store.module';
-import { CategoryModule } from './category/category.module';
 import { ProductModule } from './product/product.module';
 import { ReceiptModule } from './receipt/receipt.module';
 import { ReceiptByProductModule } from './receipt-by-product/receipt-by-product.module';
 import { MySQLModule } from './config/mysql/mysql.module';
 import { StoreModule } from './domain/store/store.module';
-import { categoryDaoModule } from './domain/category/category.module';
+import { CategoryModule } from './domain/category/category.module';
 
 // @Module({
 //   imports: [
@@ -52,7 +51,7 @@ import { categoryDaoModule } from './domain/category/category.module';
     }),
     MySQLModule,
     StoreModule,
-    categoryDaoModule,
+    CategoryModule,
   ],
 })
 export class AppModule {}
