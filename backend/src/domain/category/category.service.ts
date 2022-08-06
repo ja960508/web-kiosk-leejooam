@@ -1,7 +1,7 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { MySQLService } from 'src/config/mysql/mysql.service';
 import format from '../utils/format';
-import { categoryCreateType } from './category.type';
+import { categoryCreateType, categoryUpdateType } from './category.type';
 
 @Injectable()
 export class CategoryService implements OnModuleInit {
@@ -41,6 +41,23 @@ export class CategoryService implements OnModuleInit {
       `);
 
       return rows.insertId;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async updateCategoryById(id: number, category: categoryUpdateType) {
+    try {
+      const options = Object.entries(category)
+        .map(([key, value]) => `${key} = ${format.addQuotesToString(value)}`)
+        .join();
+
+      const [rows] = await this.promisePool.execute(`
+        UPDATE CATEGORY SET ${options} 
+        WHERE id = ${id}
+        `);
+
+      return rows;
     } catch (e) {
       console.error(e);
     }

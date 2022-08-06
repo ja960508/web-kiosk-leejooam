@@ -1,6 +1,14 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { CategoryService } from './category.service';
-import { categoryCreateType } from './category.type';
+import { categoryCreateType, categoryUpdateType } from './category.type';
 
 @Controller('category')
 export class CategoryController {
@@ -16,5 +24,15 @@ export class CategoryController {
     await this.categoryService.createCategory(category);
 
     return 'created';
+  }
+
+  @Patch(':id')
+  async updateCategoryById(
+    @Param('id') id: number,
+    @Body() category: categoryUpdateType,
+  ) {
+    await this.categoryService.updateCategoryById(id, category);
+
+    return 'updated';
   }
 }
