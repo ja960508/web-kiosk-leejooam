@@ -1,5 +1,7 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { MySQLService } from 'src/config/mysql/mysql.service';
+import format from '../utils/format';
+import { productCreateType } from './product.type';
 
 @Injectable()
 export class ProductService implements OnModuleInit {
@@ -22,5 +24,18 @@ export class ProductService implements OnModuleInit {
         FOREIGN KEY (categoryId) REFERENCES CATEGORY(id)
       )
     `);
+  }
+
+  async createProduct(product: productCreateType) {
+    try {
+      const [rows] = await this.promisePool.execute(`
+        INSERT INTO PRODUCT (${Object.keys(product).join()})
+        VALUES (${Object.values(product).map(format.formatData).join()})
+      `);
+
+      return rows.insertId;
+    } catch (e) {
+      console.error(e);
+    }
   }
 }

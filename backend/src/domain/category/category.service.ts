@@ -37,7 +37,7 @@ export class CategoryService implements OnModuleInit {
     try {
       const [rows] = await this.promisePool.execute(`
         INSERT INTO CATEGORY (${Object.keys(category).join()})
-        VALUES (${Object.values(category).map(format.addQuotesToString).join()})
+        VALUES (${Object.values(category).map(format.formatData).join()})
       `);
 
       return rows.insertId;
@@ -49,7 +49,7 @@ export class CategoryService implements OnModuleInit {
   async updateCategoryById(id: number, category: categoryUpdateType) {
     try {
       const options = Object.entries(category)
-        .map(([key, value]) => `${key} = ${format.addQuotesToString(value)}`)
+        .map(([key, value]) => `${key} = ${format.formatData(value)}`)
         .join();
 
       const [rows] = await this.promisePool.execute(`
