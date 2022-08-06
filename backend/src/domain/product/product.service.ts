@@ -38,4 +38,17 @@ export class ProductService implements OnModuleInit {
       console.error(e);
     }
   }
+
+  async deleteProductById(id: number) {
+    try {
+      const [rows] = await this.promisePool.execute(`
+        DELETE FROM PRODUCT
+        WHERE id = ${id}
+      `);
+
+      return rows;
+    } catch (e) {
+      console.error(e);
+    }
+  }
 }

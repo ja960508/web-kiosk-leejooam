@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Param, Post } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { productCreateType } from './product.type';
 
@@ -11,5 +11,12 @@ export class ProductController {
     await this.productService.createProduct(product);
 
     return 'created';
+  }
+
+  @Delete(':id')
+  async deleteProductById(@Param('id') id: number) {
+    await this.productService.deleteProductById(id);
+
+    return 'deleted';
   }
 }
