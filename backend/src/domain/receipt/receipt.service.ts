@@ -101,4 +101,20 @@ export class ReceiptService implements OnModuleInit {
       console.error(e);
     }
   }
+
+  async getReceiptInfoById(id: number) {
+    try {
+      const [rows] = await this.promisePool
+        .execute(`SELECT R.paymentMethod, R.paymentAmount, R.cashAmount, R.paymentDate, P.name, P.price, P.productOption, P.isPopular, P.isSoldOut FROM RECEIPT as R
+      LEFT JOIN RECEIPT_TO_PRODUCT as RTP
+      ON RTP.receiptId = ${id}
+      LEFT JOIN PRODUCT as P
+      ON P.id = RTP.productId
+      WHERE R.id = ${id}`);
+
+      return rows;
+    } catch (e) {
+      console.error(e);
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { ReceiptService } from './receipt.service';
 import { receiptCreateType } from './receipt.type';
 
@@ -16,5 +16,10 @@ export class ReceiptController {
   @Get()
   async getReceiptByStoreId(@Query('storeId') storeId: number) {
     return await this.receiptService.getReceiptByStoreId(storeId);
+  }
+
+  @Get(':id')
+  async getReceiptInfoById(@Param('id') id: number) {
+    return await this.receiptService.getReceiptInfoById(id);
   }
 }
