@@ -22,6 +22,17 @@ export class CategoryService implements OnModuleInit {
     `);
   }
 
+  async getCategoryByStoreId(stordId: number) {
+    try {
+      const [rows] = await this.promisePool.execute(`SELECT * FROM CATEGORY
+      WHERE storeId = ${stordId}`);
+
+      return rows;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   async createCategory(category: categoryCreateType) {
     try {
       const [rows] = await this.promisePool.execute(`

@@ -6,6 +6,11 @@ import { categoryCreateType } from './category.type';
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
+  @Get()
+  async getCategoryByStoreId(@Query('storeId') storeId: number) {
+    return this.categoryService.getCategoryByStoreId(storeId);
+  }
+
   @Post()
   async createCategory(@Body() category: categoryCreateType) {
     await this.categoryService.createCategory(category);
