@@ -65,7 +65,7 @@ export class ReceiptService implements OnModuleInit {
 
   async getReceiptByStoreId(storeId: number) {
     try {
-      const [rows] = await this.promisePool.execute(`SELECT * FROM CATEGORY
+      const [rows] = await this.promisePool.execute(`SELECT * FROM RECEIPT
       WHERE storeId = ${storeId}`);
 
       return rows;
