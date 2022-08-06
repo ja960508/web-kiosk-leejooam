@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import * as mysql from 'mysql2';
 
 @Injectable()
-export class DaoService {
+export class MySQLService {
   pool: mysql.Pool;
   constructor(private configService: ConfigService) {
     this.pool = mysql.createPool({
