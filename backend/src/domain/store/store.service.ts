@@ -1,6 +1,6 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { MySQLService } from 'src/config/mysql/mysql.service';
-import { storeCreateType } from './store.type';
+import { storeCreateType, storeUpdateType } from './store.type';
 import format from '../utils/format';
 
 @Injectable()
@@ -23,7 +23,6 @@ export class StoreService implements OnModuleInit {
   }
 
   async create(store: storeCreateType) {
-    console.log(store);
     try {
       const [rows] = await this.promisePool.execute(`
         INSERT INTO STORE (${Object.keys(store).join()})
@@ -43,6 +42,23 @@ export class StoreService implements OnModuleInit {
       WHERE id = ${id}`);
 
       return rows[0];
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async updateById(id: number, store: storeUpdateType) {
+    try {
+      const options = Object.entries(store)
+        .map(([key, value]) => `${key} = ${format.addQuotesToString(value)}`)
+        .join();
+
+      const [rows] = await this.promisePool.execute(`
+        UPDATE STORE SET ${options} 
+        WHERE id = ${id}
+        `);
+
+      return rows;
     } catch (e) {
       console.error(e);
     }

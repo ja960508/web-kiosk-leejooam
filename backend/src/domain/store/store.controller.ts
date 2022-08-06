@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { StoreService } from './store.service';
-import { storeCreateType } from './store.type';
+import { storeCreateType, storeUpdateType } from './store.type';
 
 @Controller('store')
 export class StoreController {
@@ -16,5 +16,12 @@ export class StoreController {
     await this.storeService.create(store);
 
     return 'created';
+  }
+
+  @Patch(':id')
+  async updateById(@Param('id') id: number, @Body() store: storeUpdateType) {
+    await this.storeService.updateById(id, store);
+
+    return 'updated';
   }
 }
