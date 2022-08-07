@@ -17,7 +17,6 @@ function Entrance() {
     }
 
     await handleLogin(event);
-
     navigate('/admin');
   };
 
@@ -40,7 +39,7 @@ function Entrance() {
           name="storeId"
           type="text"
           autoComplete="off"
-          placeholder="가게 id를 입력해주세요.(필수)"
+          placeholder="가게 id를 입력해주세요."
         />
         {isRegister && (
           <>
@@ -62,14 +61,14 @@ function Entrance() {
           name="password"
           type="password"
           autoComplete="off"
-          placeholder="비밀번호를 입력해주세요.(필수)"
+          placeholder="비밀번호를 입력해주세요."
         />
         {isRegister && (
           <input
             name="passwordConfirm"
             type="password"
             autoComplete="off"
-            placeholder="비밀번호를 확인해주세요.(필수)"
+            placeholder="비밀번호를 확인해주세요."
           />
         )}
         <button type="submit">{isRegister ? '회원가입' : '로그인'}</button>

@@ -2,10 +2,21 @@ import React from 'react';
 import { login, register } from '../../api/auth/request';
 import { setItemToLocalStorage } from '../../lib/storage';
 
-export const checkAuthValidation = (values: { [key: string]: string }) => {
+const isEssentialInputsFilled = (values: { [key: string]: string }) => {
   return Object.keys(values).reduce((prev, key) => {
     return !!values[key];
   }, true);
+};
+
+const isPasswordCorrect = (
+  password: HTMLInputElement,
+  passwordConfirm: HTMLInputElement,
+) => {
+  if (password.value !== passwordConfirm.value) {
+    return false;
+  }
+
+  return true;
 };
 
 export const handleRegister = async (
@@ -20,11 +31,12 @@ export const handleRegister = async (
     {},
   );
 
-  if (password.value !== passwordConfirm.value) {
-    return false;
-  }
-
-  if (!checkAuthValidation(values)) {
+  if (
+    !(
+      isEssentialInputsFilled(values) ||
+      isPasswordCorrect(password, passwordConfirm)
+    )
+  ) {
     return false;
   }
 
