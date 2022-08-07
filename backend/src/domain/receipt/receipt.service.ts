@@ -1,4 +1,4 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { MySQLService } from 'src/config/mysql/mysql.service';
 import dateUtils from '../utils/date.utils';
 import format from '../utils/format';
@@ -10,28 +10,13 @@ import {
 import { ReceiptToProductService } from './receiptToProduct/receiptToProduct.service';
 
 @Injectable()
-export class ReceiptService implements OnModuleInit {
+export class ReceiptService {
   promisePool: any;
   constructor(
     private mysqlService: MySQLService,
     private rTpService: ReceiptToProductService,
   ) {
     this.promisePool = this.mysqlService.pool.promise();
-  }
-  async onModuleInit() {
-    await this.promisePool.execute(`
-      CREATE TABLE IF NOT EXISTS RECEIPT (
-        id INT PRIMARY KEY AUTO_INCREMENT,
-        paymentMethod ENUM('card', 'cash') NOT NULL,
-        cashAmount DECIMAL(10, 0),
-        paymentAmount DECIMAL(10, 0) NOT NULL,
-        paymentDate DATE NOT NULL,
-        orderNumber INT NOT NULL,
-        storeId INT,
-        deletedAt DATETIME,
-        FOREIGN KEY (storeId) REFERENCES STORE(id)
-      )
-    `);
   }
 
   async getOrderNumber() {

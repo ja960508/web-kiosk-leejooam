@@ -12,6 +12,10 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.use(cookieParser());
 
+  app.enableCors({
+    credentials: true,
+    origin: configService.get('FRONTEND_URL'),
+  });
   await app.listen(port);
 }
 bootstrap();

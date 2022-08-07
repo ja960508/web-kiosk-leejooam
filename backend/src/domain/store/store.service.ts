@@ -1,45 +1,48 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { MySQLService } from 'src/config/mysql/mysql.service';
-import { storeCreateType, storeUpdateType } from './store.type';
+import { storeCreateType, storeLoginType, storeUpdateType } from './store.type';
 import format from '../utils/format';
 
 @Injectable()
-export class StoreService implements OnModuleInit {
+export class StoreService {
   promisePool: any;
   constructor(private mysqlService: MySQLService) {
     this.promisePool = this.mysqlService.pool.promise();
   }
-  async onModuleInit() {
-    const poolPromise = this.mysqlService.pool.promise();
-    await poolPromise.execute(`
-      CREATE TABLE IF NOT EXISTS STORE (
-        id INT PRIMARY KEY AUTO_INCREMENT,
-        name VARCHAR(20) NOT NULL,
-        password VARCHAR(20) NOT NULL,
-        branchName VARCHAR(20),
-        deletedAt DATETIME
-      )
-    `);
+
+  async getStoreById(id: number) {
+    try {
+      const [rows] = await this.promisePool
+        .execute(`SELECT name, branchName, id, storeId FROM STORE
+        WHERE id = ${id}`);
+
+      return rows[0];
+    } catch (e) {
+      console.error(e);
+    }
   }
 
-  async create(store: storeCreateType) {
+  async createStore(store: storeCreateType) {
     try {
       const [rows] = await this.promisePool.execute(`
         INSERT INTO STORE (${Object.keys(store).join()})
         VALUES (${Object.values(store).map(format.formatData).join()})
       `);
 
-      return rows.insertId;
+      return this.getStoreById(rows.insertId);
     } catch (e) {
       console.error(e);
     }
   }
 
-  async findById(id: number) {
+  async loginStore(store: storeLoginType) {
+    const { storeId, password } = store;
     try {
       const [rows] = await this.promisePool
-        .execute(`SELECT name, branchName FROM STORE
-      WHERE id = ${id}`);
+        .execute(`SELECT name, branchName, id, storeId FROM STORE
+      WHERE storeId = ${format.formatData(
+        storeId,
+      )} AND password = ${format.formatData(password)}`);
 
       return rows[0];
     } catch (e) {

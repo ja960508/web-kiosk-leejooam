@@ -1,29 +1,13 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { MySQLService } from 'src/config/mysql/mysql.service';
 import format from '../utils/format';
 import { productCreateType, productUpdateType } from './product.type';
 
 @Injectable()
-export class ProductService implements OnModuleInit {
+export class ProductService {
   promisePool: any;
   constructor(private mysqlService: MySQLService) {
     this.promisePool = this.mysqlService.pool.promise();
-  }
-  async onModuleInit() {
-    await this.promisePool.execute(`
-      CREATE TABLE IF NOT EXISTS PRODUCT (
-        id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-        name VARCHAR(20) NOT NULL,
-        price DECIMAL(10, 0) NOT NULL,
-        categoryId INT,
-        productOption json,
-        thumbnail VARCHAR(255),
-        isPopular BOOLEAN,
-        isSoldOut BOOLEAN,
-        deletedAt DATETIME,
-        FOREIGN KEY (categoryId) REFERENCES CATEGORY(id)
-      )
-    `);
   }
 
   async getProductByCategoryId(categoryId: number) {
