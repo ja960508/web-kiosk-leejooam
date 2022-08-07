@@ -10,3 +10,8 @@ export interface storeUpdateType {
   password?: string;
   branchName?: string;
 }
+
+export interface storeLoginType {
+  storeId: string;
+  password: string;
+}

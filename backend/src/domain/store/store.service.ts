@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { MySQLService } from 'src/config/mysql/mysql.service';
-import { storeCreateType, storeUpdateType } from './store.type';
+import { storeCreateType, storeLoginType, storeUpdateType } from './store.type';
 import format from '../utils/format';
 
 @Injectable()
@@ -23,12 +23,16 @@ export class StoreService {
     }
   }
 
-  async findById(storeId: string) {
+  async loginStore(store: storeLoginType) {
+    const { storeId, password } = store;
     try {
       const [rows] = await this.promisePool
-        .execute(`SELECT name, branchName FROM STORE
-      WHERE storeId = ${storeId}`);
+        .execute(`SELECT name, branchName, id, storeId FROM STORE
+      WHERE storeId = ${format.formatData(
+        storeId,
+      )} AND password = ${format.formatData(password)}`);
 
+      console.log(rows);
       return rows[0];
     } catch (e) {
       console.error(e);

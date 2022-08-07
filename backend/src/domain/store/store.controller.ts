@@ -1,17 +1,17 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
 import { StoreService } from './store.service';
-import { storeCreateType, storeUpdateType } from './store.type';
+import { storeCreateType, storeLoginType, storeUpdateType } from './store.type';
 
 @Controller('store')
 export class StoreController {
   constructor(private readonly storeService: StoreService) {}
 
-  @Get(':storeId')
-  async findBystoreId(@Param('storeId') storeId: string) {
-    return this.storeService.findById(storeId);
+  @Post('login')
+  async loginStore(@Body() store: storeLoginType) {
+    return this.storeService.loginStore(store);
   }
 
-  @Post()
+  @Post('register')
   async create(@Body() store: storeCreateType) {
     await this.storeService.create(store);
 
