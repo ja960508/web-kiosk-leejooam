@@ -1,5 +1,4 @@
-import { Body, Controller, Param, Patch, Post, Req, Res } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Body, Controller, Param, Patch, Post } from '@nestjs/common';
 import { StoreService } from './store.service';
 import { storeCreateType, storeLoginType, storeUpdateType } from './store.type';
 
@@ -8,33 +7,17 @@ export class StoreController {
   constructor(private readonly storeService: StoreService) {}
 
   @Post('login')
-  async loginStore(
-    @Res({ passthrough: true }) response: Response,
-    @Body() store: storeLoginType,
-    @Req() request: Request,
-  ) {
-    console.log(request.cookies);
+  async loginStore(@Body() store: storeLoginType) {
     const res = await this.storeService.loginStore(store);
-    response.cookie('storeId', res.id, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 30 * 1000,
-    });
 
-    return res;
+    return res.id;
   }
 
   @Post('register')
-  async createStore(
-    @Res({ passthrough: true }) response: Response,
-    @Body() store: storeCreateType,
-  ) {
+  async createStore(@Body() store: storeCreateType) {
     const res = await this.storeService.createStore(store);
-    response.cookie('storeId', res.id, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 30 * 1000,
-    });
 
-    return res;
+    return res.id;
   }
 
   @Patch(':id')
