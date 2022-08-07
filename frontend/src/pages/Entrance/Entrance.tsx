@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from '../../lib/Router';
 import { getItemFromLocalStorage } from '../../lib/storage';
@@ -6,18 +7,24 @@ import { AuthForm, EntranceHeader } from './Entrance.style';
 
 function Entrance() {
   const [isRegister, setIsRegister] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const onAuthSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (isRegister) {
-      await handleRegister(event);
-      return;
-    }
+    try {
+      if (isRegister) {
+        await handleRegister(event);
+        return;
+      }
 
-    await handleLogin(event);
-    navigate('/admin');
+      await handleLogin(event);
+      navigate('/admin');
+    } catch (error) {
+      const err = error as AxiosError;
+      setError(err.message);
+    }
   };
 
   useEffect(() => {
@@ -72,6 +79,7 @@ function Entrance() {
           />
         )}
         <button type="submit">{isRegister ? '회원가입' : '로그인'}</button>
+        {error && <div>${error}</div>}
         <div>
           <button type="button" onClick={() => setIsRegister(false)}>
             로그인
