@@ -10,14 +10,26 @@ export class StoreService {
     this.promisePool = this.mysqlService.pool.promise();
   }
 
-  async create(store: storeCreateType) {
+  async getStoreById(id: number) {
+    try {
+      const [rows] = await this.promisePool
+        .execute(`SELECT name, branchName, id, storeId FROM STORE
+        WHERE id = ${id}`);
+
+      return rows[0];
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  async createStore(store: storeCreateType) {
     try {
       const [rows] = await this.promisePool.execute(`
         INSERT INTO STORE (${Object.keys(store).join()})
         VALUES (${Object.values(store).map(format.formatData).join()})
       `);
 
-      return rows.insertId;
+      return this.getStoreById(rows.insertId);
     } catch (e) {
       console.error(e);
     }
@@ -32,7 +44,6 @@ export class StoreService {
         storeId,
       )} AND password = ${format.formatData(password)}`);
 
-      console.log(rows);
       return rows[0];
     } catch (e) {
       console.error(e);

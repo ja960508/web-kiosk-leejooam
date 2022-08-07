@@ -13,7 +13,9 @@ interface storeRegisterType {
 
 export async function login(store: storeLoginType) {
   try {
-    const res = await client.post('/store/login', store);
+    const res = await client.post('/store/login', store, {
+      withCredentials: true,
+    });
 
     return res;
   } catch (e) {
