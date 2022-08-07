@@ -12,23 +12,18 @@ interface storeRegisterType {
 }
 
 export async function login(store: storeLoginType) {
-  try {
-    const res = await client.post('/store/login', store, {
-      withCredentials: true,
-    });
+  const { data }: { data: string } = await client.post('/store/login', store, {
+    withCredentials: true,
+  });
 
-    return res;
-  } catch (e) {
-    console.error(e);
-  }
+  return data;
 }
 
 export async function register(store: storeRegisterType) {
-  try {
-    const res = await client.post('/store/register', store);
+  const { data }: { data: string } = await client.post(
+    '/store/register',
+    store,
+  );
 
-    return res;
-  } catch (e) {
-    console.error(e);
-  }
+  return data;
 }
