@@ -1,4 +1,12 @@
-import { Body, Controller, Param, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpException,
+  HttpStatus,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { StoreService } from './store.service';
 import { storeCreateType, storeLoginType, storeUpdateType } from './store.type';
 
@@ -10,12 +18,20 @@ export class StoreController {
   async loginStore(@Body() store: storeLoginType) {
     const res = await this.storeService.loginStore(store);
 
+    if (!res || !res.id) {
+      throw new HttpException('Login Failed...', HttpStatus.UNAUTHORIZED);
+    }
+
     return res.id;
   }
 
   @Post('register')
   async createStore(@Body() store: storeCreateType) {
     const res = await this.storeService.createStore(store);
+
+    if (!res.id) {
+      throw new HttpException('storeId is Already Exist', HttpStatus.FORBIDDEN);
+    }
 
     return res.id;
   }
