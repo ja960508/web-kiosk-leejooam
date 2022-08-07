@@ -6,9 +6,9 @@ import { storeCreateType, storeUpdateType } from './store.type';
 export class StoreController {
   constructor(private readonly storeService: StoreService) {}
 
-  @Get(':id')
-  async findById(@Param('id') id: number) {
-    return this.storeService.findById(id);
+  @Get(':storeId')
+  async findBystoreId(@Param('storeId') storeId: string) {
+    return this.storeService.findById(storeId);
   }
 
   @Post()

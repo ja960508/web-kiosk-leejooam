@@ -1,25 +1,13 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { MySQLService } from 'src/config/mysql/mysql.service';
 import { storeCreateType, storeUpdateType } from './store.type';
 import format from '../utils/format';
 
 @Injectable()
-export class StoreService implements OnModuleInit {
+export class StoreService {
   promisePool: any;
   constructor(private mysqlService: MySQLService) {
     this.promisePool = this.mysqlService.pool.promise();
-  }
-  async onModuleInit() {
-    const poolPromise = this.mysqlService.pool.promise();
-    await poolPromise.execute(`
-      CREATE TABLE IF NOT EXISTS STORE (
-        id INT PRIMARY KEY AUTO_INCREMENT,
-        name VARCHAR(20) NOT NULL,
-        password VARCHAR(20) NOT NULL,
-        branchName VARCHAR(20),
-        deletedAt DATETIME
-      )
-    `);
   }
 
   async create(store: storeCreateType) {
@@ -35,11 +23,11 @@ export class StoreService implements OnModuleInit {
     }
   }
 
-  async findById(id: number) {
+  async findById(storeId: string) {
     try {
       const [rows] = await this.promisePool
         .execute(`SELECT name, branchName FROM STORE
-      WHERE id = ${id}`);
+      WHERE storeId = ${storeId}`);
 
       return rows[0];
     } catch (e) {
