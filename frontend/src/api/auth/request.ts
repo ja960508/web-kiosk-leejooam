@@ -11,19 +11,14 @@ interface storeRegisterType {
   branchName: string;
 }
 
-export async function login(store: storeLoginType) {
-  const { data }: { data: string } = await client.post('/store/login', store, {
-    withCredentials: true,
-  });
+export async function login(store: storeLoginType): Promise<string> {
+  const { data } = await client.post('/store/login', store);
 
   return data;
 }
 
-export async function register(store: storeRegisterType) {
-  const { data }: { data: string } = await client.post(
-    '/store/register',
-    store,
-  );
+export async function register(store: storeRegisterType): Promise<string> {
+  const { data } = await client.post('/store/register', store);
 
   return data;
 }

@@ -10,6 +10,17 @@ export class StoreService {
     this.promisePool = this.mysqlService.pool.promise();
   }
 
+  async isStoreExist(storeId: string) {
+    try {
+      const [rows] = await this.promisePool.execute(`SELECT * FROM STORE
+        WHERE storeId = ${format.formatData(storeId)}`);
+
+      return rows[0];
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   async getStoreById(id: number) {
     try {
       const [rows] = await this.promisePool
@@ -24,6 +35,10 @@ export class StoreService {
 
   async createStore(store: storeCreateType) {
     try {
+      if (this.isStoreExist(store.storeId)) {
+        throw new Error('error');
+      }
+
       const [rows] = await this.promisePool.execute(`
         INSERT INTO STORE (${Object.keys(store).join()})
         VALUES (${Object.values(store).map(format.formatData).join()})
@@ -31,7 +46,7 @@ export class StoreService {
 
       return this.getStoreById(rows.insertId);
     } catch (e) {
-      console.error(e);
+      return e;
     }
   }
 
