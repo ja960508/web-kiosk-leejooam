@@ -3,7 +3,6 @@ import { login, register } from '../../api/auth/request';
 import { setItemToLocalStorage } from '../../lib/storage';
 
 export const checkAuthValidation = (values: { [key: string]: string }) => {
-  console.log(values);
   return Object.keys(values).reduce((prev, key) => {
     return !!values[key];
   }, true);
@@ -30,7 +29,6 @@ export const handleRegister = async (
   }
 
   const response = await register(values);
-  console.log(response);
   setItemToLocalStorage('storeId', response);
 
   return true;
@@ -43,7 +41,6 @@ export const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
   }, {});
 
   const response = await login(values);
-  console.log(response);
   setItemToLocalStorage('storeId', response);
 
   return true;
