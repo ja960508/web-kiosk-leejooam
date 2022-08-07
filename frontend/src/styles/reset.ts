@@ -1,4 +1,5 @@
 import { css } from 'styled-components';
+import color from './variables/color';
 
 const reset = css`
   * {
@@ -7,9 +8,19 @@ const reset = css`
     box-sizing: border-box;
   }
 
+  body {
+    background-color: ${color.white};
+    min-height: 100vh;
+  }
+
   a {
     text-decoration: none;
     color: inherit;
+  }
+
+  input {
+    border: none;
+    outline: none;
   }
 `;
 
