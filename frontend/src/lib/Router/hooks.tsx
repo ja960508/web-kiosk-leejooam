@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { routerContext } from './ContextProvider';
 
-export function useNavigate(path: string) {
+export function useNavigate() {
   const { changePath } = useContext(routerContext);
 
-  changePath(path);
+  return (path: string) => changePath(path);
 }
