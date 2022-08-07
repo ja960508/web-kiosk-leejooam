@@ -37,13 +37,11 @@ export const handleRegister = async (
       isPasswordCorrect(password, passwordConfirm)
     )
   ) {
-    return false;
+    return;
   }
 
   const response = await register(values);
   setItemToLocalStorage('storeId', response);
-
-  return true;
 };
 
 export const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -54,6 +52,4 @@ export const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
 
   const response = await login(values);
   setItemToLocalStorage('storeId', response);
-
-  return true;
 };
