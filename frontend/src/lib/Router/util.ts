@@ -1,5 +1,12 @@
 import { isValidElement } from 'react';
 
+export function invariant(condition: boolean, message: string) {
+  if (!condition) throw new Error(message);
+}
+
+export const ROUTE_PARAMETER_REGEX = /:(\w+)/g;
+export const URL_FRAGMENT_REGEXP = '([^\\/]+)';
+
 export function isValidChild(
   element: React.ReactNode,
 ): element is React.ReactElement {
@@ -14,19 +21,21 @@ export function isValidChild(
   return true;
 }
 
-export function hasPathVariable(routePath: string) {
-  return routePath.search(':') !== -1;
+export function extractPathAndParams(routePath: string): [string, string[]] {
+  const params: string[] = [];
+
+  const parsedPath = routePath
+    .replace(ROUTE_PARAMETER_REGEX, (_match: string, paramName: string) => {
+      params.push(paramName);
+      return URL_FRAGMENT_REGEXP;
+    })
+    .replace(/\//g, '\\/');
+
+  return [parsedPath, params];
 }
 
-export function isExactPath(routePath: string, path: string) {
-  return routePath === path;
-}
+export function isCurrentRoute(path: string, parsedPath: string) {
+  const URLRegExp = new RegExp(`^${parsedPath}$`);
 
-export function getBasePath(routePath: string) {
-  return routePath.substring(0, routePath.search(':'));
-}
-
-export function isSameDepth(path: string, basePath: string) {
-  const basePathRegex = new RegExp(`^${basePath}[a-zA-Z0-9]+$`);
-  return basePathRegex.test(path);
+  return URLRegExp.test(path);
 }

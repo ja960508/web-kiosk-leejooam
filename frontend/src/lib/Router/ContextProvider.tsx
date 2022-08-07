@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-interface RouterProps {
+interface ProviderProps {
   children: React.ReactNode;
 }
 
@@ -14,7 +14,7 @@ export const routerContext = createContext<routerContextType>({
   changePath: () => undefined,
 });
 
-function Router({ children }: RouterProps) {
+function ContextProvider({ children }: ProviderProps) {
   const [path, setPath] = useState<string>(window.location.pathname);
 
   const changePath = (path: string) => {
@@ -46,4 +46,4 @@ function Router({ children }: RouterProps) {
   );
 }
 
-export default Router;
+export default ContextProvider;

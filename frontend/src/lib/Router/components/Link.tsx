@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { routerContext } from './Router';
+import { routerContext } from '../ContextProvider';
 
 interface LinkProps {
   className?: string;

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Link from '../lib/Router/Link';
+import { Link } from '../lib/Router';
 
 const LinkButton = styled(Link)`
   position: absolute;
