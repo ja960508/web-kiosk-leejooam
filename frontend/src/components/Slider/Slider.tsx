@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { Arrow } from '../../assets/icons';
-import { StyledCategoryList } from '../CategoryList/Category.style';
 import { useSlide } from './hooks';
 import { Container } from './Slider.style';
 
@@ -10,29 +9,27 @@ interface SliderType {
 }
 
 function Slider({ children, offset }: SliderType) {
-  const totalChildrenLength = Math.ceil(
-    React.Children.count(children) / offset,
-  );
-  const totalSlideLength = totalChildrenLength - 1;
-  const [currentSlide, nextSlide, prevSlide] = useSlide(totalSlideLength);
+  const totalSlideLength = Math.ceil(React.Children.count(children) / offset);
+  const slideLimit = totalSlideLength - 1;
+  const [currentSlide, nextSlide, prevSlide] = useSlide(slideLimit);
   const ulRef = useRef<HTMLUListElement>(null);
 
   useEffect(() => {
     if (!ulRef.current) return;
 
-    ulRef.current.style.width = `${totalChildrenLength}00%`;
+    ulRef.current.style.width = `${totalSlideLength}00%`;
     ulRef.current.style.transform = `translateX(-${
-      (100 / totalChildrenLength) * currentSlide
+      (100 / totalSlideLength) * currentSlide
     }%)`;
-  }, [ulRef, currentSlide, totalChildrenLength]);
+  }, [ulRef, currentSlide, totalSlideLength]);
 
   if (!children) {
     return <></>;
   }
 
   return (
-    <Container>
-      <StyledCategoryList ref={ulRef}>{children}</StyledCategoryList>
+    <Container columns={offset * totalSlideLength}>
+      <ul ref={ulRef}>{children}</ul>
       <button className="arrow prev" onClick={prevSlide}>
         <Arrow />
       </button>
