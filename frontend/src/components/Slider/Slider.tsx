@@ -6,10 +6,16 @@ import { Container } from './Slider.style';
 interface SliderType {
   children: React.ReactNode | React.ReactNode[];
   offset: number;
+  line?: number;
 }
 
-function Slider({ children, offset }: SliderType) {
+function getColumns(offset: number, totalSlideLength: number, line: number) {
+  return Math.ceil(offset / line) * totalSlideLength;
+}
+
+function Slider({ children, offset, line = 1 }: SliderType) {
   const totalSlideLength = Math.ceil(React.Children.count(children) / offset);
+
   const slideLimit = totalSlideLength - 1;
   const [currentSlide, nextSlide, prevSlide] = useSlide(slideLimit);
   const ulRef = useRef<HTMLUListElement>(null);
@@ -28,7 +34,7 @@ function Slider({ children, offset }: SliderType) {
   }
 
   return (
-    <Container columns={offset * totalSlideLength}>
+    <Container columns={getColumns(offset, totalSlideLength, line)}>
       <ul ref={ulRef}>{children}</ul>
       <button className="arrow prev" onClick={prevSlide}>
         <Arrow />
