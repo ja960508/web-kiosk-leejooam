@@ -6,3 +6,11 @@ export function useNavigate() {
 
   return (path: string) => changePath(path);
 }
+
+export function useQuery() {
+  const location = new URLSearchParams(window.location.search);
+
+  return (query: string) => {
+    return location.get(query);
+  };
+}

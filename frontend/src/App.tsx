@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import Admin from './pages/Admin';
+import Admin from './pages/Admin/Admin';
 import CustomerOrder from './pages/CustomerOrder';
 import Entrance from './pages/Entrance/Entrance';
 import GlobalStyle from './styles/global';
