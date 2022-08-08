@@ -47,8 +47,8 @@ export class MySQLService implements OnModuleInit {
         categoryId INT,
         productOption json,
         thumbnail VARCHAR(255),
-        isPopular BOOLEAN,
-        isSoldOut BOOLEAN,
+        isPopular BOOLEAN DEFAULT FALSE,
+        isSoldOut BOOLEAN DEFAULT FALSE,
         deletedAt DATETIME,
         FOREIGN KEY (categoryId) REFERENCES CATEGORY(id)
       )

@@ -12,7 +12,8 @@ export class ProductService {
 
   async getProductByCategoryId(categoryId: number) {
     try {
-      const [rows] = await this.promisePool.execute(`SELECT * FROM PRODUCT
+      const [rows] = await this.promisePool
+        .execute(`SELECT id, name, price, categoryId, productOption, thumbnail, isPopular, isSoldOut FROM PRODUCT
       WHERE categoryId = ${categoryId}`);
 
       return rows;
