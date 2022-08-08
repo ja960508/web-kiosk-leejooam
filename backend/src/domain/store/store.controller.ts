@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   HttpException,
   HttpStatus,
   Param,
@@ -14,6 +15,17 @@ import { storeCreateType, storeLoginType, storeUpdateType } from './store.type';
 export class StoreController {
   constructor(private readonly storeService: StoreService) {}
 
+  @Get(':id')
+  async getStoreById(@Param('id') id: number) {
+    const res = await this.storeService.getStoreById(id);
+
+    if (!res || !res.id) {
+      throw new HttpException('Login Failed...', HttpStatus.UNAUTHORIZED);
+    }
+
+    return res;
+  }
+
   @Post('login')
   async loginStore(@Body() store: storeLoginType) {
     const res = await this.storeService.loginStore(store);
@@ -22,7 +34,7 @@ export class StoreController {
       throw new HttpException('Login Failed...', HttpStatus.UNAUTHORIZED);
     }
 
-    return res.id;
+    return res;
   }
 
   @Post('register')
@@ -33,7 +45,7 @@ export class StoreController {
       throw new HttpException('storeId is Already Exist', HttpStatus.FORBIDDEN);
     }
 
-    return res.id;
+    return res;
   }
 
   @Patch(':id')

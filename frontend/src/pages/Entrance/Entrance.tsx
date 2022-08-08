@@ -1,12 +1,14 @@
 import { AxiosError } from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
+import { storeContext } from '../../context/StoreProvider';
 import { useNavigate } from '../../lib/Router';
 import { getItemFromLocalStorage } from '../../lib/storage';
 import { handleLogin, handleRegister } from './auth.handler';
 import { AuthForm } from './Entrance.style';
 
 function Entrance() {
+  const { changeStoreInfo } = useContext(storeContext);
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -16,11 +18,13 @@ function Entrance() {
 
     try {
       if (isRegister) {
-        await handleRegister(event);
+        const response = await handleRegister(event);
+        changeStoreInfo(response);
         return;
       }
 
-      await handleLogin(event);
+      const response = await handleLogin(event);
+      changeStoreInfo(response);
       navigate('/admin');
     } catch (error) {
       const err = error as AxiosError;

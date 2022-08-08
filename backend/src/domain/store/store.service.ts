@@ -35,7 +35,7 @@ export class StoreService {
 
   async createStore(store: storeCreateType) {
     try {
-      if (this.isStoreExist(store.storeId)) {
+      if (await this.isStoreExist(store.storeId)) {
         throw new Error('error');
       }
 
@@ -44,7 +44,7 @@ export class StoreService {
         VALUES (${Object.values(store).map(format.formatData).join()})
       `);
 
-      return this.getStoreById(rows.insertId);
+      return await this.getStoreById(rows.insertId);
     } catch (e) {
       return e;
     }

@@ -37,11 +37,13 @@ export const handleRegister = async (
       isPasswordCorrect(password, passwordConfirm)
     )
   ) {
-    return;
+    throw new Error('올바른 값을 입력해주세요.');
   }
 
   const response = await register(values);
-  setItemToLocalStorage('storeId', response);
+  setItemToLocalStorage('storeId', response.id);
+
+  return response;
 };
 
 export const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -51,5 +53,7 @@ export const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
   }, {});
 
   const response = await login(values);
-  setItemToLocalStorage('storeId', response);
+  setItemToLocalStorage('storeId', response.id);
+
+  return response;
 };
