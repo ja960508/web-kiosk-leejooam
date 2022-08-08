@@ -29,6 +29,12 @@ const reset = css`
     margin: 0;
     padding: 0;
   }
+
+  button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
 `;
 
 export default reset;

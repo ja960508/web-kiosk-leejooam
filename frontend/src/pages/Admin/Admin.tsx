@@ -35,7 +35,6 @@ function Admin() {
           </button>
         </div>
       </Header>
-      <h3>현재 카테고리</h3>
       <CategoryList
         category={category}
         setSelectedCategory={setSelectedCategory}

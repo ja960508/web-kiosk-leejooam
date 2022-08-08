@@ -1,6 +1,6 @@
 import React from 'react';
 import { CategoryType } from '../../types/category';
-import { StyledCategoryList } from './Category.style';
+import Slider from '../Slider/Slider';
 import CategoryItem from './CategoryItem';
 
 interface CategoryListType {
@@ -10,7 +10,7 @@ interface CategoryListType {
 
 function CategoryList({ category, setSelectedCategory }: CategoryListType) {
   return (
-    <StyledCategoryList>
+    <Slider offset={5}>
       {category.map((item, idx) => (
         <CategoryItem
           key={idx}
@@ -18,7 +18,7 @@ function CategoryList({ category, setSelectedCategory }: CategoryListType) {
           setSelectedCategory={setSelectedCategory}
         />
       ))}
-    </StyledCategoryList>
+    </Slider>
   );
 }
 
