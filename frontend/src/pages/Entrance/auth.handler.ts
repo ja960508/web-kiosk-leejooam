@@ -33,7 +33,7 @@ export const handleRegister = async (
 
   if (
     !(
-      isEssentialInputsFilled(values) ||
+      isEssentialInputsFilled(values) &&
       isPasswordCorrect(password, passwordConfirm)
     )
   ) {
