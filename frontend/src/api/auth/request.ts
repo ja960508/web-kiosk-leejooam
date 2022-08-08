@@ -7,6 +7,7 @@ interface storeLoginType {
 
 interface storeRegisterType {
   storeId: string;
+  name: string;
   password: string;
   branchName: string;
 }
@@ -31,7 +32,7 @@ export async function register(store: storeRegisterType): Promise<storeType> {
 }
 
 export async function getStoreInfo(id: string): Promise<storeType> {
-  const { data } = await client.get(`/store/${Number(id)}`);
+  const { data } = await client.get(`/store/${id}`);
 
   return data;
 }

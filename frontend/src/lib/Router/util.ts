@@ -6,6 +6,7 @@ export function invariant(condition: boolean, message: string) {
 
 export const ROUTE_PARAMETER_REGEX = /:(\w+)/g;
 export const URL_FRAGMENT_REGEXP = '([^\\/]+)';
+export const QUERY_STRING_REGEXP = /\?[\w=&]+/g;
 
 export function isValidChild(
   element: React.ReactNode,
@@ -29,6 +30,7 @@ export function extractPathAndParams(routePath: string): [string, string[]] {
       params.push(paramName);
       return URL_FRAGMENT_REGEXP;
     })
+    .replace(QUERY_STRING_REGEXP, '')
     .replace(/\//g, '\\/');
 
   return [parsedPath, params];

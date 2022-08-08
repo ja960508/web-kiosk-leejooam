@@ -22,6 +22,13 @@ const reset = css`
     border: none;
     outline: none;
   }
+
+  ul,
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 export default reset;
