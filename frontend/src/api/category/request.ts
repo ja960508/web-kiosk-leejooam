@@ -1,18 +1,12 @@
+import { CategoryType } from '../../types/category';
 import client from '../client';
-
-export interface categoryType {
-  id: string;
-  name: string;
-  storeId: string;
-  deleteAt: boolean;
-}
 
 export interface categoryAddType {
   name: string;
   storeId: string;
 }
 
-export async function getCategoryById(id: string): Promise<categoryType[]> {
+export async function getCategoryById(id: string): Promise<CategoryType[]> {
   const { data } = await client.get(`/category?storeId=${id}`);
 
   return data;

@@ -1,17 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { categoryType, getCategoryById } from '../../api/category/request';
-import { getProductByCategoryId } from '../../api/product/request';
+import React, { useContext } from 'react';
+import CategoryList from '../../components/CategoryList/CategoryList';
 import Header from '../../components/Header/Header';
 import withCheckPermission from '../../components/HOC/withCheckPermission';
 import { storeContext } from '../../context/StoreProvider';
 import { useNavigate } from '../../lib/Router';
 import { setItemToLocalStorage } from '../../lib/storage';
-import { CategoryList } from './Admin.style';
+import { useCategory, useProduct } from './hooks';
 
 function Admin() {
-  const [category, setCategory] = useState<categoryType[]>([]);
-  const [product, setProduct] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [category, selectedCategory, setSelectedCategory] = useCategory();
+  const product = useProduct(selectedCategory);
   const { store } = useContext(storeContext);
   const navigate = useNavigate();
 
@@ -20,28 +18,6 @@ function Admin() {
     navigate('/');
   };
 
-  useEffect(() => {
-    const getCategory = async () => {
-      const response = await getCategoryById(store.id);
-
-      setCategory(response);
-      setSelectedCategory(response[0]?.id);
-    };
-
-    store.id && getCategory();
-  }, [store.id]);
-
-  useEffect(() => {
-    const getProduct = async () => {
-      if (selectedCategory) {
-        const response = await getProductByCategoryId(selectedCategory);
-        setProduct(response);
-      }
-    };
-
-    getProduct();
-  }, [selectedCategory]);
-
   return (
     <>
       <Header>
@@ -49,17 +25,30 @@ function Admin() {
         <h2>
           {store.name} {store.branchName}점입니다.
         </h2>
-        <button type="button" onClick={onLogout}>
-          로그아웃
-        </button>
+        <div>
+          <button type="button" onClick={onLogout}>
+            장사 시작
+          </button>
+          <button type="button" onClick={onLogout}>
+            로그아웃
+          </button>
+        </div>
       </Header>
-      <CategoryList>
-        {category.map((item, idx) => (
-          <li key={idx} onClick={() => setSelectedCategory(item.id)}>
-            {item.name}
-          </li>
-        ))}
-      </CategoryList>
+      <h3>현재 카테고리</h3>
+      <CategoryList
+        category={category}
+        setSelectedCategory={setSelectedCategory}
+      />
+      {
+        <>
+          <h3>{selectedCategory.name}</h3>
+          <ul>
+            {product.map((item, idx) => (
+              <li key={idx}>{item.name}</li>
+            ))}
+          </ul>
+        </>
+      }
     </>
   );
 }

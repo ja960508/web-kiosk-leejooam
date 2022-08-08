@@ -16,3 +16,8 @@ export const CategoryList = styled.ul`
     padding: 1.5rem 0;
   }
 `;
+
+export const CategoryEdit = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
