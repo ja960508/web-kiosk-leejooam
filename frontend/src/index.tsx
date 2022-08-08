@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import StoreProvider from './context/StoreProvider';
 import { Router } from './lib/Router';
 
 const root = ReactDOM.createRoot(
@@ -8,6 +9,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Router>
-    <App />
+    <StoreProvider>
+      <App />
+    </StoreProvider>
   </Router>,
 );
