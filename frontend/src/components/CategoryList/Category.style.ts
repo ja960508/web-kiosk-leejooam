@@ -8,5 +8,16 @@ export const StyledContainer = styled.div`
     box-shadow: ${shadow.normalShadow};
     text-align: center;
     padding: 1.5rem 0;
+    position: relative;
+  }
+
+  .categoryEdit {
+    position: absolute;
+    right: 0rem;
+    top: 0;
+
+    button {
+      margin-right: 0.5rem;
+    }
   }
 `;

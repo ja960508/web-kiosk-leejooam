@@ -22,9 +22,9 @@ export class CategoryController {
 
   @Post()
   async createCategory(@Body() category: categoryCreateType) {
-    await this.categoryService.createCategory(category);
+    const response = await this.categoryService.createCategory(category);
 
-    return 'created';
+    return response;
   }
 
   @Patch(':id')

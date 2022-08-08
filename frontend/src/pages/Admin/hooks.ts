@@ -7,6 +7,7 @@ import { ProductType } from '../../types/product';
 
 export const useCategory = (): [
   CategoryType[],
+  React.Dispatch<React.SetStateAction<CategoryType[]>>,
   CategoryType,
   React.Dispatch<React.SetStateAction<CategoryType>>,
 ] => {
@@ -30,7 +31,7 @@ export const useCategory = (): [
     getCategory();
   }, [store.id]);
 
-  return [category, selectedCategory, setSelectedCategory];
+  return [category, setCategory, selectedCategory, setSelectedCategory];
 };
 
 export const useProduct = (selectedCategory: CategoryType): ProductType[] => {
