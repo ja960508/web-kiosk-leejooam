@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import CategoryList from '../../components/CategoryList/CategoryList';
 import Header from '../../components/Header/Header';
 import withCheckPermission from '../../components/HOC/withCheckPermission';
+import ProductList from '../../components/ProductList/ProductList';
 import { storeContext } from '../../context/StoreProvider';
 import { useNavigate } from '../../lib/Router';
 import { setItemToLocalStorage } from '../../lib/storage';
@@ -39,16 +40,8 @@ function Admin() {
         category={category}
         setSelectedCategory={setSelectedCategory}
       />
-      {
-        <>
-          <h3>{selectedCategory.name}</h3>
-          <ul>
-            {product.map((item, idx) => (
-              <li key={idx}>{item.name}</li>
-            ))}
-          </ul>
-        </>
-      }
+      <h3>{selectedCategory.name}</h3>
+      <ProductList product={product} />
     </>
   );
 }
