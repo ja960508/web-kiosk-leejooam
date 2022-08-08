@@ -1,9 +1,10 @@
 import { AxiosError } from 'axios';
 import React, { useEffect, useState } from 'react';
+import Header from '../../components/Header/Header';
 import { useNavigate } from '../../lib/Router';
 import { getItemFromLocalStorage } from '../../lib/storage';
 import { handleLogin, handleRegister } from './auth.handler';
-import { AuthForm, EntranceHeader } from './Entrance.style';
+import { AuthForm } from './Entrance.style';
 
 function Entrance() {
   const [isRegister, setIsRegister] = useState(false);
@@ -37,10 +38,10 @@ function Entrance() {
 
   return (
     <>
-      <EntranceHeader>
+      <Header>
         <h1>안녕하세요 사장님.</h1>
         <h2>가게 로그인을 진행해주세요.</h2>
-      </EntranceHeader>
+      </Header>
       <AuthForm onSubmit={onAuthSubmit}>
         <input
           name="storeId"
