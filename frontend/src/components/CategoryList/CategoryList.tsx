@@ -1,16 +1,15 @@
-import React, { useContext, useState } from 'react';
-import { addCategory } from '../../api/category/request';
-import { storeContext } from '../../context/StoreProvider';
+import React from 'react';
 import { CategoryType } from '../../types/category';
+import CategoryModal from '../Modal/CategoryModal/CategoryModal';
 import Modal from '../Modal/Modal';
 import Slider from '../Slider/Slider';
 import { StyledContainer } from './Category.style';
 import CategoryItem from './CategoryItem';
+import { useModal } from './hooks';
 
-interface CategoryListType {
+interface CategoryListProps {
   category: CategoryType[];
   setCategory: React.Dispatch<React.SetStateAction<CategoryType[]>>;
-
   setSelectedCategory: React.Dispatch<React.SetStateAction<CategoryType>>;
 }
 
@@ -18,28 +17,18 @@ function CategoryList({
   category,
   setCategory,
   setSelectedCategory,
-}: CategoryListType) {
-  const [onModal, setOnModal] = useState(false);
-  const { store } = useContext(storeContext);
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const { categoryName } = event.target as HTMLFormElement;
-    const category = {
-      name: categoryName.value,
-      storeId: store.id,
-    };
-
-    const response = await addCategory(category);
-
-    setOnModal(false);
-    setCategory((prev) => [...prev, { ...category, id: response }]);
-  };
+}: CategoryListProps) {
+  const [onModal, modalType, setOnModal, openModal, targetCategory] =
+    useModal();
 
   return (
     <StyledContainer>
-      <button type="button" onClick={() => setOnModal(true)}>
+      <button
+        type="button"
+        onClick={() => {
+          openModal({ type: 'add' });
+        }}
+      >
         카테고리 추가
       </button>
       <Slider offset={6}>
@@ -48,15 +37,18 @@ function CategoryList({
             key={idx}
             item={item}
             setSelectedCategory={setSelectedCategory}
+            openModal={openModal}
           />
         ))}
       </Slider>
       {onModal && (
         <Modal setOnModal={setOnModal}>
-          <form onSubmit={handleSubmit}>
-            <input type="text" name="categoryName" />
-            <button type="submit">제출</button>
-          </form>
+          <CategoryModal
+            setOnModal={setOnModal}
+            setCategory={setCategory}
+            modalType={modalType}
+            targetCategory={targetCategory}
+          ></CategoryModal>
         </Modal>
       )}
     </StyledContainer>

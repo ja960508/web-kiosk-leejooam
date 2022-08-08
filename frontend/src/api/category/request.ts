@@ -17,3 +17,9 @@ export async function addCategory(category: categoryAddType) {
 
   return data;
 }
+
+export async function deleteCategoryById(id: string) {
+  const { data } = await client.delete(`/category/${id}`);
+
+  return data;
+}
