@@ -1,4 +1,8 @@
-import { ProductOptionType } from '../components/ProductList/ProductList';
+export interface ProductOptionType {
+  type: string;
+  optionName: string;
+  content: string[];
+}
 
 export interface ProductType {
   id: number;
