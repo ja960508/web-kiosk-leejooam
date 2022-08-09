@@ -3,3 +3,9 @@ export interface CategoryType {
   name: string;
   storeId: string;
 }
+
+export const initialCategoryValue = {
+  id: '',
+  name: '',
+  storeId: '',
+};

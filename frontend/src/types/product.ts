@@ -12,6 +12,16 @@ export interface ProductType {
   categoryId: number;
   isPopular: boolean;
   isSoldOut: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   productOption: ProductOptionType[];
 }
+
+export const initialProductType = {
+  id: -1,
+  name: '',
+  thumbnail: '',
+  price: '',
+  categoryId: -1,
+  isPopular: false,
+  isSoldOut: false,
+  productOption: [],
+};
