@@ -2,23 +2,14 @@ import React, { useState } from 'react';
 import { ProductOptionType } from '../../../../types/product';
 
 interface Props {
-  isChoiceOptionOpen: boolean;
   setOptions: React.Dispatch<React.SetStateAction<ProductOptionType[]>>;
   closeOptionContainer: () => void;
 }
 
-function ChoiceOptionContainer({
-  isChoiceOptionOpen,
-  setOptions,
-  closeOptionContainer,
-}: Props) {
+function ChoiceOptionContainer({ setOptions, closeOptionContainer }: Props) {
   const [optionName, setOptionName] = useState('');
   const [optionDetailValue, setOptionDetailValue] = useState('');
   const [optionDetails, setOptionDetails] = useState<string[]>([]);
-
-  if (!isChoiceOptionOpen) {
-    return <></>;
-  }
 
   const handleAddOption = () => {
     const option: ProductOptionType = {
@@ -45,6 +36,7 @@ function ChoiceOptionContainer({
         value={optionName}
         onChange={(event) => setOptionName(event.target.value)}
       />
+      <strong>상세 옵션 내용을 입력해주세요.</strong>
       <input
         type="text"
         value={optionDetailValue}

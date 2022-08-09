@@ -7,6 +7,7 @@ import {
   ProductType,
 } from '../../../types/product';
 import useInputs, { useOptionContainer } from './hooks';
+import { StyledForm } from './ProductAddModal.style';
 import ChoiceOptionContainer from './ProductOption/ChoiceOptionContainer';
 import QuantityOptionContainer from './ProductOption/QuantityOptionContainer';
 
@@ -44,7 +45,7 @@ function ProductAddModal({ setProduct, categoryId, closeModal }: Props) {
   };
 
   return (
-    <form onSubmit={handleAddProduct}>
+    <StyledForm onSubmit={handleAddProduct}>
       <strong>추가할 상품의 이름을 입력해주세요.</strong>
       <input
         type="text"
@@ -66,22 +67,24 @@ function ProductAddModal({ setProduct, categoryId, closeModal }: Props) {
         <button type="button" onClick={openQuantityOption}>
           수량옵션 추가
         </button>
+      </div>
+      {isQuantityOptionOpen && (
         <QuantityOptionContainer
           setOptions={setOptions}
-          isQuantityOptionOpen={isQuantityOptionOpen}
           closeOptionContainer={closeOptionContainer}
         />
+      )}
+      {isChoiceOptionOpen && (
         <ChoiceOptionContainer
           setOptions={setOptions}
-          isChoiceOptionOpen={isChoiceOptionOpen}
           closeOptionContainer={closeOptionContainer}
         />
-      </div>
+      )}
       {options.map((item, idx) => (
         <div key={idx}>{item.optionName}</div>
       ))}
       <button type="submit">추가</button>
-    </form>
+    </StyledForm>
   );
 }
 

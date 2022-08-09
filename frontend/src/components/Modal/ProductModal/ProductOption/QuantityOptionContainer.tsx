@@ -2,25 +2,16 @@ import React, { useState } from 'react';
 import { ProductOptionType } from '../../../../types/product';
 
 interface Props {
-  isQuantityOptionOpen: boolean;
   setOptions: React.Dispatch<React.SetStateAction<ProductOptionType[]>>;
   closeOptionContainer: () => void;
 }
 
-function QuantityOptionContainer({
-  isQuantityOptionOpen,
-  setOptions,
-  closeOptionContainer,
-}: Props) {
+function QuantityOptionContainer({ setOptions, closeOptionContainer }: Props) {
   const [optionName, setOptionName] = useState('');
-
-  if (!isQuantityOptionOpen) {
-    return <></>;
-  }
 
   const handleAddOption = () => {
     const option: ProductOptionType = {
-      type: 'choice',
+      type: 'quantity',
       optionName: optionName,
       content: [],
     };
