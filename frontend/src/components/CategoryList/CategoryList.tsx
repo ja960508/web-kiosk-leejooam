@@ -1,11 +1,11 @@
 import React from 'react';
-import { CategoryType } from '../../types/category';
+import { CategoryType, initialCategoryValue } from '../../types/category';
 import CategoryModal from '../Modal/CategoryModal/CategoryModal';
+import { useModal } from '../Modal/hooks';
 import Modal from '../Modal/Modal';
 import Slider from '../Slider/Slider';
 import { StyledContainer } from './Category.style';
 import CategoryItem from './CategoryItem';
-import { useModal } from './hooks';
 
 interface CategoryListProps {
   category: CategoryType[];
@@ -18,8 +18,8 @@ function CategoryList({
   setCategory,
   setSelectedCategory,
 }: CategoryListProps) {
-  const [onModal, modalType, setOnModal, openModal, targetCategory] =
-    useModal();
+  const [onModal, modalType, setOnModal, openModal, targetValue] =
+    useModal<CategoryType>(initialCategoryValue);
 
   return (
     <StyledContainer>
@@ -47,7 +47,7 @@ function CategoryList({
             setOnModal={setOnModal}
             setCategory={setCategory}
             modalType={modalType}
-            targetCategory={targetCategory}
+            targetCategory={targetValue}
           ></CategoryModal>
         </Modal>
       )}

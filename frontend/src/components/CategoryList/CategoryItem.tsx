@@ -1,11 +1,11 @@
 import React from 'react';
 import { CategoryType } from '../../types/category';
-import { openModalType } from './hooks';
+import { openModalType } from '../Modal/hooks';
 
 interface CategoryItemProps {
   item: CategoryType;
   setSelectedCategory: React.Dispatch<React.SetStateAction<CategoryType>>;
-  openModal: ({ type, targetCategory }: openModalType) => void;
+  openModal: ({ type }: openModalType<CategoryType>) => void;
 }
 
 function CategoryItem({
@@ -19,7 +19,7 @@ function CategoryItem({
       <div className="categoryEdit">
         <button
           type="button"
-          onClick={() => openModal({ type: 'delete', targetCategory: item })}
+          onClick={() => openModal({ type: 'delete', targetValue: item })}
         >
           삭제
         </button>
