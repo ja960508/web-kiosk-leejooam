@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import Admin from './pages/Admin/Admin';
-import CustomerOrder from './pages/CustomerOrder';
+import CustomerOrder from './pages/Customer/CustomerOrder';
 import Entrance from './pages/Entrance/Entrance';
 import GlobalStyle from './styles/global';
 import { Routes, Route } from './lib/Router';
@@ -29,7 +29,7 @@ function App() {
       <GlobalStyle />
       <Routes>
         <Route path="/admin" element={<Admin />} />
-        <Route path="/customer" element={<CustomerOrder />} />
+        <Route path="/customer-order" element={<CustomerOrder />} />
         <Route path="/" element={<Entrance />} />
       </Routes>
     </>

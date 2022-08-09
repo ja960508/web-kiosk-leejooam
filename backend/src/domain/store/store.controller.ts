@@ -48,6 +48,13 @@ export class StoreController {
     return res;
   }
 
+  @Post('checkPassword')
+  async checkPasswordByStoreId(@Body() store: storeLoginType) {
+    const res = await this.storeService.checkPasswordByStoreId(store);
+
+    return res;
+  }
+
   @Patch(':id')
   async updateById(@Param('id') id: number, @Body() store: storeUpdateType) {
     await this.storeService.updateById(id, store);
