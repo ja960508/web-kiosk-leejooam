@@ -15,7 +15,12 @@ function Modal({ isModalOpen, children, closeModal }: ModalPropsType) {
 
   return (
     <ModalPortal>
-      <ModalOverlay onClick={() => closeModal()}></ModalOverlay>
+      <ModalOverlay
+        onClick={(event) => {
+          event.stopPropagation();
+          closeModal();
+        }}
+      ></ModalOverlay>
       <ModalContent>{children}</ModalContent>
     </ModalPortal>
   );

@@ -15,7 +15,7 @@ export interface ProductType {
   productOption: ProductOptionType[];
 }
 
-export interface AddProductType {
+export interface ProductAddType {
   name: string;
   thumbnail: string;
   price: string;
@@ -25,7 +25,7 @@ export interface AddProductType {
   productOption?: ProductOptionType[];
 }
 
-export const initialProductType = {
+export const initialProductValue = {
   id: 0,
   name: '',
   thumbnail: '',
@@ -36,7 +36,7 @@ export const initialProductType = {
   productOption: [],
 };
 
-export const initialAddProduct = {
+export const initialProductAddValue = {
   name: '',
   thumbnail: '',
   price: '',

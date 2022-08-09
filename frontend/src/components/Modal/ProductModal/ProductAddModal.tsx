@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { addProduct } from '../../../api/request';
 import {
-  AddProductType,
-  initialAddProduct,
+  ProductAddType,
+  initialProductAddValue,
   ProductOptionType,
   ProductType,
 } from '../../../types/product';
@@ -17,8 +17,8 @@ interface Props {
 }
 
 function ProductAddModal({ setProduct, categoryId, closeModal }: Props) {
-  const { data, handleChange } = useInputs<AddProductType>({
-    initialValue: initialAddProduct,
+  const { data, handleChange } = useInputs<ProductAddType>({
+    initialValue: initialProductAddValue,
   });
   const [options, setOptions] = useState<ProductOptionType[]>([]);
   const {
@@ -31,13 +31,14 @@ function ProductAddModal({ setProduct, categoryId, closeModal }: Props) {
 
   const handleAddProduct = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     const product = {
       ...data,
       productOption: options,
       categoryId: Number(categoryId),
     };
-
     const insertedId = await addProduct(product);
+
     setProduct((prev) => [...prev, { id: insertedId, ...product }]);
     closeModal();
   };
