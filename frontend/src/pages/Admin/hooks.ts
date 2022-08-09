@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
-import { getCategoryById } from '../../api/category/request';
-import { getProductByCategoryId } from '../../api/product/request';
+import categoryAPI from '../../api/categoryAPI';
+import productAPI from '../../api/productAPI';
 import { storeContext } from '../../context/StoreProvider';
 import { CategoryType } from '../../types/category';
 import { ProductType } from '../../types/product';
@@ -14,15 +14,15 @@ export const useCategory = (): [
   const [category, setCategory] = useState<CategoryType[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>({
     name: '',
-    id: '',
-    storeId: '',
+    id: 0,
+    storeId: 0,
   });
   const { store } = useContext(storeContext);
 
   useEffect(() => {
     const getCategory = async () => {
       if (store.id) {
-        const response = await getCategoryById(store.id);
+        const response = await categoryAPI.getCategoryById(store.id);
         setCategory(response);
         setSelectedCategory(response[0]);
       }
@@ -34,13 +34,17 @@ export const useCategory = (): [
   return [category, setCategory, selectedCategory, setSelectedCategory];
 };
 
-export const useProduct = (selectedCategory: CategoryType): ProductType[] => {
-  const [product, setProduct] = useState([]);
+export const useProduct = (
+  selectedCategory: CategoryType,
+): [ProductType[], React.Dispatch<React.SetStateAction<ProductType[]>>] => {
+  const [product, setProduct] = useState<ProductType[]>([]);
 
   useEffect(() => {
     const getProduct = async () => {
       if (selectedCategory.id) {
-        const response = await getProductByCategoryId(selectedCategory.id);
+        const response = await productAPI.getProductByCategoryId(
+          selectedCategory.id,
+        );
         setProduct(response);
       }
     };
@@ -48,5 +52,5 @@ export const useProduct = (selectedCategory: CategoryType): ProductType[] => {
     getProduct();
   }, [selectedCategory]);
 
-  return product;
+  return [product, setProduct];
 };

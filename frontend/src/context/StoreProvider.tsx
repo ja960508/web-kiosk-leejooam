@@ -1,25 +1,12 @@
 import React, { createContext, useState } from 'react';
+import { initialStoreValue, StoreType } from '../types/store';
 
-interface storeType {
-  id: string;
-  storeId: string;
-  name: string;
-  branchName: string;
+interface StoreContextType {
+  store: StoreType;
+  changeStoreInfo: (prev: StoreType) => void;
 }
 
-interface storeContextType {
-  store: storeType;
-  changeStoreInfo: (prev: storeType) => void;
-}
-
-const initialStoreValue = {
-  id: '',
-  storeId: '',
-  name: '',
-  branchName: '',
-};
-
-export const storeContext = createContext<storeContextType>({
+export const storeContext = createContext<StoreContextType>({
   store: { ...initialStoreValue },
   changeStoreInfo: () => undefined,
 });

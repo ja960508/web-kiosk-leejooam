@@ -1,29 +1,25 @@
 import React from 'react';
 import { CategoryType } from '../../types/category';
-import { openModalType } from './hooks';
+import CategoryDeleteModalTrigger from '../Modal/CategoryModal/CategoryDeleteModalTrigger';
 
 interface CategoryItemProps {
-  item: CategoryType;
+  category: CategoryType;
   setSelectedCategory: React.Dispatch<React.SetStateAction<CategoryType>>;
-  openModal: ({ type, targetCategory }: openModalType) => void;
+  setCategory: React.Dispatch<React.SetStateAction<CategoryType[]>>;
 }
 
 function CategoryItem({
-  item,
+  category,
   setSelectedCategory,
-  openModal,
+  setCategory,
 }: CategoryItemProps) {
   return (
-    <li onClick={() => setSelectedCategory(item)}>
-      {item.name}
-      <div className="categoryEdit">
-        <button
-          type="button"
-          onClick={() => openModal({ type: 'delete', targetCategory: item })}
-        >
-          삭제
-        </button>
-      </div>
+    <li onClick={() => setSelectedCategory(category)}>
+      {category.name}
+      <CategoryDeleteModalTrigger
+        category={category}
+        setCategory={setCategory}
+      />
     </li>
   );
 }

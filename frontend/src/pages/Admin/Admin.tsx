@@ -11,7 +11,7 @@ import { useCategory, useProduct } from './hooks';
 function Admin() {
   const [category, setCategory, selectedCategory, setSelectedCategory] =
     useCategory();
-  const product = useProduct(selectedCategory);
+  const [product, setProduct] = useProduct(selectedCategory);
   const { store } = useContext(storeContext);
   const navigate = useNavigate();
 
@@ -42,7 +42,11 @@ function Admin() {
         setCategory={setCategory}
       />
       <h3>{selectedCategory.name}</h3>
-      <ProductList product={product} />
+      <ProductList
+        setProduct={setProduct}
+        product={product}
+        selectedCategory={selectedCategory}
+      />
     </>
   );
 }

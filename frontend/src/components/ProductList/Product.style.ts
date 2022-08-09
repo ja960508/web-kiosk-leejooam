@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const StyledProductList = styled.ul`
-  display: flex;
-  flex-wrap: nowrap;
+export const StyledProductList = styled.div`
+  ul {
+    li {
+      margin: 1rem;
+      border: 1px solid black;
+    }
+  }
 `;

@@ -1,11 +1,9 @@
 import React from 'react';
 import { CategoryType } from '../../types/category';
-import CategoryModal from '../Modal/CategoryModal/CategoryModal';
-import Modal from '../Modal/Modal';
+import CategoryAddModalTrigger from '../Modal/CategoryModal/CategoryAddModalTrigger';
 import Slider from '../Slider/Slider';
 import { StyledContainer } from './Category.style';
 import CategoryItem from './CategoryItem';
-import { useModal } from './hooks';
 
 interface CategoryListProps {
   category: CategoryType[];
@@ -18,39 +16,19 @@ function CategoryList({
   setCategory,
   setSelectedCategory,
 }: CategoryListProps) {
-  const [onModal, modalType, setOnModal, openModal, targetCategory] =
-    useModal();
-
   return (
     <StyledContainer>
-      <button
-        type="button"
-        onClick={() => {
-          openModal({ type: 'add' });
-        }}
-      >
-        카테고리 추가
-      </button>
+      <CategoryAddModalTrigger setCategory={setCategory} />
       <Slider offset={6}>
         {category.map((item, idx) => (
           <CategoryItem
             key={idx}
-            item={item}
+            category={item}
+            setCategory={setCategory}
             setSelectedCategory={setSelectedCategory}
-            openModal={openModal}
           />
         ))}
       </Slider>
-      {onModal && (
-        <Modal setOnModal={setOnModal}>
-          <CategoryModal
-            setOnModal={setOnModal}
-            setCategory={setCategory}
-            modalType={modalType}
-            targetCategory={targetCategory}
-          ></CategoryModal>
-        </Modal>
-      )}
     </StyledContainer>
   );
 }
