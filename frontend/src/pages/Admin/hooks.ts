@@ -34,8 +34,10 @@ export const useCategory = (): [
   return [category, setCategory, selectedCategory, setSelectedCategory];
 };
 
-export const useProduct = (selectedCategory: CategoryType): ProductType[] => {
-  const [product, setProduct] = useState([]);
+export const useProduct = (
+  selectedCategory: CategoryType,
+): [ProductType[], React.Dispatch<React.SetStateAction<ProductType[]>>] => {
+  const [product, setProduct] = useState<ProductType[]>([]);
 
   useEffect(() => {
     const getProduct = async () => {
@@ -48,5 +50,5 @@ export const useProduct = (selectedCategory: CategoryType): ProductType[] => {
     getProduct();
   }, [selectedCategory]);
 
-  return product;
+  return [product, setProduct];
 };

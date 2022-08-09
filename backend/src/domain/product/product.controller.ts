@@ -22,9 +22,9 @@ export class ProductController {
 
   @Post()
   async createProduct(@Body() product: productCreateType) {
-    await this.productService.createProduct(product);
+    const insertedId = await this.productService.createProduct(product);
 
-    return 'created';
+    return insertedId;
   }
 
   @Patch(':id')

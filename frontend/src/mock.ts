@@ -52,7 +52,7 @@ export const setTestData = async () => {
       .map((item, idx) => ({
         name: item,
         price: String(Math.ceil((Math.random() * 50000) / 1000) * 1000),
-        categoryId: String((idx % 7) + 1),
+        categoryId: (idx % 7) + 1,
         thumbnail:
           'http://www.mmthcoffee.com/data/file/mm_new/thumb-1846184521_FvJity4O_379931970b3062dfc07284d9c27e7471b2e1aeae_216x216.png',
         productOption: [

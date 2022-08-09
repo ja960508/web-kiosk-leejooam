@@ -15,8 +15,28 @@ export interface ProductType {
   productOption: ProductOptionType[];
 }
 
+export interface AddProductType {
+  name: string;
+  thumbnail: string;
+  price: string;
+  categoryId: number;
+  isPopular: boolean;
+  isSoldOut: boolean;
+  productOption?: ProductOptionType[];
+}
+
 export const initialProductType = {
   id: -1,
+  name: '',
+  thumbnail: '',
+  price: '',
+  categoryId: -1,
+  isPopular: false,
+  isSoldOut: false,
+  productOption: [],
+};
+
+export const initialAddProduct = {
   name: '',
   thumbnail: '',
   price: '',

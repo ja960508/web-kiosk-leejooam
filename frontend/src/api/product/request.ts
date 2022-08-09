@@ -2,7 +2,7 @@ import client from '../client';
 
 interface addProductType {
   name: string;
-  categoryId: string;
+  categoryId: number;
   price: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   productOption: any;
