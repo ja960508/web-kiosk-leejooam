@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import categoryAPI from '../../api/categoryAPI';
-import { getProductByCategoryId } from '../../api/request';
+import productAPI from '../../api/productAPI';
 import { storeContext } from '../../context/StoreProvider';
 import { CategoryType } from '../../types/category';
 import { ProductType } from '../../types/product';
@@ -42,7 +42,9 @@ export const useProduct = (
   useEffect(() => {
     const getProduct = async () => {
       if (selectedCategory.id) {
-        const response = await getProductByCategoryId(selectedCategory.id);
+        const response = await productAPI.getProductByCategoryId(
+          selectedCategory.id,
+        );
         setProduct(response);
       }
     };

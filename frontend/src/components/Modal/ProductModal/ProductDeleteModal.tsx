@@ -1,5 +1,5 @@
 import React from 'react';
-import { deleteProductById } from '../../../api/request';
+import productAPI from '../../../api/productAPI';
 import { ProductType } from '../../../types/product';
 
 interface Props {
@@ -13,7 +13,7 @@ function ProductDeleteModal({ setProduct, product, closeModal }: Props) {
     event.preventDefault();
 
     if (product) {
-      await deleteProductById(product.id);
+      await productAPI.deleteProductById(product.id);
       closeModal();
       setProduct((prev) => prev.filter((item) => item.id !== product.id));
     }

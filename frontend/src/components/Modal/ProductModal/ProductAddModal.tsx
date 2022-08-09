@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { addProduct } from '../../../api/request';
+import productAPI from '../../../api/productAPI';
 import {
   ProductAddType,
   initialProductAddValue,
@@ -38,7 +38,7 @@ function ProductAddModal({ setProduct, categoryId, closeModal }: Props) {
       productOption: options,
       categoryId: Number(categoryId),
     };
-    const insertedId = await addProduct(product);
+    const insertedId = await productAPI.addProduct(product);
 
     setProduct((prev) => [...prev, { id: insertedId, ...product }]);
     closeModal();
