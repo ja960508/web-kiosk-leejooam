@@ -35,7 +35,9 @@ function Slider({ children, offset, line = 1 }: SliderType) {
 
   return (
     <Container columns={getColumns(offset, totalSlideLength, line)}>
-      <ul ref={ulRef}>{children}</ul>
+      <ul className="slider" ref={ulRef}>
+        {children}
+      </ul>
       <button className="arrow prev" onClick={prevSlide}>
         <Arrow />
       </button>

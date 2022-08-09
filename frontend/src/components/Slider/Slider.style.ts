@@ -4,8 +4,7 @@ import color from '../../styles/variables/color';
 export const Container = styled.div<{ columns: number }>`
   overflow: hidden;
   position: relative;
-  ul,
-  ol {
+  .slider {
     display: grid;
     grid-template-columns: repeat(${({ columns }) => columns}, 1fr);
     transition: all 0.5s ease-in-out;
