@@ -1,11 +1,16 @@
 export interface CategoryType {
-  id: string;
+  id: number;
   name: string;
-  storeId: string;
+  storeId: number;
 }
 
-export const initialCategoryValue = {
-  id: '',
+export interface CategoryAddType {
+  name: string;
+  storeId: number;
+}
+
+export const initialCategoryValue: CategoryType = {
+  id: 0,
   name: '',
-  storeId: '',
+  storeId: 0,
 };

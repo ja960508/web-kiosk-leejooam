@@ -5,19 +5,19 @@ import Entrance from './pages/Entrance/Entrance';
 import GlobalStyle from './styles/global';
 import { Routes, Route } from './lib/Router';
 import { storeContext } from './context/StoreProvider';
-import { getStoreInfo } from './api/auth/request';
+import storeAPI from './api/storeAPI';
 import { getItemFromLocalStorage } from './lib/storage';
 
 function App() {
   const { changeStoreInfo } = useContext(storeContext);
 
   useEffect(() => {
-    async function setStoreInfo(storeId: string) {
-      const response = await getStoreInfo(storeId);
+    async function setStoreInfo(storeId: number) {
+      const response = await storeAPI.getStoreInfo(storeId);
       changeStoreInfo(response);
     }
 
-    const storeId = getItemFromLocalStorage('storeId');
+    const storeId = Number(getItemFromLocalStorage('storeId'));
 
     if (storeId) {
       setStoreInfo(storeId);

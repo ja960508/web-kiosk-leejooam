@@ -1,7 +1,7 @@
 export interface ProductOptionType {
   type: string;
   optionName: string;
-  content: string[];
+  content?: string[];
 }
 
 export interface ProductType {
@@ -26,11 +26,11 @@ export interface AddProductType {
 }
 
 export const initialProductType = {
-  id: -1,
+  id: 0,
   name: '',
   thumbnail: '',
   price: '',
-  categoryId: -1,
+  categoryId: 0,
   isPopular: false,
   isSoldOut: false,
   productOption: [],
@@ -40,7 +40,7 @@ export const initialAddProduct = {
   name: '',
   thumbnail: '',
   price: '',
-  categoryId: -1,
+  categoryId: 0,
   isPopular: false,
   isSoldOut: false,
   productOption: [],

@@ -1,4 +1,4 @@
-import client from '../client';
+import client from './client';
 
 interface addProductType {
   name: string;
@@ -8,7 +8,7 @@ interface addProductType {
   productOption: any;
 }
 
-export async function getProductByCategoryId(id: string) {
+export async function getProductByCategoryId(id: number) {
   const { data } = await client.get(`/product?categoryId=${id}`);
 
   return data;
@@ -25,3 +25,9 @@ export async function deleteProductById(id: number) {
 
   return data;
 }
+
+export default {
+  getProductByCategoryId,
+  addProduct,
+  deleteProductById,
+};

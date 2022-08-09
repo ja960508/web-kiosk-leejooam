@@ -1,5 +1,5 @@
 import React from 'react';
-import { login, register } from '../../api/auth/request';
+import storeAPI from '../../api/storeAPI';
 import { setItemToLocalStorage } from '../../lib/storage';
 
 const isEssentialInputsFilled = (values: { [key: string]: string }) => {
@@ -40,8 +40,8 @@ export const handleRegister = async (
     throw new Error('올바른 값을 입력해주세요.');
   }
 
-  const response = await register(values);
-  setItemToLocalStorage('storeId', response.id);
+  const response = await storeAPI.register(values);
+  setItemToLocalStorage('storeId', String(response.id));
 
   return response;
 };
@@ -52,8 +52,8 @@ export const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     return { ...prev, [item.name]: item.value };
   }, {});
 
-  const response = await login(values);
-  setItemToLocalStorage('storeId', response.id);
+  const response = await storeAPI.login(values);
+  setItemToLocalStorage('storeId', String(response.id));
 
   return response;
 };

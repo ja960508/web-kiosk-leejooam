@@ -5,24 +5,16 @@ export interface openModalType<T> {
   targetValue?: T;
 }
 
-export function useModal<T>(
-  initalValue: T,
-): [
-  boolean,
-  string,
-  React.Dispatch<React.SetStateAction<boolean>>,
-  ({ type }: openModalType<T>) => void,
-  T,
-] {
-  const [onModal, setOnModal] = useState(false);
-  const [modalType, setModalType] = useState('');
-  const [targetValue, setTargetValue] = useState<T>(initalValue);
+export function useModal() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = ({ type, targetValue = initalValue }: openModalType<T>) => {
-    setOnModal(true);
-    setModalType(type);
-    setTargetValue(targetValue);
+  const openModal = () => {
+    setIsModalOpen(true);
   };
 
-  return [onModal, modalType, setOnModal, openModal, targetValue];
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  return { isModalOpen, openModal, closeModal };
 }

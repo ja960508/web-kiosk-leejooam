@@ -1,9 +1,7 @@
 import React from 'react';
 import { CategoryType } from '../../types/category';
-import { initialProductType, ProductType } from '../../types/product';
-import { useModal } from '../Modal/hooks';
-import Modal from '../Modal/Modal';
-import ProductModal from '../Modal/ProductModal/ProductModal';
+import { ProductType } from '../../types/product';
+import ProductAddModalTrigger from '../Modal/ProductModal/ProductAddModalTrigger';
 import Slider from '../Slider/Slider';
 import { StyledProductList } from './Product.style';
 import ProductItem from './ProductItem';
@@ -19,35 +17,17 @@ function ProductList({
   setProduct,
   selectedCategory,
 }: ProductListType) {
-  const [onModal, modalType, setOnModal, openModal, targetValue] =
-    useModal<ProductType>(initialProductType);
-
   return (
     <StyledProductList>
-      <button
-        type="button"
-        onClick={() => {
-          openModal({ type: 'add' });
-        }}
-      >
-        상품 추가하기
-      </button>
+      <ProductAddModalTrigger
+        setProduct={setProduct}
+        categoryId={selectedCategory.id}
+      />
       <Slider offset={9} line={3}>
         {product.map((item, idx) => (
-          <ProductItem key={idx} item={item} openModal={openModal} />
+          <ProductItem key={idx} item={item} setProduct={setProduct} />
         ))}
       </Slider>
-      {onModal && (
-        <Modal setOnModal={setOnModal}>
-          <ProductModal
-            setOnModal={setOnModal}
-            setProduct={setProduct}
-            modalType={modalType}
-            targetProduct={targetValue}
-            selectedCategory={selectedCategory}
-          ></ProductModal>
-        </Modal>
-      )}
     </StyledProductList>
   );
 }
