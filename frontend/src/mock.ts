@@ -56,7 +56,9 @@ export const setTestData = async () => {
         thumbnail:
           'http://www.mmthcoffee.com/data/file/mm_new/thumb-1846184521_FvJity4O_379931970b3062dfc07284d9c27e7471b2e1aeae_216x216.png',
         productOption: [
-          { type: 'choice', select: '온도', content: ['뜨거움', '차가움'] },
+          { type: 'choice', optionName: '온도', content: ['뜨거움', '차가움'] },
+          { type: 'choice', optionName: '사이즈', content: ['큼', '작음'] },
+          { type: 'quantity', optionName: '빨대' },
         ],
       }))
       .map((product) => addProduct(product)),
