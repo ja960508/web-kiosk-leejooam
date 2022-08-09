@@ -2,6 +2,7 @@ import React from 'react';
 import { CategoryType } from '../../../types/category';
 import { ProductType } from '../../../types/product';
 import AddProductModal from './AddProductModal';
+import DeleteProductModal from './DeleteProductModal';
 
 export interface ProductModalProps {
   setOnModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,6 +23,8 @@ function modalMapper(modalType: string) {
   switch (modalType) {
     case 'add':
       return AddProductModal;
+    case 'delete':
+      return DeleteProductModal;
     default:
       return function Default() {
         return (

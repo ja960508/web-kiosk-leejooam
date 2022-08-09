@@ -19,3 +19,9 @@ export async function addProduct(product: addProductType) {
 
   return data;
 }
+
+export async function deleteProductById(id: number) {
+  const { data } = await client.delete(`/product/${id}`);
+
+  return data;
+}

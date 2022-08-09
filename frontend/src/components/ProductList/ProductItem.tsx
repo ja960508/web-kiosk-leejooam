@@ -1,14 +1,22 @@
 import React from 'react';
 import { ProductType } from '../../types/product';
+import { openModalType } from '../Modal/hooks';
 import ProductOption from './ProductOption';
 
 interface ProductItemType {
   item: ProductType;
+  openModal: ({ type }: openModalType<ProductType>) => void;
 }
 
-function ProductItem({ item }: ProductItemType) {
+function ProductItem({ item, openModal }: ProductItemType) {
   return (
     <li>
+      <button
+        type="button"
+        onClick={() => openModal({ type: 'delete', targetValue: item })}
+      >
+        삭제
+      </button>
       <div className="extra-info">
         {!!item.isPopular && <span>인기</span>}
         {!!item.isSoldOut && <span>완판</span>}

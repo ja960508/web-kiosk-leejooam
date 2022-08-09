@@ -34,7 +34,7 @@ function ProductList({
       </button>
       <Slider offset={9} line={3}>
         {product.map((item, idx) => (
-          <ProductItem key={idx} item={item} />
+          <ProductItem key={idx} item={item} openModal={openModal} />
         ))}
       </Slider>
       {onModal && (
