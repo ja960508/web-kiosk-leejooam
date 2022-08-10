@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { basketContext } from '../../../context/BasketProvider';
+import { cartContext } from '../../../context/CartProvider';
 import { useNumberInputs } from '../../../hooks/useNumberInput';
 import { ProductType } from '../../../types/product';
 import ProductOption from '../../ProductList/ProductOption/ProductOption';
@@ -11,7 +11,7 @@ interface Props {
 }
 
 function ProductAddBasketModal({ product, closeModal }: Props) {
-  const { changeBasket } = useContext(basketContext);
+  const { changeCart } = useContext(cartContext);
   const { name, price, productOption, thumbnail } = product;
   const { getValue, increment, decrement } = useNumberInputs(['quantity']);
 
@@ -26,7 +26,7 @@ function ProductAddBasketModal({ product, closeModal }: Props) {
       quantity: quantity.value,
     };
 
-    changeBasket((prev) => [...prev, newBasket]);
+    changeCart((prev) => [...prev, newBasket]);
     closeModal();
   };
 

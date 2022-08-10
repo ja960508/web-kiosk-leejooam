@@ -1,21 +1,19 @@
 import React, { useContext } from 'react';
-import { basketContext } from '../../context/BasketProvider';
-import { BasketType } from '../../types/basket';
+import { cartContext } from '../../context/CartProvider';
+import { CartType } from '../../types/Cart';
 import ProductThumbnail from '../Modal/ProductModal/ProductThumbnail/ProductThumbnail';
-import { StyledBasketList } from './Basket.style';
+import { StyledBasketList } from './Cart.style';
 
 function Basket() {
-  const { basket, changeBasket } = useContext(basketContext);
+  const { cart, changeCart } = useContext(cartContext);
 
-  const handleProductFromBasket = (item: BasketType) => {
-    changeBasket((prev) =>
-      prev.filter((v) => v.product.id !== item.product.id),
-    );
+  const handleProductFromBasket = (item: CartType) => {
+    changeCart((prev) => prev.filter((v) => v.product.id !== item.product.id));
   };
 
   return (
     <StyledBasketList>
-      {basket.map((item, idx) => {
+      {cart.map((item, idx) => {
         return (
           <li key={idx}>
             <button
