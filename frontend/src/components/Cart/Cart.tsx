@@ -2,23 +2,23 @@ import React, { useContext } from 'react';
 import { cartContext } from '../../context/CartProvider';
 import { CartType } from '../../types/Cart';
 import ProductThumbnail from '../Modal/ProductModal/ProductThumbnail/ProductThumbnail';
-import { StyledBasketList } from './Cart.style';
+import { StyledCartList } from './Cart.style';
 
-function Basket() {
+function Cart() {
   const { cart, changeCart } = useContext(cartContext);
 
-  const handleProductFromBasket = (item: CartType) => {
+  const handleProductFromCart = (item: CartType) => {
     changeCart((prev) => prev.filter((v) => v.product.id !== item.product.id));
   };
 
   return (
-    <StyledBasketList>
+    <StyledCartList>
       {cart.map((item, idx) => {
         return (
           <li key={idx}>
             <button
-              className="delete-basket-btn"
-              onClick={() => handleProductFromBasket(item)}
+              className="delete-cart-btn"
+              onClick={() => handleProductFromCart(item)}
             >
               X
             </button>
@@ -30,8 +30,8 @@ function Basket() {
           </li>
         );
       })}
-    </StyledBasketList>
+    </StyledCartList>
   );
 }
 
-export default Basket;
+export default Cart;

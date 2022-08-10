@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import productAPI from '../../../api/productAPI';
+import useTextInputs from '../../../hooks/useTextInputs';
 import {
   ProductAddType,
   initialProductAddValue,
   ProductOptionType,
   ProductType,
 } from '../../../types/product';
-import useInputs, { useOptionContainer } from './hooks';
+import { useOptionContainer } from './hooks';
 import { StyledForm } from './ProductAddModal.style';
 import ChoiceOptionContainer from './ProductOption/ChoiceOptionContainer';
 import QuantityOptionContainer from './ProductOption/QuantityOptionContainer';
@@ -22,7 +23,7 @@ function ProductAddModal({
   selectedCategoryId,
   closeModal,
 }: Props) {
-  const { data, handleChange } = useInputs<ProductAddType>({
+  const { data, handleChange } = useTextInputs<ProductAddType>({
     initialValue: initialProductAddValue,
   });
   const [options, setOptions] = useState<ProductOptionType[]>([]);

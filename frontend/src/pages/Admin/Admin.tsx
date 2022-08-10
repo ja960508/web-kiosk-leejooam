@@ -5,9 +5,9 @@ import withCheckPermission from '../../components/HOC/withCheckPermission';
 import ProductList from '../../components/ProductList/ProductList';
 import { adminAuthorityContext } from '../../context/AdminAuthorityProvider';
 import { storeContext } from '../../context/StoreProvider';
+import { useCategory, useProduct } from '../../hooks';
 import { useNavigate } from '../../lib/Router';
 import { setItemToLocalStorage } from '../../lib/storage';
-import { useCategory, useProduct } from './hooks';
 
 function Admin() {
   const { categories, setCategories, selectedCategory, setSelectedCategory } =

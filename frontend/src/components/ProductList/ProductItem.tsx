@@ -3,7 +3,7 @@ import { adminAuthorityContext } from '../../context/AdminAuthorityProvider';
 import { ProductType } from '../../types/product';
 import { useModal } from '../Modal/hooks';
 import Modal from '../Modal/Modal';
-import ProductAddBasketModal from '../Modal/ProductModal/ProductAddBasketModal';
+import ProductAddCartModal from '../Modal/ProductModal/ProductAddCartModal';
 import ProductDeleteModalTrigger from '../Modal/ProductModal/ProductDeleteModalTrigger';
 
 interface ProductItemType {
@@ -34,7 +34,7 @@ function ProductItem({ product, setProducts }: ProductItemType) {
       <div>{product.name}</div>
       <div>{product.price}원</div>
       <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
-        <ProductAddBasketModal closeModal={closeModal} product={product} />
+        <ProductAddCartModal closeModal={closeModal} product={product} />
       </Modal>
     </li>
   );

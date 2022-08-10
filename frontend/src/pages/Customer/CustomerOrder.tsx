@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import Basket from '../../components/Cart/Cart';
+import Cart from '../../components/Cart/Cart';
 import CategoryList from '../../components/CategoryList/CategoryList';
 import Header from '../../components/Header/Header';
 import MoveAdminModalTrigger from '../../components/Modal/MoveAdminModal/MoveAdminModalTrigger';
 import ProductList from '../../components/ProductList/ProductList';
 import { storeContext } from '../../context/StoreProvider';
-import { useCategory, useProduct } from '../Admin/hooks';
+import { useCategory, useProduct } from '../../hooks';
 
 function CustomerOrder() {
   const { categories, setCategories, selectedCategory, setSelectedCategory } =
@@ -35,7 +35,7 @@ function CustomerOrder() {
         products={products}
         selectedCategory={selectedCategory}
       />
-      <Basket />
+      <Cart />
     </>
   );
 }

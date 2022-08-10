@@ -4,7 +4,7 @@ interface initialValue {
   [key: string]: number;
 }
 
-export const useNumberInputs = (inputNames: string[]) => {
+const useNumberInputs = (inputNames: string[]) => {
   const initialValue: initialValue = {};
   inputNames.forEach((name) => (initialValue[name] = 1));
 
@@ -26,3 +26,5 @@ export const useNumberInputs = (inputNames: string[]) => {
 
   return { getValue, increment, decrement };
 };
+
+export default useNumberInputs;
