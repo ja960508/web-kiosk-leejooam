@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNumberInputs } from '../../../hooks/useNumberInput';
 import { ProductOptionType } from '../../../types/product';
 
 interface Props {
@@ -6,11 +7,21 @@ interface Props {
 }
 
 function ProductQuantityOption({ option }: Props) {
+  const { getValue, increment, decrement } = useNumberInputs([
+    option.optionName,
+  ]);
   return (
     <li>
-      <div>{option.optionName}</div>
       <label htmlFor={option.optionName}>{option.optionName}</label>
-      <input type="number" id={option.optionName} name={option.optionName} />
+      <button onClick={increment(option.optionName)}>+</button>
+      <input
+        type="number"
+        id={option.optionName}
+        name={option.optionName}
+        value={getValue(option.optionName)}
+        readOnly
+      />
+      <button onClick={decrement(option.optionName)}>-</button>
     </li>
   );
 }

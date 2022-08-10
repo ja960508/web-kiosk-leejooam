@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import Basket from '../../components/Basket/Basket';
 import CategoryList from '../../components/CategoryList/CategoryList';
 import Header from '../../components/Header/Header';
 import MoveAdminModalTrigger from '../../components/Modal/MoveAdminModal/MoveAdminModalTrigger';
@@ -34,6 +35,7 @@ function CustomerOrder() {
         product={product}
         selectedCategory={selectedCategory}
       />
+      <Basket />
     </>
   );
 }

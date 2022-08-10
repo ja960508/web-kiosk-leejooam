@@ -32,7 +32,7 @@ export const ModalContent = styled.div`
       margin-bottom: 1rem;
     }
 
-    input {
+    & > input {
       width: 20rem;
       padding: 10px 20px;
       border: 1px solid ${color.gray};
