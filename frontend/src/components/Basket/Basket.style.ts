@@ -24,7 +24,6 @@ export const StyledBasketList = styled.ul`
     .delete-basket-btn {
       color: black;
       position: absolute;
-      top: -1rem;
       right: 0;
     }
   }
