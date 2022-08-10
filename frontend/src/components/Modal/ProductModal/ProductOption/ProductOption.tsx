@@ -6,19 +6,37 @@ import ProductQuantityOption from './ProductQuantityOption';
 
 interface Props {
   options: ProductOptionType[];
+  cartInputs: {
+    getValue: (key: string) => string | number;
+    increment: (key: string) => () => void;
+    decrement: (key: string) => () => void;
+    changeRadioValue: (key: string, value: string) => () => void;
+  };
 }
 
-function ProductOption({ options }: Props) {
+function ProductOption({ options, cartInputs }: Props) {
   return (
     <StyledProductOptionList>
       {options.map((option, index) => {
         const isChoice = option.type === 'choice';
 
         if (isChoice) {
-          return <ProductChoiceOption key={index} option={option} />;
+          return (
+            <ProductChoiceOption
+              cartInputs={cartInputs}
+              key={index}
+              option={option}
+            />
+          );
         }
 
-        return <ProductQuantityOption key={index} option={option} />;
+        return (
+          <ProductQuantityOption
+            cartInputs={cartInputs}
+            key={index}
+            option={option}
+          />
+        );
       })}
     </StyledProductOptionList>
   );

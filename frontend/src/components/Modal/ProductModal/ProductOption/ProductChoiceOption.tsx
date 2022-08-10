@@ -3,20 +3,29 @@ import { ProductOptionType } from '../../../../types/product';
 
 interface Props {
   option: ProductOptionType;
+  cartInputs: {
+    getValue: (key: string) => string | number;
+    increment: (key: string) => () => void;
+    decrement: (key: string) => () => void;
+    changeRadioValue: (key: string, value: string) => () => void;
+  };
 }
 
-function ProductChoiceOption({ option }: Props) {
+function ProductChoiceOption({ option, cartInputs }: Props) {
+  const { optionName, content } = option;
+
   return (
     <li>
-      <div>{option.optionName}</div>
-      {option.content?.map((optionContent, idx) => (
+      <div>{optionName}</div>
+      {content?.map((optionContent, idx) => (
         <label key={idx}>
           {optionContent}
           <input
             type="radio"
-            name={option.optionName}
+            name={optionName}
             value={optionContent}
             defaultChecked={idx === 0}
+            onChange={cartInputs.changeRadioValue(optionName, optionContent)}
           />
         </label>
       ))}

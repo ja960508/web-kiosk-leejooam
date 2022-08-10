@@ -14,6 +14,8 @@ function Cart() {
   return (
     <StyledCartList>
       {cart.map((item, idx) => {
+        const { quantity, ...options } = item.options;
+
         return (
           <li key={idx}>
             <button
@@ -25,7 +27,12 @@ function Cart() {
             <ProductThumbnail thumbnail={item.product.thumbnail} />
             <div className="product-meta">
               <div>{item.product.name}</div>
-              <div>{item.quantity} 개</div>
+              <div>{quantity} 개</div>
+              {Object.entries(options).map(([key, value], idx) => (
+                <div key={idx}>
+                  {key} {value}
+                </div>
+              ))}
             </div>
           </li>
         );

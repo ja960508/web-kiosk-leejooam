@@ -1,27 +1,34 @@
 import React from 'react';
-import { useNumberInputs } from '../../../../hooks';
 import { ProductOptionType } from '../../../../types/product';
 
 interface Props {
   option: ProductOptionType;
+  cartInputs: {
+    getValue: (key: string) => string | number;
+    increment: (key: string) => () => void;
+    decrement: (key: string) => () => void;
+    changeRadioValue: (key: string, value: string) => () => void;
+  };
 }
 
-function ProductQuantityOption({ option }: Props) {
-  const { getValue, increment, decrement } = useNumberInputs([
-    option.optionName,
-  ]);
+function ProductQuantityOption({ option, cartInputs }: Props) {
+  const { optionName } = option;
   return (
     <li>
-      <label htmlFor={option.optionName}>{option.optionName}</label>
-      <button onClick={increment(option.optionName)}>+</button>
+      <label htmlFor={optionName}>{optionName}</label>
+      <button type="button" onClick={cartInputs.increment(optionName)}>
+        +
+      </button>
       <input
         type="number"
-        id={option.optionName}
-        name={option.optionName}
-        value={getValue(option.optionName)}
+        id={optionName}
+        name={optionName}
+        value={cartInputs.getValue(optionName)}
         readOnly
       />
-      <button onClick={decrement(option.optionName)}>-</button>
+      <button type="button" onClick={cartInputs.decrement(optionName)}>
+        -
+      </button>
     </li>
   );
 }

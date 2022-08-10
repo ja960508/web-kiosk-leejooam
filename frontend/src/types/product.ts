@@ -1,7 +1,7 @@
 export interface ProductOptionType {
   type: string;
   optionName: string;
-  content?: string[];
+  content: string[];
 }
 
 export interface ProductType {
