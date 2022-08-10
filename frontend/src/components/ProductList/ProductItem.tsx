@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 import { adminAuthorityContext } from '../../context/AdminAuthorityProvider';
 import { ProductType } from '../../types/product';
+import { useModal } from '../Modal/hooks';
+import Modal from '../Modal/Modal';
+import ProductAddBasketModal from '../Modal/ProductModal/ProductAddBasketModal';
 import ProductDeleteModalTrigger from '../Modal/ProductModal/ProductDeleteModalTrigger';
 import ProductOption from './ProductOption/ProductOption';
 
@@ -11,14 +14,18 @@ interface ProductItemType {
 
 function ProductItem({ item, setProduct }: ProductItemType) {
   const { adminAuthority } = useContext(adminAuthorityContext);
-  const handleProductClick = () => {
+  const { isModalOpen, openModal, closeModal } = useModal();
+
+  const handleProductClick = (
+    event: React.MouseEvent<HTMLLIElement, MouseEvent>,
+  ) => {
     if (adminAuthority) return;
 
-    console.log(item);
+    openModal(event);
   };
 
   return (
-    <li onClick={handleProductClick}>
+    <li onClick={(event) => handleProductClick(event)}>
       <ProductDeleteModalTrigger setProduct={setProduct} product={item} />
       <div className="extra-info">
         {!!item.isPopular && <span>인기</span>}
@@ -28,6 +35,9 @@ function ProductItem({ item, setProduct }: ProductItemType) {
       <div>{item.name}</div>
       <div>{item.price}원</div>
       <ProductOption options={item.productOption} id={item.id} />
+      <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
+        <ProductAddBasketModal closeModal={closeModal} product={item} />
+      </Modal>
     </li>
   );
 }

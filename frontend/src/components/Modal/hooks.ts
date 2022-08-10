@@ -8,9 +8,7 @@ export interface openModalType<T> {
 export function useModal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
+  const openModal = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     event.stopPropagation();
 
     setIsModalOpen(true);
