@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { storeContext } from '../../../context/StoreProvider';
 import { CategoryType } from '../../../types/category';
+import withCheckAdmin from '../../HOC/withCheckAdmin';
 import { useModal } from '../hooks';
 import Modal from '../Modal';
 import CategoryAddModal from './CategoryAddModal';
@@ -29,4 +30,4 @@ function CategoryAddModalTrigger({ setCategory }: Props) {
   );
 }
 
-export default CategoryAddModalTrigger;
+export default withCheckAdmin(CategoryAddModalTrigger);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProductType } from '../../../types/product';
+import withCheckAdmin from '../../HOC/withCheckAdmin';
 import { useModal } from '../hooks';
 import Modal from '../Modal';
 import ProductAddModal from './ProductAddModal';
@@ -28,4 +29,4 @@ function ProductAddModalTrigger({ setProduct, categoryId }: Props) {
   );
 }
 
-export default ProductAddModalTrigger;
+export default withCheckAdmin(ProductAddModalTrigger);

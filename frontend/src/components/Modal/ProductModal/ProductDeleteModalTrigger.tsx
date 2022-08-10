@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProductType } from '../../../types/product';
+import withCheckAdmin from '../../HOC/withCheckAdmin';
 import { useModal } from '../hooks';
 import Modal from '../Modal';
 import ProductDeleteModal from './ProductDeleteModal';
@@ -28,4 +29,4 @@ function ProductDeleteModalTrigger({ setProduct, product }: Props) {
   );
 }
 
-export default ProductDeleteModalTrigger;
+export default withCheckAdmin(ProductDeleteModalTrigger);

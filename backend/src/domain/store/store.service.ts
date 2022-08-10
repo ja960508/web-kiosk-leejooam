@@ -81,4 +81,18 @@ export class StoreService {
       console.error(e);
     }
   }
+
+  async checkPasswordByStoreId(store: storeLoginType) {
+    const { storeId, password } = store;
+    try {
+      const [rows] = await this.promisePool.execute(`SELECT count(*) FROM STORE
+      WHERE storeId = ${format.formatData(
+        storeId,
+      )} AND password = ${format.formatData(password)}`);
+
+      return rows[0]['count(*)'];
+    } catch (e) {
+      console.error(e);
+    }
+  }
 }
