@@ -1,5 +1,6 @@
 import React from 'react';
 import { CategoryType } from '../../../types/category';
+import withCheckAdmin from '../../HOC/withCheckAdmin';
 import { useModal } from '../hooks';
 import Modal from '../Modal';
 import CategoryDeleteModal from './CategoryDeleteModal';
@@ -28,4 +29,4 @@ function CategoryDeleteModalTrigger({ category, setCategory }: Props) {
   );
 }
 
-export default CategoryDeleteModalTrigger;
+export default withCheckAdmin(CategoryDeleteModalTrigger);

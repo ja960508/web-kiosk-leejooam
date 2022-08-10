@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import StoreProvider from './context/StoreProvider';
+import ContextProvider from './context/ContextProvider';
 import { Router } from './lib/Router';
 
 const root = ReactDOM.createRoot(
@@ -9,8 +9,8 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Router>
-    <StoreProvider>
+    <ContextProvider>
       <App />
-    </StoreProvider>
+    </ContextProvider>
   </Router>,
 );

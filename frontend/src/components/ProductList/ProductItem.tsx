@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { adminAuthorityContext } from '../../context/AdminAuthorityProvider';
 import { ProductType } from '../../types/product';
 import ProductDeleteModalTrigger from '../Modal/ProductModal/ProductDeleteModalTrigger';
 import ProductOption from './ProductOption/ProductOption';
@@ -9,16 +10,23 @@ interface ProductItemType {
 }
 
 function ProductItem({ item, setProduct }: ProductItemType) {
+  const { adminAuthority } = useContext(adminAuthorityContext);
+  const handleProductClick = () => {
+    if (adminAuthority) return;
+
+    console.log(item);
+  };
+
   return (
-    <li>
+    <li onClick={handleProductClick}>
       <ProductDeleteModalTrigger setProduct={setProduct} product={item} />
       <div className="extra-info">
         {!!item.isPopular && <span>인기</span>}
         {!!item.isSoldOut && <span>완판</span>}
       </div>
       <img src={item.thumbnail} alt="product_thumbnail" />
-      <div>상품명: {item.name}</div>
-      <div>가격: {item.price}원</div>
+      <div>{item.name}</div>
+      <div>{item.price}원</div>
       <ProductOption options={item.productOption} id={item.id} />
     </li>
   );
