@@ -25,6 +25,12 @@ export interface ProductAddType {
   productOption?: ProductOptionType[];
 }
 
+export const initialProductOptionValue = {
+  type: 'quantity',
+  optionName: '',
+  content: [],
+};
+
 export const initialProductValue = {
   id: 0,
   name: '',

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import color from '../../styles/variables/color';
 
 export const StyledCartContainer = styled.div`
   position: fixed;
@@ -6,8 +7,15 @@ export const StyledCartContainer = styled.div`
 
   .cart-controller {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -2.5rem;
+    right: 2rem;
+
+    button {
+      background-color: ${color.maroon};
+      color: ${color.white};
+      padding: 0.5rem;
+      margin-right: 0.5rem;
+    }
   }
 `;
 

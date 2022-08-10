@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-import { CartType } from '../types/Cart';
+import { CartType } from '../types/cart';
 
 interface CartContextType {
   cart: CartType[];
@@ -16,7 +16,7 @@ export const cartContext = createContext<CartContextType>({
 });
 
 function isSameProduct(cartItem: CartType, newCartItem: CartType) {
-  if (cartItem.product.name === cartItem.product.name) {
+  if (cartItem.product.id === newCartItem.product.id) {
     return (
       JSON.stringify(cartItem.options) === JSON.stringify(newCartItem.options)
     );
@@ -28,10 +28,11 @@ function CartProvider({ children }: { children: React.ReactNode }) {
   let isAlreadyIn = false;
 
   const addCartItem = (newCartItem: CartType) => {
+    console.log(newCartItem);
     cart.forEach((cartItem, idx) => {
       if (isSameProduct(newCartItem, cartItem)) {
         const newCart = [...cart];
-        newCart[idx].options.quantity += 1;
+        newCart[idx].quantity += 1;
 
         setCart(newCart);
         isAlreadyIn = true;

@@ -17,7 +17,7 @@ function ProductChoiceOption({ option, cartInputs }: Props) {
   return (
     <li>
       <div>{optionName}</div>
-      {content?.map((optionContent, idx) => (
+      {content.map((optionContent, idx) => (
         <label key={idx}>
           {optionContent}
           <input
