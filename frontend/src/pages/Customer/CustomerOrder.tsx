@@ -10,7 +10,7 @@ import { useCategory, useProduct } from '../Admin/hooks';
 function CustomerOrder() {
   const { categories, setCategories, selectedCategory, setSelectedCategory } =
     useCategory();
-  const { product, setProduct } = useProduct(selectedCategory);
+  const { products, setProducts } = useProduct(selectedCategory);
   const { store } = useContext(storeContext);
 
   return (
@@ -31,8 +31,8 @@ function CustomerOrder() {
       />
       <h3>{selectedCategory.name}</h3>
       <ProductList
-        setProduct={setProduct}
-        product={product}
+        setProducts={setProducts}
+        products={products}
         selectedCategory={selectedCategory}
       />
       <Basket />

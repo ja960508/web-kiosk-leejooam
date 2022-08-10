@@ -30,20 +30,20 @@ export const useCategory = () => {
 };
 
 export const useProduct = (selectedCategory: CategoryType) => {
-  const [product, setProduct] = useState<ProductType[]>([]);
+  const [products, setProducts] = useState<ProductType[]>([]);
 
   useEffect(() => {
     const getProduct = async () => {
       if (selectedCategory.id) {
-        const response = await productAPI.getProductByCategoryId(
+        const response = await productAPI.getProductsByCategoryId(
           selectedCategory.id,
         );
-        setProduct(response);
+        setProducts(response);
       }
     };
 
     getProduct();
   }, [selectedCategory]);
 
-  return { product, setProduct };
+  return { products, setProducts };
 };

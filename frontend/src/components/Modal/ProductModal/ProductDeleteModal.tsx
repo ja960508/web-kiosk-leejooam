@@ -3,19 +3,19 @@ import productAPI from '../../../api/productAPI';
 import { ProductType } from '../../../types/product';
 
 interface Props {
-  setProduct: React.Dispatch<React.SetStateAction<ProductType[]>>;
+  setProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
   product: ProductType;
   closeModal: () => void;
 }
 
-function ProductDeleteModal({ setProduct, product, closeModal }: Props) {
+function ProductDeleteModal({ setProducts, product, closeModal }: Props) {
   const deleteProduct = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (product) {
       await productAPI.deleteProductById(product.id);
       closeModal();
-      setProduct((prev) => prev.filter((item) => item.id !== product.id));
+      setProducts((prev) => prev.filter((item) => item.id !== product.id));
     }
   };
 

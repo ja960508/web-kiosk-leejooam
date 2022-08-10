@@ -12,12 +12,16 @@ import ChoiceOptionContainer from './ProductOption/ChoiceOptionContainer';
 import QuantityOptionContainer from './ProductOption/QuantityOptionContainer';
 
 interface Props {
-  setProduct: React.Dispatch<React.SetStateAction<ProductType[]>>;
-  categoryId: number;
+  setProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
+  selectedCategoryId: number;
   closeModal: () => void;
 }
 
-function ProductAddModal({ setProduct, categoryId, closeModal }: Props) {
+function ProductAddModal({
+  setProducts,
+  selectedCategoryId,
+  closeModal,
+}: Props) {
   const { data, handleChange } = useInputs<ProductAddType>({
     initialValue: initialProductAddValue,
   });
@@ -36,11 +40,11 @@ function ProductAddModal({ setProduct, categoryId, closeModal }: Props) {
     const product = {
       ...data,
       productOption: options,
-      categoryId: Number(categoryId),
+      selectedCategoryId: Number(selectedCategoryId),
     };
     const insertedId = await productAPI.addProduct(product);
 
-    setProduct((prev) => [...prev, { id: insertedId, ...product }]);
+    setProducts((prev) => [...prev, { id: insertedId, ...product }]);
     closeModal();
   };
 
