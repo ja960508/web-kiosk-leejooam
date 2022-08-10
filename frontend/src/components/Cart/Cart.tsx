@@ -5,10 +5,10 @@ import ProductThumbnail from '../Modal/ProductModal/ProductThumbnail/ProductThum
 import { StyledCartList } from './Cart.style';
 
 function Cart() {
-  const { cart, changeCart } = useContext(cartContext);
+  const { cart, deleteCartItem } = useContext(cartContext);
 
   const handleProductFromCart = (item: CartType) => {
-    changeCart((prev) => prev.filter((v) => v.product.id !== item.product.id));
+    deleteCartItem(item);
   };
 
   return (

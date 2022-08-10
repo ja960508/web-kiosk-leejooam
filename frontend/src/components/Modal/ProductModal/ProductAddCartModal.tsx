@@ -11,7 +11,7 @@ interface Props {
 }
 
 function ProductAddCartModal({ product, closeModal }: Props) {
-  const { changeCart } = useContext(cartContext);
+  const { addCartItem } = useContext(cartContext);
   const { name, price, productOption, thumbnail } = product;
   const cartInputs = useCart(productOption);
 
@@ -24,7 +24,7 @@ function ProductAddCartModal({ product, closeModal }: Props) {
       options,
     };
 
-    changeCart((prev) => [...prev, newCartItem]);
+    addCartItem(newCartItem);
     closeModal();
   };
 
