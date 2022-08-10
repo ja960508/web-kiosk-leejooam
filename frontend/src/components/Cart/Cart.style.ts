@@ -1,8 +1,17 @@
 import styled from 'styled-components';
 
-export const StyledCartList = styled.ul`
+export const StyledCartContainer = styled.div`
   position: fixed;
   bottom: 0;
+
+  .cart-controller {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+`;
+
+export const StyledCartList = styled.ul`
   width: 100vw;
   display: flex;
   overflow-x: scroll;
@@ -22,7 +31,7 @@ export const StyledCartList = styled.ul`
     }
 
     .delete-cart-btn {
-      color: black;
+      color: white;
       position: absolute;
       right: 0;
     }
