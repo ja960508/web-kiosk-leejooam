@@ -1,5 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { basketContext } from '../../../context/BasketProvider';
+import { useNumberInputs } from '../../../hooks/useNumberInput';
 import { ProductType } from '../../../types/product';
 import ProductOption from '../../ProductList/ProductOption/ProductOption';
 import ProductThumbnail from './ProductThumbnail/ProductThumbnail';
@@ -11,8 +12,8 @@ interface Props {
 
 function ProductAddBasketModal({ product, closeModal }: Props) {
   const { changeBasket } = useContext(basketContext);
-  const { name, price, productOption, id, thumbnail } = product;
-  const [quantity, setQuantity] = useState(1);
+  const { name, price, productOption, thumbnail } = product;
+  const { getValue, increment, decrement } = useNumberInputs(['quantity']);
 
   const handleAddProductToBasket = (
     event: React.FormEvent<HTMLFormElement>,
@@ -29,26 +30,23 @@ function ProductAddBasketModal({ product, closeModal }: Props) {
     closeModal();
   };
 
-  const incrementQuantity = () => {
-    setQuantity((prev) => prev + 1);
-  };
-
-  const decrementQuantity = () => {
-    setQuantity((prev) => (prev - 1 <= 0 ? 1 : prev - 1));
-  };
-
   return (
     <form onSubmit={handleAddProductToBasket}>
       <ProductThumbnail thumbnail={thumbnail} />
       <span>{name}</span>
-      <span>{price}</span>
-      <ProductOption options={productOption} id={id} />
+      <span>가격 {price}원</span>
+      <ProductOption options={productOption} />
       <div>
-        <button type="button" onClick={decrementQuantity}>
+        <button type="button" onClick={decrement('quantity')}>
           -
         </button>
-        <input type="number" name="quantity" value={quantity} readOnly />
-        <button type="button" onClick={incrementQuantity}>
+        <input
+          type="number"
+          name="quantity"
+          value={getValue('quantity')}
+          readOnly
+        />
+        <button type="button" onClick={increment('quantity')}>
           +
         </button>
       </div>

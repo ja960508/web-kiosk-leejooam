@@ -5,7 +5,6 @@ import { useModal } from '../Modal/hooks';
 import Modal from '../Modal/Modal';
 import ProductAddBasketModal from '../Modal/ProductModal/ProductAddBasketModal';
 import ProductDeleteModalTrigger from '../Modal/ProductModal/ProductDeleteModalTrigger';
-import ProductOption from './ProductOption/ProductOption';
 
 interface ProductItemType {
   item: ProductType;
@@ -34,7 +33,6 @@ function ProductItem({ item, setProduct }: ProductItemType) {
       <img src={item.thumbnail} alt="product_thumbnail" />
       <div>{item.name}</div>
       <div>{item.price}원</div>
-      <ProductOption options={item.productOption} id={item.id} />
       <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
         <ProductAddBasketModal closeModal={closeModal} product={item} />
       </Modal>
