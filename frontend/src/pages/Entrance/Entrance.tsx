@@ -18,13 +18,13 @@ function Entrance() {
 
     try {
       if (isRegister) {
-        const response = await handleRegister(event);
-        changeStoreInfo(response);
+        const store = await handleRegister(event);
+        changeStoreInfo(store);
         return;
       }
 
-      const response = await handleLogin(event);
-      changeStoreInfo(response);
+      const store = await handleLogin(event);
+      changeStoreInfo(store);
       navigate('/admin');
     } catch (error) {
       const err = error as AxiosError;

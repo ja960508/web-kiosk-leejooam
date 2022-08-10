@@ -1,7 +1,7 @@
 import { CategoryAddType, CategoryType } from '../types/category';
 import client from './client';
 
-async function getCategoryById(id: number): Promise<CategoryType[]> {
+async function getCategoriesById(id: number): Promise<CategoryType[]> {
   const { data } = await client.get(`/category?storeId=${id}`);
 
   return data;
@@ -20,7 +20,7 @@ async function deleteCategoryById(id: number) {
 }
 
 export default {
-  getCategoryById,
+  getCategoriesById,
   addCategory,
   deleteCategoryById,
 };

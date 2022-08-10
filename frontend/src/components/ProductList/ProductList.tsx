@@ -7,25 +7,29 @@ import { StyledProductList } from './Product.style';
 import ProductItem from './ProductItem';
 
 interface ProductListType {
-  product: ProductType[];
-  setProduct: React.Dispatch<React.SetStateAction<ProductType[]>>;
+  products: ProductType[];
+  setProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
   selectedCategory: CategoryType;
 }
 
 function ProductList({
-  product,
-  setProduct,
+  products,
+  setProducts,
   selectedCategory,
 }: ProductListType) {
   return (
     <StyledProductList>
       <ProductAddModalTrigger
-        setProduct={setProduct}
-        categoryId={selectedCategory.id}
+        setProducts={setProducts}
+        selectedCategoryId={selectedCategory.id}
       />
       <Slider offset={9} line={3}>
-        {product.map((item, idx) => (
-          <ProductItem key={idx} item={item} setProduct={setProduct} />
+        {products.map((product) => (
+          <ProductItem
+            key={product.id}
+            product={product}
+            setProducts={setProducts}
+          />
         ))}
       </Slider>
     </StyledProductList>

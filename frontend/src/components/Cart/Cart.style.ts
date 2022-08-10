@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledBasketList = styled.ul`
+export const StyledCartList = styled.ul`
   position: fixed;
   bottom: 0;
   width: 100vw;
@@ -21,7 +21,7 @@ export const StyledBasketList = styled.ul`
       width: 50%;
     }
 
-    .delete-basket-btn {
+    .delete-cart-btn {
       color: black;
       position: absolute;
       right: 0;

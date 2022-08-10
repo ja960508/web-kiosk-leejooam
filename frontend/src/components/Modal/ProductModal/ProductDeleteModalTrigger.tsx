@@ -6,11 +6,11 @@ import Modal from '../Modal';
 import ProductDeleteModal from './ProductDeleteModal';
 
 interface Props {
-  setProduct: React.Dispatch<React.SetStateAction<ProductType[]>>;
+  setProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
   product: ProductType;
 }
 
-function ProductDeleteModalTrigger({ setProduct, product }: Props) {
+function ProductDeleteModalTrigger({ setProducts, product }: Props) {
   const { isModalOpen, openModal, closeModal } = useModal();
 
   return (
@@ -20,7 +20,7 @@ function ProductDeleteModalTrigger({ setProduct, product }: Props) {
       </button>
       <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
         <ProductDeleteModal
-          setProduct={setProduct}
+          setProducts={setProducts}
           product={product}
           closeModal={closeModal}
         />

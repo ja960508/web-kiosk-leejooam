@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNumberInputs } from '../../../hooks/useNumberInput';
+import { useNumberInputs } from '../../../hooks';
 import { ProductOptionType } from '../../../types/product';
 
 interface Props {

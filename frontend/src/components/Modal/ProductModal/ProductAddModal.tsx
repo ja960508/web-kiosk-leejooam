@@ -1,24 +1,29 @@
 import React, { useState } from 'react';
 import productAPI from '../../../api/productAPI';
+import useTextInputs from '../../../hooks/useTextInputs';
 import {
   ProductAddType,
   initialProductAddValue,
   ProductOptionType,
   ProductType,
 } from '../../../types/product';
-import useInputs, { useOptionContainer } from './hooks';
+import { useOptionContainer } from './hooks';
 import { StyledForm } from './ProductAddModal.style';
 import ChoiceOptionContainer from './ProductOption/ChoiceOptionContainer';
 import QuantityOptionContainer from './ProductOption/QuantityOptionContainer';
 
 interface Props {
-  setProduct: React.Dispatch<React.SetStateAction<ProductType[]>>;
-  categoryId: number;
+  setProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
+  selectedCategoryId: number;
   closeModal: () => void;
 }
 
-function ProductAddModal({ setProduct, categoryId, closeModal }: Props) {
-  const { data, handleChange } = useInputs<ProductAddType>({
+function ProductAddModal({
+  setProducts,
+  selectedCategoryId,
+  closeModal,
+}: Props) {
+  const { data, handleChange } = useTextInputs<ProductAddType>({
     initialValue: initialProductAddValue,
   });
   const [options, setOptions] = useState<ProductOptionType[]>([]);
@@ -36,11 +41,11 @@ function ProductAddModal({ setProduct, categoryId, closeModal }: Props) {
     const product = {
       ...data,
       productOption: options,
-      categoryId: Number(categoryId),
+      selectedCategoryId: Number(selectedCategoryId),
     };
     const insertedId = await productAPI.addProduct(product);
 
-    setProduct((prev) => [...prev, { id: insertedId, ...product }]);
+    setProducts((prev) => [...prev, { id: insertedId, ...product }]);
     closeModal();
   };
 

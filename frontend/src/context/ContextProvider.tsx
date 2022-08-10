@@ -1,14 +1,14 @@
 import React from 'react';
 import AdminAuthorityProvider from './AdminAuthorityProvider';
-import BasketProvider from './BasketProvider';
+import CartProvider from './CartProvider';
 import StoreProvider from './StoreProvider';
 
 function ContextProvider({ children }: { children: React.ReactNode }) {
   return (
     <StoreProvider>
-      <BasketProvider>
+      <CartProvider>
         <AdminAuthorityProvider>{children}</AdminAuthorityProvider>
-      </BasketProvider>
+      </CartProvider>
     </StoreProvider>
   );
 }

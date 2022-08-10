@@ -8,7 +8,7 @@ interface addProductType {
   productOption: any;
 }
 
-async function getProductByCategoryId(id: number) {
+async function getProductsByCategoryId(id: number) {
   const { data } = await client.get(`/product?categoryId=${id}`);
 
   return data;
@@ -27,7 +27,7 @@ async function deleteProductById(id: number) {
 }
 
 export default {
-  getProductByCategoryId,
+  getProductsByCategoryId,
   addProduct,
   deleteProductById,
 };

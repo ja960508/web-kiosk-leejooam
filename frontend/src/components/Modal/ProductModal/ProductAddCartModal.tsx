@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { basketContext } from '../../../context/BasketProvider';
-import { useNumberInputs } from '../../../hooks/useNumberInput';
+import { cartContext } from '../../../context/CartProvider';
+import { useNumberInputs } from '../../../hooks';
 import { ProductType } from '../../../types/product';
 import ProductOption from '../../ProductList/ProductOption/ProductOption';
 import ProductThumbnail from './ProductThumbnail/ProductThumbnail';
@@ -10,28 +10,26 @@ interface Props {
   closeModal: () => void;
 }
 
-function ProductAddBasketModal({ product, closeModal }: Props) {
-  const { changeBasket } = useContext(basketContext);
+function ProductAddCartModal({ product, closeModal }: Props) {
+  const { changeCart } = useContext(cartContext);
   const { name, price, productOption, thumbnail } = product;
   const { getValue, increment, decrement } = useNumberInputs(['quantity']);
 
-  const handleAddProductToBasket = (
-    event: React.FormEvent<HTMLFormElement>,
-  ) => {
+  const handleAddProductToCart = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { quantity } = event.target as HTMLFormElement;
 
-    const newBasket = {
+    const newCartItem = {
       product: product,
       quantity: quantity.value,
     };
 
-    changeBasket((prev) => [...prev, newBasket]);
+    changeCart((prev) => [...prev, newCartItem]);
     closeModal();
   };
 
   return (
-    <form onSubmit={handleAddProductToBasket}>
+    <form onSubmit={handleAddProductToCart}>
       <ProductThumbnail thumbnail={thumbnail} />
       <span>{name}</span>
       <span>가격 {price}원</span>
@@ -55,4 +53,4 @@ function ProductAddBasketModal({ product, closeModal }: Props) {
   );
 }
 
-export default ProductAddBasketModal;
+export default ProductAddCartModal;

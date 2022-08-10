@@ -6,11 +6,11 @@ import Modal from '../Modal';
 import ProductAddModal from './ProductAddModal';
 
 interface Props {
-  setProduct: React.Dispatch<React.SetStateAction<ProductType[]>>;
-  categoryId: number;
+  setProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
+  selectedCategoryId: number;
 }
 
-function ProductAddModalTrigger({ setProduct, categoryId }: Props) {
+function ProductAddModalTrigger({ setProducts, selectedCategoryId }: Props) {
   const { isModalOpen, openModal, closeModal } = useModal();
 
   return (
@@ -20,8 +20,8 @@ function ProductAddModalTrigger({ setProduct, categoryId }: Props) {
       </button>
       <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
         <ProductAddModal
-          setProduct={setProduct}
-          categoryId={categoryId}
+          setProducts={setProducts}
+          selectedCategoryId={selectedCategoryId}
           closeModal={closeModal}
         />
       </Modal>

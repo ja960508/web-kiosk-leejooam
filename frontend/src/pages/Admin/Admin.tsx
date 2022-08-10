@@ -5,14 +5,14 @@ import withCheckPermission from '../../components/HOC/withCheckPermission';
 import ProductList from '../../components/ProductList/ProductList';
 import { adminAuthorityContext } from '../../context/AdminAuthorityProvider';
 import { storeContext } from '../../context/StoreProvider';
+import { useCategory, useProduct } from '../../hooks';
 import { useNavigate } from '../../lib/Router';
 import { setItemToLocalStorage } from '../../lib/storage';
-import { useCategory, useProduct } from './hooks';
 
 function Admin() {
-  const [category, setCategory, selectedCategory, setSelectedCategory] =
+  const { categories, setCategories, selectedCategory, setSelectedCategory } =
     useCategory();
-  const [product, setProduct] = useProduct(selectedCategory);
+  const { products, setProducts } = useProduct(selectedCategory);
   const { store } = useContext(storeContext);
   const { changeAdminAuthority } = useContext(adminAuthorityContext);
   const navigate = useNavigate();
@@ -51,14 +51,14 @@ function Admin() {
         </div>
       </Header>
       <CategoryList
-        category={category}
+        categories={categories}
         setSelectedCategory={setSelectedCategory}
-        setCategory={setCategory}
+        setCategories={setCategories}
       />
       <h3>{selectedCategory.name}</h3>
       <ProductList
-        setProduct={setProduct}
-        product={product}
+        setProducts={setProducts}
+        products={products}
         selectedCategory={selectedCategory}
       />
     </>

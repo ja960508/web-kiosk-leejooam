@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
-import Basket from '../../components/Basket/Basket';
+import Cart from '../../components/Cart/Cart';
 import CategoryList from '../../components/CategoryList/CategoryList';
 import Header from '../../components/Header/Header';
 import MoveAdminModalTrigger from '../../components/Modal/MoveAdminModal/MoveAdminModalTrigger';
 import ProductList from '../../components/ProductList/ProductList';
 import { storeContext } from '../../context/StoreProvider';
-import { useCategory, useProduct } from '../Admin/hooks';
+import { useCategory, useProduct } from '../../hooks';
 
 function CustomerOrder() {
-  const [category, setCategory, selectedCategory, setSelectedCategory] =
+  const { categories, setCategories, selectedCategory, setSelectedCategory } =
     useCategory();
-  const [product, setProduct] = useProduct(selectedCategory);
+  const { products, setProducts } = useProduct(selectedCategory);
   const { store } = useContext(storeContext);
 
   return (
@@ -25,17 +25,17 @@ function CustomerOrder() {
         </div>
       </Header>
       <CategoryList
-        category={category}
+        categories={categories}
         setSelectedCategory={setSelectedCategory}
-        setCategory={setCategory}
+        setCategories={setCategories}
       />
       <h3>{selectedCategory.name}</h3>
       <ProductList
-        setProduct={setProduct}
-        product={product}
+        setProducts={setProducts}
+        products={products}
         selectedCategory={selectedCategory}
       />
-      <Basket />
+      <Cart />
     </>
   );
 }

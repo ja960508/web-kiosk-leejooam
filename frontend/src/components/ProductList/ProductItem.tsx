@@ -3,15 +3,15 @@ import { adminAuthorityContext } from '../../context/AdminAuthorityProvider';
 import { ProductType } from '../../types/product';
 import { useModal } from '../Modal/hooks';
 import Modal from '../Modal/Modal';
-import ProductAddBasketModal from '../Modal/ProductModal/ProductAddBasketModal';
+import ProductAddCartModal from '../Modal/ProductModal/ProductAddCartModal';
 import ProductDeleteModalTrigger from '../Modal/ProductModal/ProductDeleteModalTrigger';
 
 interface ProductItemType {
-  item: ProductType;
-  setProduct: React.Dispatch<React.SetStateAction<ProductType[]>>;
+  product: ProductType;
+  setProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
 }
 
-function ProductItem({ item, setProduct }: ProductItemType) {
+function ProductItem({ product, setProducts }: ProductItemType) {
   const { adminAuthority } = useContext(adminAuthorityContext);
   const { isModalOpen, openModal, closeModal } = useModal();
 
@@ -25,16 +25,16 @@ function ProductItem({ item, setProduct }: ProductItemType) {
 
   return (
     <li onClick={(event) => handleProductClick(event)}>
-      <ProductDeleteModalTrigger setProduct={setProduct} product={item} />
+      <ProductDeleteModalTrigger setProducts={setProducts} product={product} />
       <div className="extra-info">
-        {!!item.isPopular && <span>인기</span>}
-        {!!item.isSoldOut && <span>완판</span>}
+        {!!product.isPopular && <span>인기</span>}
+        {!!product.isSoldOut && <span>완판</span>}
       </div>
-      <img src={item.thumbnail} alt="product_thumbnail" />
-      <div>{item.name}</div>
-      <div>{item.price}원</div>
+      <img src={product.thumbnail} alt="product_thumbnail" />
+      <div>{product.name}</div>
+      <div>{product.price}원</div>
       <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
-        <ProductAddBasketModal closeModal={closeModal} product={item} />
+        <ProductAddCartModal closeModal={closeModal} product={product} />
       </Modal>
     </li>
   );
