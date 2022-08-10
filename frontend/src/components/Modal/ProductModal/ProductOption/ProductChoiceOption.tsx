@@ -1,12 +1,11 @@
 import React from 'react';
-import { ProductOptionType } from '../../../types/product';
+import { ProductOptionType } from '../../../../types/product';
 
 interface Props {
   option: ProductOptionType;
 }
 
 function ProductChoiceOption({ option }: Props) {
-  console.log(option);
   return (
     <li>
       <div>{option.optionName}</div>

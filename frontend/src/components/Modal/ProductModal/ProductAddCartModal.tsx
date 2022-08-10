@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { cartContext } from '../../../context/CartProvider';
 import { useNumberInputs } from '../../../hooks';
 import { ProductType } from '../../../types/product';
-import ProductOption from '../../ProductList/ProductOption/ProductOption';
+import ProductOption from './ProductOption/ProductOption';
 import ProductThumbnail from './ProductThumbnail/ProductThumbnail';
 
 interface Props {
@@ -14,6 +14,8 @@ function ProductAddCartModal({ product, closeModal }: Props) {
   const { changeCart } = useContext(cartContext);
   const { name, price, productOption, thumbnail } = product;
   const { getValue, increment, decrement } = useNumberInputs(['quantity']);
+
+  console.log(product);
 
   const handleAddProductToCart = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

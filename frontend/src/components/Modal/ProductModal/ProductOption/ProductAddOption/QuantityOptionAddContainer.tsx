@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { ProductOptionType } from '../../../../types/product';
+import { ProductOptionType } from '../../../../../types/product';
 
 interface Props {
   setOptions: React.Dispatch<React.SetStateAction<ProductOptionType[]>>;
   closeOptionContainer: () => void;
 }
 
-function QuantityOptionContainer({ setOptions, closeOptionContainer }: Props) {
+function QuantityOptionAddContainer({
+  setOptions,
+  closeOptionContainer,
+}: Props) {
   const [optionName, setOptionName] = useState('');
 
   const handleAddOption = () => {
@@ -36,4 +39,4 @@ function QuantityOptionContainer({ setOptions, closeOptionContainer }: Props) {
   );
 }
 
-export default QuantityOptionContainer;
+export default QuantityOptionAddContainer;

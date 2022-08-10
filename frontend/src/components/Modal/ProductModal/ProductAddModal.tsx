@@ -9,8 +9,8 @@ import {
 } from '../../../types/product';
 import { useOptionContainer } from './hooks';
 import { StyledForm } from './ProductAddModal.style';
-import ChoiceOptionContainer from './ProductOption/ChoiceOptionContainer';
-import QuantityOptionContainer from './ProductOption/QuantityOptionContainer';
+import ChoiceOptionAddContainer from './ProductOption/ProductAddOption/ChoiceOptionAddContainer';
+import QuantityOptionAddContainer from './ProductOption/ProductAddOption/QuantityOptionAddContainer';
 
 interface Props {
   setProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
@@ -41,7 +41,7 @@ function ProductAddModal({
     const product = {
       ...data,
       productOption: options,
-      selectedCategoryId: Number(selectedCategoryId),
+      categoryId: Number(selectedCategoryId),
     };
     const insertedId = await productAPI.addProduct(product);
 
@@ -74,13 +74,13 @@ function ProductAddModal({
         </button>
       </div>
       {isQuantityOptionOpen && (
-        <QuantityOptionContainer
+        <QuantityOptionAddContainer
           setOptions={setOptions}
           closeOptionContainer={closeOptionContainer}
         />
       )}
       {isChoiceOptionOpen && (
-        <ChoiceOptionContainer
+        <ChoiceOptionAddContainer
           setOptions={setOptions}
           closeOptionContainer={closeOptionContainer}
         />

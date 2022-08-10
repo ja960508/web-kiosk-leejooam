@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { ProductOptionType } from '../../../../types/product';
+import { ProductOptionType } from '../../../../../types/product';
 
 interface Props {
   setOptions: React.Dispatch<React.SetStateAction<ProductOptionType[]>>;
   closeOptionContainer: () => void;
 }
 
-function ChoiceOptionContainer({ setOptions, closeOptionContainer }: Props) {
+function ChoiceOptionAddContainer({ setOptions, closeOptionContainer }: Props) {
   const [optionName, setOptionName] = useState('');
   const [optionDetailValue, setOptionDetailValue] = useState('');
   const [optionDetails, setOptionDetails] = useState<string[]>([]);
@@ -52,4 +52,4 @@ function ChoiceOptionContainer({ setOptions, closeOptionContainer }: Props) {
   );
 }
 
-export default ChoiceOptionContainer;
+export default ChoiceOptionAddContainer;

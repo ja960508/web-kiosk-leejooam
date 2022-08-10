@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProductOptionType } from '../../../types/product';
+import { ProductOptionType } from '../../../../types/product';
 import ProductChoiceOption from './ProductChoiceOption';
 import { StyledProductOptionList } from './ProductOption.style';
 import ProductQuantityOption from './ProductQuantityOption';
