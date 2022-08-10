@@ -5,13 +5,8 @@ import { storeContext } from '../../context/StoreProvider';
 import { CategoryType } from '../../types/category';
 import { ProductType } from '../../types/product';
 
-export const useCategory = (): [
-  CategoryType[],
-  React.Dispatch<React.SetStateAction<CategoryType[]>>,
-  CategoryType,
-  React.Dispatch<React.SetStateAction<CategoryType>>,
-] => {
-  const [category, setCategory] = useState<CategoryType[]>([]);
+export const useCategory = () => {
+  const [categories, setCategories] = useState<CategoryType[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>({
     name: '',
     id: 0,
@@ -20,23 +15,21 @@ export const useCategory = (): [
   const { store } = useContext(storeContext);
 
   useEffect(() => {
-    const getCategory = async () => {
+    const getCategories = async () => {
       if (store.id) {
-        const response = await categoryAPI.getCategoryById(store.id);
-        setCategory(response);
+        const response = await categoryAPI.getCategoriesById(store.id);
+        setCategories(response);
         setSelectedCategory(response[0]);
       }
     };
 
-    getCategory();
+    getCategories();
   }, [store.id]);
 
-  return [category, setCategory, selectedCategory, setSelectedCategory];
+  return { categories, setCategories, selectedCategory, setSelectedCategory };
 };
 
-export const useProduct = (
-  selectedCategory: CategoryType,
-): [ProductType[], React.Dispatch<React.SetStateAction<ProductType[]>>] => {
+export const useProduct = (selectedCategory: CategoryType) => {
   const [product, setProduct] = useState<ProductType[]>([]);
 
   useEffect(() => {
@@ -52,5 +45,5 @@ export const useProduct = (
     getProduct();
   }, [selectedCategory]);
 
-  return [product, setProduct];
+  return { product, setProduct };
 };

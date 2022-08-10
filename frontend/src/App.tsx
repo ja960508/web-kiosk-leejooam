@@ -13,8 +13,8 @@ function App() {
 
   useEffect(() => {
     async function setStoreInfo(storeId: number) {
-      const response = await storeAPI.getStoreInfo(storeId);
-      changeStoreInfo(response);
+      const store = await storeAPI.getStoreInfo(storeId);
+      changeStoreInfo(store);
     }
 
     const storeId = Number(getItemFromLocalStorage('storeId'));

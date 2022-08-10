@@ -7,10 +7,10 @@ import Modal from '../Modal';
 import CategoryAddModal from './CategoryAddModal';
 
 interface Props {
-  setCategory: React.Dispatch<React.SetStateAction<CategoryType[]>>;
+  setCategories: React.Dispatch<React.SetStateAction<CategoryType[]>>;
 }
 
-function CategoryAddModalTrigger({ setCategory }: Props) {
+function CategoryAddModalTrigger({ setCategories }: Props) {
   const { store } = useContext(storeContext);
   const { isModalOpen, openModal, closeModal } = useModal();
 
@@ -23,7 +23,7 @@ function CategoryAddModalTrigger({ setCategory }: Props) {
         <CategoryAddModal
           storeId={store.id}
           closeModal={closeModal}
-          setCategory={setCategory}
+          setCategories={setCategories}
         />
       </Modal>
     </>

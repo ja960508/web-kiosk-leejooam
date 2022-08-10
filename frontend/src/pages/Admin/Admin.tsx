@@ -10,9 +10,9 @@ import { setItemToLocalStorage } from '../../lib/storage';
 import { useCategory, useProduct } from './hooks';
 
 function Admin() {
-  const [category, setCategory, selectedCategory, setSelectedCategory] =
+  const { categories, setCategories, selectedCategory, setSelectedCategory } =
     useCategory();
-  const [product, setProduct] = useProduct(selectedCategory);
+  const { product, setProduct } = useProduct(selectedCategory);
   const { store } = useContext(storeContext);
   const { changeAdminAuthority } = useContext(adminAuthorityContext);
   const navigate = useNavigate();
@@ -51,9 +51,9 @@ function Admin() {
         </div>
       </Header>
       <CategoryList
-        category={category}
+        categories={categories}
         setSelectedCategory={setSelectedCategory}
-        setCategory={setCategory}
+        setCategories={setCategories}
       />
       <h3>{selectedCategory.name}</h3>
       <ProductList

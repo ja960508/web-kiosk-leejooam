@@ -7,10 +7,10 @@ import CategoryDeleteModal from './CategoryDeleteModal';
 
 interface Props {
   category: CategoryType;
-  setCategory: React.Dispatch<React.SetStateAction<CategoryType[]>>;
+  setCategories: React.Dispatch<React.SetStateAction<CategoryType[]>>;
 }
 
-function CategoryDeleteModalTrigger({ category, setCategory }: Props) {
+function CategoryDeleteModalTrigger({ category, setCategories }: Props) {
   const { isModalOpen, openModal, closeModal } = useModal();
 
   return (
@@ -22,7 +22,7 @@ function CategoryDeleteModalTrigger({ category, setCategory }: Props) {
         <CategoryDeleteModal
           category={category}
           closeModal={closeModal}
-          setCategory={setCategory}
+          setCategories={setCategories}
         />
       </Modal>
     </>

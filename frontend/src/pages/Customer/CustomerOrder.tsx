@@ -8,9 +8,9 @@ import { storeContext } from '../../context/StoreProvider';
 import { useCategory, useProduct } from '../Admin/hooks';
 
 function CustomerOrder() {
-  const [category, setCategory, selectedCategory, setSelectedCategory] =
+  const { categories, setCategories, selectedCategory, setSelectedCategory } =
     useCategory();
-  const [product, setProduct] = useProduct(selectedCategory);
+  const { product, setProduct } = useProduct(selectedCategory);
   const { store } = useContext(storeContext);
 
   return (
@@ -25,9 +25,9 @@ function CustomerOrder() {
         </div>
       </Header>
       <CategoryList
-        category={category}
+        categories={categories}
         setSelectedCategory={setSelectedCategory}
-        setCategory={setCategory}
+        setCategories={setCategories}
       />
       <h3>{selectedCategory.name}</h3>
       <ProductList

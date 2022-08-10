@@ -5,10 +5,10 @@ import { CategoryType } from '../../../types/category';
 interface Props {
   category: CategoryType;
   closeModal: () => void;
-  setCategory: React.Dispatch<React.SetStateAction<CategoryType[]>>;
+  setCategories: React.Dispatch<React.SetStateAction<CategoryType[]>>;
 }
 
-function CategoryDeleteModal({ category, closeModal, setCategory }: Props) {
+function CategoryDeleteModal({ category, closeModal, setCategories }: Props) {
   const handleDeleteCategory = async (
     event: React.FormEvent<HTMLFormElement>,
   ) => {
@@ -16,7 +16,7 @@ function CategoryDeleteModal({ category, closeModal, setCategory }: Props) {
 
     await categoryAPI.deleteCategoryById(category.id);
     closeModal();
-    setCategory((prev) => prev.filter((item) => item.id !== category.id));
+    setCategories((prev) => prev.filter((item) => item.id !== category.id));
   };
 
   return (

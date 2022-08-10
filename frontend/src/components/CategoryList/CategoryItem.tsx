@@ -5,20 +5,20 @@ import CategoryDeleteModalTrigger from '../Modal/CategoryModal/CategoryDeleteMod
 interface CategoryItemProps {
   category: CategoryType;
   setSelectedCategory: React.Dispatch<React.SetStateAction<CategoryType>>;
-  setCategory: React.Dispatch<React.SetStateAction<CategoryType[]>>;
+  setCategories: React.Dispatch<React.SetStateAction<CategoryType[]>>;
 }
 
 function CategoryItem({
   category,
   setSelectedCategory,
-  setCategory,
+  setCategories,
 }: CategoryItemProps) {
   return (
     <li onClick={() => setSelectedCategory(category)}>
       {category.name}
       <CategoryDeleteModalTrigger
         category={category}
-        setCategory={setCategory}
+        setCategories={setCategories}
       />
     </li>
   );

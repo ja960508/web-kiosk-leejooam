@@ -6,25 +6,25 @@ import { StyledContainer } from './Category.style';
 import CategoryItem from './CategoryItem';
 
 interface CategoryListProps {
-  category: CategoryType[];
-  setCategory: React.Dispatch<React.SetStateAction<CategoryType[]>>;
+  categories: CategoryType[];
+  setCategories: React.Dispatch<React.SetStateAction<CategoryType[]>>;
   setSelectedCategory: React.Dispatch<React.SetStateAction<CategoryType>>;
 }
 
 function CategoryList({
-  category,
-  setCategory,
+  categories,
+  setCategories,
   setSelectedCategory,
 }: CategoryListProps) {
   return (
     <StyledContainer>
-      <CategoryAddModalTrigger setCategory={setCategory} />
+      <CategoryAddModalTrigger setCategories={setCategories} />
       <Slider offset={6}>
-        {category.map((item, idx) => (
+        {categories.map((category) => (
           <CategoryItem
-            key={idx}
-            category={item}
-            setCategory={setCategory}
+            key={category.id}
+            category={category}
+            setCategories={setCategories}
             setSelectedCategory={setSelectedCategory}
           />
         ))}

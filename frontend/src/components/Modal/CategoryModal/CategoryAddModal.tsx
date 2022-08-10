@@ -5,13 +5,13 @@ import categoryAPI from '../../../api/categoryAPI';
 interface CategoryAddModalProps {
   storeId: number;
   closeModal: () => void;
-  setCategory: React.Dispatch<React.SetStateAction<CategoryType[]>>;
+  setCategories: React.Dispatch<React.SetStateAction<CategoryType[]>>;
 }
 
 function CategoryAddModal({
   storeId,
   closeModal,
-  setCategory,
+  setCategories,
 }: CategoryAddModalProps) {
   const handleAddCategory = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,7 +25,7 @@ function CategoryAddModal({
     const response = await categoryAPI.addCategory(category);
 
     closeModal();
-    setCategory((prev) => [...prev, { ...category, id: response }]);
+    setCategories((prev) => [...prev, { ...category, id: response }]);
   };
 
   return (
