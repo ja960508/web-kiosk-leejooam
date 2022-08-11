@@ -19,23 +19,6 @@ export const StyledHeader = styled.header`
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
-
-    button {
-      display: flex;
-      align-items: center;
-      background-color: ${color.black};
-      color: ${color.white};
-      padding: 0.5rem 1rem;
-      border: 1px solid ${color.white};
-      font-size: 1rem;
-    }
-
-    .open-store svg,
-    .logout svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      margin-right: 0.5rem;
-    }
   }
 `;
 

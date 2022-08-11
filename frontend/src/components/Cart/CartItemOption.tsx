@@ -7,12 +7,9 @@ interface Props {
 
 function CartItemOption({ optionName, value }: Props) {
   return (
-    <div>
-      <span>{optionName}</span>
-      <span>
-        {value} {typeof value === 'number' && '개'}
-      </span>
-    </div>
+    <div className="product-option">{`${optionName} ${value} ${
+      typeof value === 'number' ? '개' : ''
+    }`}</div>
   );
 }
 

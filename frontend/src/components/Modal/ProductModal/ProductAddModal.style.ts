@@ -1,25 +1,8 @@
 import styled from 'styled-components';
+import { StyledModalForm } from '../../../styles/commons/StyledModalForm';
 import color from '../../../styles/variables/color';
 
-export const StyledProductAddForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  padding: 2.5rem;
-
-  strong {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-  }
-
-  input {
-    width: 20rem;
-    padding: 10px 20px;
-    border: 1px solid ${color.gray};
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-  }
-
+export const StyledProductAddForm = styled(StyledModalForm)`
   .option-btn-container {
     display: flex;
     margin-bottom: 0.5rem;
@@ -35,14 +18,6 @@ export const StyledProductAddForm = styled.form`
     button:first-child {
       margin-right: 0.5rem;
     }
-  }
-
-  button[type='submit'] {
-    background-color: ${color.red};
-    color: ${color.white};
-    padding: 0.75rem;
-    font-size: 1rem;
-    border-radius: 10px;
   }
 
   .add-options {

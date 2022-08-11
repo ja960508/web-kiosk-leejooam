@@ -7,3 +7,7 @@ export { ReactComponent as GoodsIcon } from './goods_icon.svg';
 export { ReactComponent as XButton } from './X_button.svg';
 export { ReactComponent as CartRemoveIcon } from './cart_remove_icon.svg';
 export { ReactComponent as PlusIcon } from './plus_icon.svg';
+export { ReactComponent as ManagementIcon } from './management_icon.svg';
+export { ReactComponent as DecrementIcon } from './decrement_icon.svg';
+export { ReactComponent as IncrementIcon } from './increment_icon.svg';
+export { ReactComponent as CashIcon } from './cash_icon.svg';

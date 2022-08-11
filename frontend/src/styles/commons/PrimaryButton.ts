@@ -12,6 +12,7 @@ export const PrimaryButton = styled.button`
   font-size: 1rem;
   display: flex;
   align-items: center;
+  justify-content: center;
 
   svg {
     width: 1.75rem;

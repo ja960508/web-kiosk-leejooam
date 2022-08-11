@@ -6,7 +6,11 @@ interface Props {
 }
 
 function ProductThumbnail({ thumbnail }: Props) {
-  return <StyledProductThumbnail src={thumbnail} alt="product_thumbnail" />;
+  return (
+    <StyledProductThumbnail>
+      <img className="thumbnail-img" src={thumbnail} alt="product_thumbnail" />
+    </StyledProductThumbnail>
+  );
 }
 
 export default ProductThumbnail;

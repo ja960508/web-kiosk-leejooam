@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PlusIcon } from '../../../../../assets/icons';
+import { FormInput } from '../../../../../styles/commons/FormInput';
 import { ProductOptionType } from '../../../../../types/product';
 import { StyledQuantityOptionContainer } from './ProductAddOption.style';
 
@@ -29,7 +30,7 @@ function QuantityOptionAddContainer({
     <StyledQuantityOptionContainer>
       <div className="option-guide">옵션(수량) 이름을 입력해주세요.</div>
       <div className="container">
-        <input
+        <FormInput
           type="text"
           name="optionName"
           value={optionName}

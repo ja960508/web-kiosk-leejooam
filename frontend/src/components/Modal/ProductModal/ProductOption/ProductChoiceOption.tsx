@@ -1,5 +1,9 @@
 import React from 'react';
 import { ProductOptionType } from '../../../../types/product';
+import {
+  StyledProductChioceOption,
+  StyleOptionName,
+} from './ProductOption.style';
 
 interface Props {
   option: ProductOptionType;
@@ -15,21 +19,26 @@ function ProductChoiceOption({ option, cartInputs }: Props) {
   const { optionName, content } = option;
 
   return (
-    <li>
-      <div>{optionName}</div>
-      {content.map((optionContent, idx) => (
-        <label key={idx}>
-          {optionContent}
-          <input
-            type="radio"
-            name={optionName}
-            value={optionContent}
-            defaultChecked={idx === 0}
-            onChange={cartInputs.changeRadioValue(optionName, optionContent)}
-          />
-        </label>
-      ))}
-    </li>
+    <StyledProductChioceOption>
+      <StyleOptionName className="option-name">{optionName}</StyleOptionName>
+      <ul className="option-content-list">
+        {content.map((optionContent, idx) => (
+          <li className="option-content-item" key={idx}>
+            <input
+              type="radio"
+              name={optionName}
+              id={optionContent}
+              value={optionContent}
+              defaultChecked={idx === 0}
+              onChange={cartInputs.changeRadioValue(optionName, optionContent)}
+            />
+            <label className="choice-label" htmlFor={optionContent}>
+              {optionContent}
+            </label>
+          </li>
+        ))}
+      </ul>
+    </StyledProductChioceOption>
   );
 }
 

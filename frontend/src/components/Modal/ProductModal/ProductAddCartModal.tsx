@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { cartContext } from '../../../context/CartProvider';
+import { PrimaryButton } from '../../../styles/commons/PrimaryButton';
 import { initialProductOptionValue, ProductType } from '../../../types/product';
+import { StyledProductAddCartModal } from './ProductAddCartModal.style';
 import { useCart } from './ProductOption/hooks';
 import ProductOption from './ProductOption/ProductOption';
 import ProductQuantityOption from './ProductOption/ProductQuantityOption';
-import ProductThumbnail from './ProductThumbnail/ProductThumbnail';
+import ProductThumbnail from '../../ProductList/ProductThumbnail/ProductThumbnail';
 
 interface Props {
   product: ProductType;
@@ -31,19 +33,21 @@ function ProductAddCartModal({ product, closeModal }: Props) {
   };
 
   return (
-    <form onSubmit={handleAddProductToCart}>
+    <StyledProductAddCartModal onSubmit={handleAddProductToCart}>
       <ProductThumbnail thumbnail={thumbnail} />
-      <span>{name}</span>
-      <span>{`가격 ${price}원`}</span>
-      <ProductOption cartInputs={cartInputs} options={productOption} />
-      <div>
-        <ProductQuantityOption
-          cartInputs={cartInputs}
-          option={{ ...initialProductOptionValue, optionName: 'quantity' }}
-        />
+      <div className="product-meta">
+        <strong>{name}</strong>
+        <div className="price">{`${price}원`}</div>
+        <ProductOption cartInputs={cartInputs} options={productOption} />
+        <div>
+          <ProductQuantityOption
+            cartInputs={cartInputs}
+            option={{ ...initialProductOptionValue, optionName: 'quantity' }}
+          />
+        </div>
+        <PrimaryButton type="submit">담기</PrimaryButton>
       </div>
-      <button type="submit">담기</button>
-    </form>
+    </StyledProductAddCartModal>
   );
 }
 

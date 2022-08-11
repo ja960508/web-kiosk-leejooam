@@ -9,6 +9,7 @@ import { storeContext } from '../../context/StoreProvider';
 import { useCategory, useProduct } from '../../hooks';
 import { useNavigate } from '../../lib/Router';
 import { setItemToLocalStorage } from '../../lib/storage';
+import { LinkButton } from '../../styles/commons/LinkButton';
 import { SectionContainer } from '../../styles/global';
 
 function Admin() {
@@ -44,14 +45,14 @@ function Admin() {
           {store.name} {store.branchName}점입니다.
         </h2>
         <div className="header-btns">
-          <button type="button" className="open-store" onClick={openStore}>
+          <LinkButton type="button" onClick={openStore}>
             <Store />
             장사 시작
-          </button>
-          <button type="button" className="logout" onClick={onLogout}>
+          </LinkButton>
+          <LinkButton type="button" onClick={onLogout}>
             <Logout />
             로그아웃
-          </button>
+          </LinkButton>
         </div>
       </Header>
       <SectionContainer>
