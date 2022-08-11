@@ -6,7 +6,7 @@ export const StyledHeader = styled.header`
   background: ${color.black};
   color: ${color.white};
   padding: 1.5rem;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 
   h1 {
     margin-bottom: 1.5rem;
