@@ -52,7 +52,7 @@ export class ReceiptService {
     }
   }
 
-  async createReceipt(receipt: receiptCreateType) {
+  async createReceipt(receipt: receiptCreateType): Promise<number> {
     const { products, ...otherInfo } = receipt;
     const receiptData: receiptDataType = {
       ...otherInfo,
@@ -90,7 +90,7 @@ export class ReceiptService {
   async getReceiptInfoById(id: number) {
     try {
       const [rows] = await this.promisePool
-        .execute(`SELECT R.paymentMethod, R.paymentAmount, R.cashAmount, R.paymentDate, P.name, P.price, P.productOption, P.isPopular, P.isSoldOut FROM RECEIPT as R
+        .execute(`SELECT R.paymentMethod, R.orderNumber, R.paymentAmount, R.inputAmount, P.name, RTP.count FROM RECEIPT as R
       LEFT JOIN RECEIPT_TO_PRODUCT as RTP
       ON RTP.receiptId = ${id}
       LEFT JOIN PRODUCT as P

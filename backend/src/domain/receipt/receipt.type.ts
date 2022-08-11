@@ -10,16 +10,16 @@ export interface productType {
 
 export interface receiptCreateType {
   paymentMethod: paymentMethodType;
-  cashAmount?: number;
-  paymentDate: string;
+  inputAmount: number;
+  paymentAmount: number;
   products: productType[];
   storeId: number;
 }
 
 export interface receiptDataType {
   paymentMethod: paymentMethodType;
-  cashAmount?: number;
   paymentDate: string;
+  inputAmount: number;
   storeId: number;
   orderNumber: number;
 }

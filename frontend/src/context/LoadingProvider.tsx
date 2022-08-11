@@ -2,11 +2,17 @@ import React, { createContext, useState } from 'react';
 
 interface LoadingContextType {
   isLoading: boolean;
+}
+
+interface ChangeLoadingContextType {
   changeIsLoading: (prev: boolean) => void;
 }
 
 export const loadingContext = createContext<LoadingContextType>({
   isLoading: false,
+});
+
+export const changeLoadingContext = createContext<ChangeLoadingContextType>({
   changeIsLoading: () => undefined,
 });
 
@@ -15,12 +21,17 @@ function LoadingProvider({ children }: { children: React.ReactNode }) {
 
   const loadingContextValue = {
     isLoading,
+  };
+
+  const changeLoadingContextValue = {
     changeIsLoading: setIsLoading,
   };
 
   return (
     <loadingContext.Provider value={loadingContextValue}>
-      {children}
+      <changeLoadingContext.Provider value={changeLoadingContextValue}>
+        {children}
+      </changeLoadingContext.Provider>
     </loadingContext.Provider>
   );
 }

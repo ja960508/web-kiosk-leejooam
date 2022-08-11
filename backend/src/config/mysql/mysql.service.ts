@@ -58,7 +58,7 @@ export class MySQLService implements OnModuleInit {
     CREATE TABLE IF NOT EXISTS RECEIPT (
       id INT PRIMARY KEY AUTO_INCREMENT,
       paymentMethod ENUM('card', 'cash') NOT NULL,
-      cashAmount DECIMAL(10, 0),
+      inputAmount DECIMAL(10, 0),
       paymentAmount DECIMAL(10, 0) NOT NULL,
       paymentDate DATE NOT NULL,
       orderNumber INT NOT NULL,
