@@ -9,6 +9,7 @@ import { storeContext } from '../../context/StoreProvider';
 import { useCategory, useProduct } from '../../hooks';
 import { useNavigate } from '../../lib/Router';
 import { setItemToLocalStorage } from '../../lib/storage';
+import { SectionContainer } from '../../styles/global';
 
 function Admin() {
   const { categories, setCategories, selectedCategory, setSelectedCategory } =
@@ -53,17 +54,19 @@ function Admin() {
           </button>
         </div>
       </Header>
-      <CategoryList
-        categories={categories}
-        setSelectedCategory={setSelectedCategory}
-        setCategories={setCategories}
-      />
-      <h3>{selectedCategory.name}</h3>
-      <ProductList
-        setProducts={setProducts}
-        products={products}
-        selectedCategory={selectedCategory}
-      />
+      <SectionContainer>
+        <CategoryList
+          categories={categories}
+          setSelectedCategory={setSelectedCategory}
+          setCategories={setCategories}
+        />
+        <h3>{selectedCategory.name}</h3>
+        <ProductList
+          setProducts={setProducts}
+          products={products}
+          selectedCategory={selectedCategory}
+        />
+      </SectionContainer>
     </>
   );
 }

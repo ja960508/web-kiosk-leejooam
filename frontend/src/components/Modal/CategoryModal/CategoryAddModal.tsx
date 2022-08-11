@@ -31,7 +31,7 @@ function CategoryAddModal({
   return (
     <form onSubmit={handleAddCategory}>
       <strong>추가할 카테고리 이름을 입력해주세요.</strong>
-      <input type="text" name="categoryName" />
+      <input type="text" name="categoryName" autoFocus />
       <button type="submit">추가</button>
     </form>
   );

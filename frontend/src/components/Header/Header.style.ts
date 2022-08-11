@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { SectionContainer } from '../../styles/global';
 import color from '../../styles/variables/color';
 
 export const StyledHeader = styled.header`
@@ -38,8 +39,6 @@ export const StyledHeader = styled.header`
   }
 `;
 
-export const HeaderContent = styled.div`
-  max-width: 1080px;
+export const HeaderContent = styled(SectionContainer)`
   position: relative;
-  margin: 0 auto;
 `;
