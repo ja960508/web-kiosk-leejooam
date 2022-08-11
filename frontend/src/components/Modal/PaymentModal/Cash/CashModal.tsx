@@ -4,7 +4,7 @@ import { StyledCashModal } from './CashModal.style';
 
 interface Props {
   closeModal: () => void;
-  openReceiptModal: (event: React.FormEvent<HTMLFormElement>) => void;
+  openReceiptModal: (paymentMethod: string, inputAmount: number) => void;
 }
 
 function CashModal({ closeModal, openReceiptModal }: Props) {
@@ -15,7 +15,7 @@ function CashModal({ closeModal, openReceiptModal }: Props) {
   const handleCashPayment = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     closeModal();
-    openReceiptModal(event);
+    openReceiptModal('cash', insertedCash);
   };
 
   const handleInsertCash = (cash: number) => () => {

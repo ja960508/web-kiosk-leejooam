@@ -1,25 +1,30 @@
 import React, { useContext, useEffect } from 'react';
-import { loadingContext } from '../../../../context/LoadingProvider';
+import {
+  changeLoadingContext,
+  loadingContext,
+} from '../../../../context/LoadingProvider';
+import Loading from '../../../Loading/Loading';
 
 interface Props {
   closeModal: () => void;
-  openReceiptModal: () => void;
+  openReceiptModal: (paymentMethod: string) => void;
 }
 
 function CreditCardLoadingModal({ closeModal, openReceiptModal }: Props) {
-  const { changeIsLoading } = useContext(loadingContext);
-
-  setTimeout(() => {
-    changeIsLoading(false);
-    openReceiptModal();
-    closeModal();
-  }, 1000);
+  const { isLoading } = useContext(loadingContext);
+  const { changeIsLoading } = useContext(changeLoadingContext);
 
   useEffect(() => {
-    changeIsLoading(true);
-  }, [changeIsLoading]);
+    setTimeout(() => {
+      changeIsLoading(false);
+      openReceiptModal('card');
+      closeModal();
+    }, 1000);
 
-  return <div>감사합니다 고객님</div>;
+    changeIsLoading(true);
+  }, [changeIsLoading, openReceiptModal, closeModal]);
+
+  return <Loading isLoading={isLoading} />;
 }
 
 export default CreditCardLoadingModal;

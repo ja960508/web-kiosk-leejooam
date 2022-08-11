@@ -1,6 +1,16 @@
 import React from 'react';
+import { useReceipt } from './hooks';
 
-function ReceiptModal() {
+interface Props {
+  paymentInfo: {
+    paymentMethod: string;
+    inputAmount: number;
+  };
+}
+
+function ReceiptModal({ paymentInfo }: Props) {
+  const receipt = useReceipt({ paymentInfo });
+
   return <div>ReceiptModal</div>;
 }
 

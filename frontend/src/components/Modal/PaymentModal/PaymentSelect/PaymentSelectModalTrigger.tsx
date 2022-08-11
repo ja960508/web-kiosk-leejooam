@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useModal } from '../../hooks';
 import Modal from '../../Modal';
 import CashModal from '../Cash/CashModal';
@@ -11,6 +11,15 @@ function PaymentSelectModalTrigger() {
   const cardLoading = useModal();
   const cash = useModal();
   const receipt = useModal();
+  const [paymentInfo, setPaymentInfo] = useState({
+    paymentMethod: '',
+    inputAmount: 0,
+  });
+
+  const openReceiptModal = (paymentMethod: string, inputAmount = 0) => {
+    receipt.openModal();
+    setPaymentInfo({ paymentMethod, inputAmount });
+  };
 
   return (
     <>
@@ -33,17 +42,17 @@ function PaymentSelectModalTrigger() {
       >
         <CreditCardLoadingModal
           closeModal={cardLoading.closeModal}
-          openReceiptModal={receipt.openModal}
+          openReceiptModal={openReceiptModal}
         />
       </Modal>
       <Modal isModalOpen={cash.isModalOpen} closeModal={cash.closeModal}>
         <CashModal
           closeModal={cash.closeModal}
-          openReceiptModal={receipt.openModal}
+          openReceiptModal={openReceiptModal}
         />
       </Modal>
       <Modal isModalOpen={receipt.isModalOpen} closeModal={receipt.closeModal}>
-        <ReceiptModal />
+        <ReceiptModal paymentInfo={paymentInfo} />
       </Modal>
     </>
   );
