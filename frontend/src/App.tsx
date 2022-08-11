@@ -7,9 +7,12 @@ import { Routes, Route } from './lib/Router';
 import { storeContext } from './context/StoreProvider';
 import storeAPI from './api/storeAPI';
 import { getItemFromLocalStorage } from './lib/storage';
+import Loading from './components/Loading/Loading';
+import { loadingContext } from './context/LoadingProvider';
 
 function App() {
   const { changeStoreInfo } = useContext(storeContext);
+  const { isLoading } = useContext(loadingContext);
 
   useEffect(() => {
     async function setStoreInfo(storeId: number) {
@@ -32,6 +35,7 @@ function App() {
         <Route path="/customer-order" element={<CustomerOrder />} />
         <Route path="/" element={<Entrance />} />
       </Routes>
+      <Loading isLoading={isLoading} />
     </>
   );
 }

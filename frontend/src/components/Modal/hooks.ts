@@ -12,8 +12,10 @@ type eventType =
 export function useModal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = (event: eventType) => {
-    event.stopPropagation();
+  const openModal = (event?: eventType) => {
+    if (event) {
+      event.stopPropagation();
+    }
 
     setIsModalOpen(() => true);
   };
