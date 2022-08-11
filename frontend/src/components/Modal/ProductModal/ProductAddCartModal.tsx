@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import { cartContext } from '../../../context/CartProvider';
+import { PrimaryButton } from '../../../styles/commons/PrimaryButton';
 import { initialProductOptionValue, ProductType } from '../../../types/product';
 import { StyledProductAddCartModal } from './ProductAddCartModal.style';
 import { useCart } from './ProductOption/hooks';
 import ProductOption from './ProductOption/ProductOption';
 import ProductQuantityOption from './ProductOption/ProductQuantityOption';
-import ProductThumbnail from './ProductThumbnail/ProductThumbnail';
+import ProductThumbnail from '../../ProductList/ProductThumbnail/ProductThumbnail';
 
 interface Props {
   product: ProductType;
@@ -44,7 +45,7 @@ function ProductAddCartModal({ product, closeModal }: Props) {
             option={{ ...initialProductOptionValue, optionName: 'quantity' }}
           />
         </div>
-        <button type="submit">담기</button>
+        <PrimaryButton type="submit">담기</PrimaryButton>
       </div>
     </StyledProductAddCartModal>
   );

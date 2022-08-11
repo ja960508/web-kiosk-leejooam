@@ -17,11 +17,16 @@ export const StyledProductAddCartModal = styled(StyledModalForm)`
   }
 
   img {
+    width: 14rem;
     margin-right: 2rem;
     flex: 1 1 50%;
   }
 
   .product-meta {
     flex: 1 1 50%;
+  }
+
+  button[type='submit'] {
+    width: 100%;
   }
 `;

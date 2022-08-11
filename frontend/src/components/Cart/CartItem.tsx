@@ -1,6 +1,6 @@
 import React from 'react';
 import { CartType } from '../../types/cart';
-import ProductThumbnail from '../Modal/ProductModal/ProductThumbnail/ProductThumbnail';
+import ProductThumbnail from '../ProductList/ProductThumbnail/ProductThumbnail';
 import CartItemOption from './CartItemOption';
 
 interface Props {
