@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import productAPI from '../../../api/productAPI';
-import useTextInputs from '../../../hooks/useTextInputs';
+import { useTextInputs } from '../../../hooks';
 import {
   ProductAddType,
   initialProductAddValue,
@@ -8,7 +8,7 @@ import {
   ProductType,
 } from '../../../types/product';
 import { useOptionContainer } from './hooks';
-import { StyledForm } from './ProductAddModal.style';
+import { StyledProductAddForm } from './ProductAddModal.style';
 import ChoiceOptionAddContainer from './ProductOption/ProductAddOption/ChoiceOptionAddContainer';
 import QuantityOptionAddContainer from './ProductOption/ProductAddOption/QuantityOptionAddContainer';
 
@@ -38,6 +38,12 @@ function ProductAddModal({
   const handleAddProduct = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    if (!(data.name && data.price)) {
+      alert('이름과 가격을 모두 입력해주세요.');
+
+      return;
+    }
+
     const product = {
       ...data,
       productOption: options,
@@ -50,20 +56,22 @@ function ProductAddModal({
   };
 
   return (
-    <StyledForm onSubmit={handleAddProduct}>
+    <StyledProductAddForm onSubmit={handleAddProduct}>
       <strong>추가할 상품의 이름을 입력해주세요.</strong>
       <input
         type="text"
         name="productName"
         value={data.name}
         onChange={handleChange('name')}
+        autoComplete="off"
       />
       <strong>추가할 상품의 가격을 입력해주세요.</strong>
       <input
         type="text"
         name="productPrice"
         value={data.price}
-        onChange={handleChange('price')}
+        onChange={handleChange('price', /[^0-9]/, 10000000)}
+        autoComplete="off"
       />
       <div className="option-btn-container">
         <button type="button" onClick={openChoiceOption}>
@@ -85,11 +93,18 @@ function ProductAddModal({
           closeOptionContainer={closeOptionContainer}
         />
       )}
-      {options.map((item, idx) => (
-        <div key={idx}>{item.optionName}</div>
-      ))}
-      <button type="submit">추가</button>
-    </StyledForm>
+      <div className="add-options">
+        {options.map((item, idx) => (
+          <div key={idx}>
+            {`${item.optionName} `}
+            {item.content.map((value, i) => (
+              <span key={i}>{`${value}, `}</span>
+            ))}
+          </div>
+        ))}
+      </div>
+      <button type="submit">상품 추가</button>
+    </StyledProductAddForm>
   );
 }
 

@@ -1,14 +1,8 @@
 import styled from 'styled-components';
 import color from '../../styles/variables/color';
 
-export const Container = styled.div<{ columns: number }>`
-  overflow: hidden;
+export const OuterContainer = styled.div`
   position: relative;
-  .slider {
-    display: grid;
-    grid-template-columns: repeat(${({ columns }) => columns}, 1fr);
-    transition: all 0.5s ease-in-out;
-  }
 
   .arrow {
     width: 3rem;
@@ -23,7 +17,7 @@ export const Container = styled.div<{ columns: number }>`
   }
 
   .arrow.prev {
-    left: 2rem;
+    left: -3rem;
   }
 
   .arrow.next {
@@ -31,6 +25,17 @@ export const Container = styled.div<{ columns: number }>`
       transform: rotate(-180deg);
     }
 
-    right: 2rem;
+    right: -3rem;
+  }
+`;
+
+export const Container = styled.div<{ columns: number }>`
+  overflow: hidden;
+  position: relative;
+
+  .slider {
+    display: grid;
+    grid-template-columns: repeat(${({ columns }) => columns}, 1fr);
+    transition: transform 0.5s ease-in-out;
   }
 `;

@@ -21,23 +21,4 @@ export const ModalContent = styled.div`
   border-radius: 10px;
 
   background-color: ${color.white};
-
-  form {
-    display: flex;
-    flex-direction: column;
-    padding: 2.5rem;
-    border-radius: 10px;
-
-    strong {
-      margin-bottom: 1rem;
-    }
-
-    & > input {
-      width: 20rem;
-      padding: 10px 20px;
-      border: 1px solid ${color.gray};
-      border-radius: 10px;
-      margin-bottom: 1rem;
-    }
-  }
 `;

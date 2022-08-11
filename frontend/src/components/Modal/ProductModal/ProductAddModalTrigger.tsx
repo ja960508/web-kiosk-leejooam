@@ -1,4 +1,6 @@
 import React from 'react';
+import { GoodsIcon } from '../../../assets/icons';
+import { PrimaryButton } from '../../../styles/commons/PrimaryButton';
 import { ProductType } from '../../../types/product';
 import withCheckAdmin from '../../HOC/withCheckAdmin';
 import { useModal } from '../hooks';
@@ -15,9 +17,10 @@ function ProductAddModalTrigger({ setProducts, selectedCategoryId }: Props) {
 
   return (
     <>
-      <button type="button" onClick={openModal}>
+      <PrimaryButton type="button" onClick={openModal}>
+        <GoodsIcon />
         상품 추가하기
-      </button>
+      </PrimaryButton>
       <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
         <ProductAddModal
           setProducts={setProducts}

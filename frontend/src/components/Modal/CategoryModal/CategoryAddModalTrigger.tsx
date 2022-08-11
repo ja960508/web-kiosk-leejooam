@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
+import { AddCategoryIcon } from '../../../assets/icons';
 import { storeContext } from '../../../context/StoreProvider';
+import { PrimaryButton } from '../../../styles/commons/PrimaryButton';
 import { CategoryType } from '../../../types/category';
 import withCheckAdmin from '../../HOC/withCheckAdmin';
 import { useModal } from '../hooks';
@@ -16,9 +18,10 @@ function CategoryAddModalTrigger({ setCategories }: Props) {
 
   return (
     <>
-      <button type="button" onClick={openModal}>
+      <PrimaryButton type="button" onClick={openModal}>
+        <AddCategoryIcon />
         카테고리 추가
-      </button>
+      </PrimaryButton>
       <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
         <CategoryAddModal
           storeId={store.id}

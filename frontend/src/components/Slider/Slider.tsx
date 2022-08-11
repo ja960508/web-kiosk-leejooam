@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Arrow } from '../../assets/icons';
 import { useSlide } from './hooks';
-import { Container } from './Slider.style';
+import { Container, OuterContainer } from './Slider.style';
 
 interface SliderType {
   children: React.ReactNode | React.ReactNode[];
@@ -34,17 +34,19 @@ function Slider({ children, offset, line = 1 }: SliderType) {
   }
 
   return (
-    <Container columns={getColumns(offset, totalSlideLength, line)}>
-      <ul className="slider" ref={ulRef}>
-        {children}
-      </ul>
+    <OuterContainer>
+      <Container columns={getColumns(offset, totalSlideLength, line)}>
+        <ul className="slider" ref={ulRef}>
+          {children}
+        </ul>
+      </Container>
       <button className="arrow prev" onClick={prevSlide}>
         <Arrow />
       </button>
       <button className="arrow next" onClick={nextSlide}>
         <Arrow />
       </button>
-    </Container>
+    </OuterContainer>
   );
 }
 

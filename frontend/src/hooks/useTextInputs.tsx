@@ -8,11 +8,17 @@ function useTextInputs<T>({ initialValue }: useTextInputsProps<T>) {
   const [data, setData] = useState<T>(initialValue);
 
   const handleChange =
-    (key: keyof T) =>
+    (key: keyof T, regex = /[\s]/, maxValue?: number) =>
     ({ target }: React.ChangeEvent<HTMLInputElement & HTMLSelectElement>) => {
+      let value = target.value.replace(regex, '');
+
+      if (maxValue && Number(value) >= maxValue) {
+        value = String(maxValue);
+      }
+
       setData({
         ...data,
-        [key]: target.value,
+        [key]: value,
       });
     };
 

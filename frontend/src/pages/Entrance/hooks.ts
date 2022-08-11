@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { storeContext } from '../../context/StoreProvider';
-import { useTextInptus } from '../../hooks';
+import { useTextInputs } from '../../hooks';
 import { useNavigate } from '../../lib/Router';
 import { initialStoreInputsValue, StoreInputsType } from '../../types/store';
 import { handleLogin, handleRegister } from './auth.handler';
@@ -12,7 +12,7 @@ interface Props {
 export const useAuthForm = ({ isRegister }: Props) => {
   const navigate = useNavigate();
   const { changeStoreInfo } = useContext(storeContext);
-  const { data, handleChange, resetInput } = useTextInptus<StoreInputsType>({
+  const { data, handleChange, resetInput } = useTextInputs<StoreInputsType>({
     initialValue: initialStoreInputsValue,
   });
 

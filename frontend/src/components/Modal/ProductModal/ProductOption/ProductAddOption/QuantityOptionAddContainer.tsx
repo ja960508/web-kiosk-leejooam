@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { PlusIcon } from '../../../../../assets/icons';
 import { ProductOptionType } from '../../../../../types/product';
+import { StyledQuantityOptionContainer } from './ProductAddOption.style';
 
 interface Props {
   setOptions: React.Dispatch<React.SetStateAction<ProductOptionType[]>>;
@@ -24,18 +26,20 @@ function QuantityOptionAddContainer({
   };
 
   return (
-    <>
-      <strong>옵션 이름을 입력해주세요.</strong>
-      <input
-        type="text"
-        name="optionName"
-        value={optionName}
-        onChange={(event) => setOptionName(event.target.value)}
-      />
-      <button type="button" onClick={handleAddOption}>
-        옵션 추가
-      </button>
-    </>
+    <StyledQuantityOptionContainer>
+      <div className="option-guide">옵션(수량) 이름을 입력해주세요.</div>
+      <div className="container">
+        <input
+          type="text"
+          name="optionName"
+          value={optionName}
+          onChange={(event) => setOptionName(event.target.value)}
+        />
+        <button type="button" onClick={handleAddOption}>
+          <PlusIcon />
+        </button>
+      </div>
+    </StyledQuantityOptionContainer>
   );
 }
 

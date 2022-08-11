@@ -9,12 +9,14 @@ interface CategoryListProps {
   categories: CategoryType[];
   setCategories: React.Dispatch<React.SetStateAction<CategoryType[]>>;
   setSelectedCategory: React.Dispatch<React.SetStateAction<CategoryType>>;
+  selectedCategory: CategoryType;
 }
 
 function CategoryList({
   categories,
   setCategories,
   setSelectedCategory,
+  selectedCategory,
 }: CategoryListProps) {
   return (
     <StyledContainer>
@@ -24,8 +26,11 @@ function CategoryList({
           <CategoryItem
             key={category.id}
             category={category}
+            categories={categories}
             setCategories={setCategories}
             setSelectedCategory={setSelectedCategory}
+            isSelected={category.id === selectedCategory.id}
+            selectedCategory={selectedCategory}
           />
         ))}
       </Slider>
