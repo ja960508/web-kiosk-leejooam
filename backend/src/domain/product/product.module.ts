@@ -7,5 +7,6 @@ import { ProductService } from './product.service';
   imports: [MySQLModule],
   providers: [ProductService],
   controllers: [ProductController],
+  exports: [ProductService],
 })
 export class ProductModule {}

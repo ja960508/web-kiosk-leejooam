@@ -4,6 +4,8 @@ export interface productCreateType {
   categoryId: number;
   productOption?: JSON;
   thumbnail?: string;
+  isPopular?: boolean;
+  isSoldOut?: boolean;
 }
 
 export interface productUpdateType {
