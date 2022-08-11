@@ -14,15 +14,15 @@ export const StyledProductItem = styled.li`
   align-items: center;
 
   img {
-    width: 12rem;
+    width: 8rem;
   }
 
   .product-name {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-bottom: 0.75rem;
   }
 
   .product-price {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 `;
