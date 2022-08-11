@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import color from '../../styles/variables/color';
 import shadow from '../../styles/variables/shadow';
 
-export const StyledContainer = styled.div``;
+export const StyledContainer = styled.div`
+  margin-bottom: 2rem;
+`;
 
 export const StyledCategoryItem = styled.li<{ isSelected: boolean }>`
   position: relative;

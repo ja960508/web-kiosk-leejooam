@@ -34,16 +34,18 @@ function ProductAddCartModal({ product, closeModal }: Props) {
   return (
     <StyledProductAddCartModal onSubmit={handleAddProductToCart}>
       <ProductThumbnail thumbnail={thumbnail} />
-      <span>{name}</span>
-      <span>{`가격 ${price}원`}</span>
-      <ProductOption cartInputs={cartInputs} options={productOption} />
-      <div>
-        <ProductQuantityOption
-          cartInputs={cartInputs}
-          option={{ ...initialProductOptionValue, optionName: 'quantity' }}
-        />
+      <div className="product-meta">
+        <strong>{name}</strong>
+        <div className="price">{`${price}원`}</div>
+        <ProductOption cartInputs={cartInputs} options={productOption} />
+        <div>
+          <ProductQuantityOption
+            cartInputs={cartInputs}
+            option={{ ...initialProductOptionValue, optionName: 'quantity' }}
+          />
+        </div>
+        <button type="submit">담기</button>
       </div>
-      <button type="submit">담기</button>
     </StyledProductAddCartModal>
   );
 }

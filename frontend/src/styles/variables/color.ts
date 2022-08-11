@@ -7,6 +7,7 @@ const color = {
   carmine: '#490000',
   red: '#ae2012',
   lightGray: '#EEEEEE',
+  deppGray: '#212529',
 };
 
 export default color;
