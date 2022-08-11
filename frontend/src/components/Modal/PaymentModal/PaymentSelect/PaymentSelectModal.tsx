@@ -25,9 +25,11 @@ function PaymentSelectModal({
   return (
     <StyledPaymentSelectModal>
       <button type="button" onClick={selectCard}>
+        <img src="image/credit_card_image.jpg" alt="credit_card" />
         카드
       </button>
       <button type="button" onClick={selectCash}>
+        <img src="image/cash_image.png" alt="cash" />
         현금
       </button>
     </StyledPaymentSelectModal>
