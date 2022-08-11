@@ -10,3 +10,4 @@ export { ReactComponent as PlusIcon } from './plus_icon.svg';
 export { ReactComponent as ManagementIcon } from './management_icon.svg';
 export { ReactComponent as DecrementIcon } from './decrement_icon.svg';
 export { ReactComponent as IncrementIcon } from './increment_icon.svg';
+export { ReactComponent as CashIcon } from './cash_icon.svg';

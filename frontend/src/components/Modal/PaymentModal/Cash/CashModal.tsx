@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react';
+import { CashIcon } from '../../../../assets/icons';
 import { cartContext } from '../../../../context/CartProvider';
+import { PrimaryButton } from '../../../../styles/commons/PrimaryButton';
 import { StyledCashModal } from './CashModal.style';
 
 interface Props {
@@ -39,17 +41,16 @@ function CashModal({ closeModal, openReceiptModal }: Props) {
           10000원
         </button>
       </div>
-      <div>
-        <div>{`${insertedCash}원`}</div>
-        <div>{`${totalPrice}원`}</div>
+      <div className="amount-info">
+        <div
+          className={`input-amount ${insertedCash < totalPrice ? 'lack' : ''}`}
+        >{`투입금액: ${insertedCash}원`}</div>
+        <div className="payment-amount">{`필요금액: ${totalPrice}원`}</div>
       </div>
-      <button
-        className="submit-btn"
-        type="submit"
-        disabled={insertedCash < totalPrice}
-      >
+      <PrimaryButton type="submit" disabled={insertedCash < totalPrice}>
+        <CashIcon />
         현금결제
-      </button>
+      </PrimaryButton>
     </StyledCashModal>
   );
 }
