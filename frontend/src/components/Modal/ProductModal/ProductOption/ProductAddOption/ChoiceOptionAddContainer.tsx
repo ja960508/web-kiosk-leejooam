@@ -1,54 +1,96 @@
 import React, { useState } from 'react';
+import { PlusIcon } from '../../../../../assets/icons';
+import { useTextInputs } from '../../../../../hooks';
 import { ProductOptionType } from '../../../../../types/product';
+import { StyledChoiceOptionContainer } from './ProductAddOption.style';
 
 interface Props {
   setOptions: React.Dispatch<React.SetStateAction<ProductOptionType[]>>;
   closeOptionContainer: () => void;
 }
 
+interface ProductAddOptionType {
+  optionName: string;
+  optionDetailValue: string;
+}
+
 function ChoiceOptionAddContainer({ setOptions, closeOptionContainer }: Props) {
-  const [optionName, setOptionName] = useState('');
-  const [optionDetailValue, setOptionDetailValue] = useState('');
+  const { data, handleChange } = useTextInputs<ProductAddOptionType>({
+    initialValue: {
+      optionName: '',
+      optionDetailValue: '',
+    },
+  });
   const [optionDetails, setOptionDetails] = useState<string[]>([]);
 
   const handleAddOption = () => {
     const option: ProductOptionType = {
       type: 'choice',
-      optionName: optionName,
+      optionName: data.optionName,
       content: optionDetails,
     };
 
+    if (!(data.optionName && optionDetails.length)) {
+      alert('올바른 값을 입력해주세요.');
+
+      return;
+    }
     setOptions((prev) => [...prev, option]);
     closeOptionContainer();
   };
 
   const addOptionDetail = () => {
+    const { optionDetailValue } = data;
+    if (optionDetails.length >= 3) {
+      alert('선택 옵션은 3가지 이상 추가할 수 없습니다.');
+      data.optionDetailValue = '';
+
+      return;
+    }
+
     setOptionDetails((prev) => [...prev, optionDetailValue]);
-    setOptionDetailValue('');
+    data.optionDetailValue = '';
   };
 
+  console.log(optionDetails);
+
   return (
-    <>
-      <strong>옵션 이름을 입력해주세요.</strong>
-      <input
-        type="text"
-        name="optionName"
-        value={optionName}
-        onChange={(event) => setOptionName(event.target.value)}
-      />
-      <strong>상세 옵션 내용을 입력해주세요.</strong>
-      <input
-        type="text"
-        value={optionDetailValue}
-        onChange={(event) => setOptionDetailValue(event.target.value)}
-      />
-      <button type="button" onClick={addOptionDetail}>
-        옵션 상세 추가
-      </button>
-      <button type="button" onClick={handleAddOption}>
-        옵션 추가
-      </button>
-    </>
+    <StyledChoiceOptionContainer>
+      <div className="option-guide option-name">
+        옵션(선택) 이름을 입력해주세요.
+      </div>
+      <div className="container">
+        <input
+          type="text"
+          name="optionName"
+          value={data.optionName}
+          onChange={handleChange('optionName')}
+          autoComplete="off"
+        />
+        <button type="button" onClick={handleAddOption}>
+          <PlusIcon />
+        </button>
+      </div>
+      <div className="option-guide option-detail">
+        상세 옵션 내용을 입력해주세요.
+      </div>
+      <div className="option-detail-values">
+        {optionDetails.map((item, idx) => (
+          <span key={idx}>{`${item} `}</span>
+        ))}
+      </div>
+      <div className="container">
+        <input
+          type="text"
+          value={data.optionDetailValue}
+          onChange={handleChange('optionDetailValue')}
+          autoComplete="off"
+        />
+        <button type="button" onClick={addOptionDetail}>
+          <PlusIcon />
+        </button>
+      </div>
+    </StyledChoiceOptionContainer>
   );
 }
 
