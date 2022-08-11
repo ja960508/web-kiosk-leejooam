@@ -32,7 +32,6 @@ export const OuterContainer = styled.div`
 export const Container = styled.div<{ columns: number }>`
   overflow: hidden;
   position: relative;
-  padding: 0.5rem;
 
   .slider {
     display: grid;

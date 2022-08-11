@@ -5,6 +5,7 @@ import { useModal } from '../Modal/hooks';
 import Modal from '../Modal/Modal';
 import ProductAddCartModal from '../Modal/ProductModal/ProductAddCartModal';
 import ProductDeleteModalTrigger from '../Modal/ProductModal/ProductDeleteModalTrigger';
+import { StyledProductItem } from './Product.style';
 
 interface ProductItemType {
   product: ProductType;
@@ -24,19 +25,19 @@ function ProductItem({ product, setProducts }: ProductItemType) {
   };
 
   return (
-    <li onClick={(event) => handleProductClick(event)}>
+    <StyledProductItem onClick={(event) => handleProductClick(event)}>
       <ProductDeleteModalTrigger setProducts={setProducts} product={product} />
       <div className="extra-info">
         {!!product.isPopular && <span>인기</span>}
         {!!product.isSoldOut && <span>완판</span>}
       </div>
       <img src={product.thumbnail} alt="product_thumbnail" />
-      <div>{product.name}</div>
-      <div>{product.price}원</div>
+      <div className="product-name">{product.name}</div>
+      <div className="product-price">{`${product.price} 원`}</div>
       <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
         <ProductAddCartModal closeModal={closeModal} product={product} />
       </Modal>
-    </li>
+    </StyledProductItem>
   );
 }
 

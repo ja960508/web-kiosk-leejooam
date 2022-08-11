@@ -36,8 +36,6 @@ function Admin() {
     };
   }, [changeAdminAuthority]);
 
-  console.log(selectedCategory);
-
   return (
     <>
       <Header>

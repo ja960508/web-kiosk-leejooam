@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import color from '../../styles/variables/color';
-import shadow from '../../styles/variables/shadow';
 
 export const AuthForm = styled.form`
   display: flex;
