@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { loadingContext } from '../../../../context/LoadingProvider';
 
-function CreditCardLoadingModal() {
-  return (
-    <form>
-      <button type="button">100원</button>
-      <button type="button">500원</button>
-      <button type="button">1000원</button>
-      <button type="button">10000원</button>
-      <button type="submit">현금결제</button>
-    </form>
-  );
+interface Props {
+  closeModal: () => void;
+  openReceiptModal: () => void;
+}
+
+function CreditCardLoadingModal({ closeModal, openReceiptModal }: Props) {
+  const { changeIsLoading } = useContext(loadingContext);
+
+  setTimeout(() => {
+    changeIsLoading(false);
+    openReceiptModal();
+    closeModal();
+  }, 1000);
+
+  useEffect(() => {
+    changeIsLoading(true);
+  }, [changeIsLoading]);
+
+  return <div>감사합니다 고객님</div>;
 }
 
 export default CreditCardLoadingModal;

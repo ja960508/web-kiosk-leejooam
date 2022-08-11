@@ -31,7 +31,10 @@ function PaymentSelectModalTrigger() {
         isModalOpen={cardLoading.isModalOpen}
         closeModal={cardLoading.closeModal}
       >
-        <CreditCardLoadingModal />
+        <CreditCardLoadingModal
+          closeModal={cardLoading.closeModal}
+          openReceiptModal={receipt.openModal}
+        />
       </Modal>
       <Modal isModalOpen={cash.isModalOpen} closeModal={cash.closeModal}>
         <CashModal
