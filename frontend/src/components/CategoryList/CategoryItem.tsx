@@ -16,8 +16,6 @@ function CategoryItem({
   setCategories,
   isSelected,
 }: CategoryItemProps) {
-  console.log(isSelected);
-
   return (
     <StyledCategoryItem
       onClick={() => setSelectedCategory(category)}

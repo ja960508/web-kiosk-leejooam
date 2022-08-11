@@ -19,8 +19,14 @@ function CategoryDeleteModal({ category, closeModal, setCategories }: Props) {
     setCategories((prev) => prev.filter((item) => item.id !== category.id));
   };
 
+  const stopPropagation = (
+    event: React.MouseEvent<HTMLFormElement, MouseEvent>,
+  ) => {
+    event.stopPropagation();
+  };
+
   return (
-    <form onSubmit={handleDeleteCategory}>
+    <form onSubmit={handleDeleteCategory} onClick={stopPropagation}>
       <strong>해당 카테고리를 삭제하시겠습니까?</strong>
       <button type="submit">삭제</button>
     </form>
