@@ -1,5 +1,6 @@
 import React from 'react';
 import productAPI from '../../../api/productAPI';
+import { StyledDeleteModalForm } from '../../../styles/commons/DeleteModalForm';
 import { ProductType } from '../../../types/product';
 
 interface Props {
@@ -20,10 +21,10 @@ function ProductDeleteModal({ setProducts, product, closeModal }: Props) {
   };
 
   return (
-    <form onSubmit={deleteProduct}>
+    <StyledDeleteModalForm onSubmit={deleteProduct}>
       <strong>해당 상품을 삭제하시겠습니까?</strong>
       <button type="submit">삭제</button>
-    </form>
+    </StyledDeleteModalForm>
   );
 }
 

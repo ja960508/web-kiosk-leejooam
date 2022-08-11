@@ -1,5 +1,6 @@
 import React from 'react';
 import categoryAPI from '../../../api/categoryAPI';
+import { StyledDeleteModalForm } from '../../../styles/commons/DeleteModalForm';
 import { CategoryType } from '../../../types/category';
 
 interface Props {
@@ -26,10 +27,13 @@ function CategoryDeleteModal({ category, closeModal, setCategories }: Props) {
   };
 
   return (
-    <form onSubmit={handleDeleteCategory} onClick={stopPropagation}>
-      <strong>해당 카테고리를 삭제하시겠습니까?</strong>
+    <StyledDeleteModalForm
+      onSubmit={handleDeleteCategory}
+      onClick={stopPropagation}
+    >
+      <strong className="modal-guide-text">{`${category.name} 카테고리를 삭제하시겠습니까?`}</strong>
       <button type="submit">삭제</button>
-    </form>
+    </StyledDeleteModalForm>
   );
 }
 
