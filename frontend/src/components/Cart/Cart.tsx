@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { cartContext } from '../../context/CartProvider';
+import { PrimaryButton } from '../../styles/commons/PrimaryButton';
 import { CartType } from '../../types/cart';
 import PaymentSelectModalTrigger from '../Modal/PaymentModal/PaymentSelect/PaymentSelectModalTrigger';
 import { StyledCartContainer, StyledCartList } from './Cart.style';
@@ -18,13 +19,6 @@ function Cart() {
 
   return (
     <StyledCartContainer>
-      <div className="cart-controller">
-        <button type="button" onClick={clearCart}>
-          전체삭제
-        </button>
-        <PaymentSelectModalTrigger />
-        <span>{`${getTotalPrice()}원`}</span>
-      </div>
       <StyledCartList>
         {cart.map((cartItem, idx) => (
           <CartItem
@@ -34,6 +28,13 @@ function Cart() {
           />
         ))}
       </StyledCartList>
+      <div className="cart-controller">
+        <PrimaryButton type="button" onClick={clearCart}>
+          전체삭제
+        </PrimaryButton>
+        <PaymentSelectModalTrigger />
+        <div className="total-price">{`${getTotalPrice()} 원`}</div>
+      </div>
     </StyledCartContainer>
   );
 }

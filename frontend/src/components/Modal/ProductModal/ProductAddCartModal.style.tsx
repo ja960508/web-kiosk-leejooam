@@ -4,6 +4,7 @@ import color from '../../../styles/variables/color';
 
 export const StyledProductAddCartModal = styled(StyledModalForm)`
   flex-direction: row;
+  min-width: 480px;
 
   strong {
     font-size: 1.5rem;

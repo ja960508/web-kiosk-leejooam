@@ -1,47 +1,79 @@
 import styled from 'styled-components';
 import color from '../../styles/variables/color';
+import shadow from '../../styles/variables/shadow';
 
 export const StyledCartContainer = styled.div`
   position: fixed;
+  width: 100vw;
   bottom: 0;
+  background-color: rgba(32, 11, 11, 0.8);
+  display: flex;
+  padding: 1rem;
 
   .cart-controller {
-    position: absolute;
-    top: -2.5rem;
-    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
 
     button {
-      background-color: ${color.maroon};
-      color: ${color.white};
-      padding: 0.5rem;
-      margin-right: 0.5rem;
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+
+    .total-price {
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      background-color: ${color.white};
+      text-align: center;
+      font-size: 1.25rem;
     }
   }
 `;
 
 export const StyledCartList = styled.ul`
-  width: 100vw;
+  flex: 1 1 1%;
   display: flex;
   overflow-x: scroll;
-  background-color: rgba(32, 11, 11, 0.8);
 
   li {
+    background-color: ${color.lightGray};
+    border-radius: 10px;
+    box-shadow: ${shadow.normalShadow};
+    padding: 1.5rem 0;
+    padding-right: 2.5rem;
+    margin-right: 1rem;
     position: relative;
-    color: white;
+    color: ${color.black};
     opacity: 1;
     min-width: 300px;
-    border: 1px solid red;
     display: flex;
 
-    .product-meta,
-    img {
-      width: 50%;
+    .product-meta {
+      flex: 1 1 100%;
+
+      .product-name {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+
+      .product-quantity {
+        font-weight: 600;
+        color: ${color.red};
+        margin-bottom: 0.25rem;
+      }
     }
 
-    .delete-cart-btn {
-      color: white;
-      position: absolute;
-      right: 0;
+    .product-option {
+      font-size: 0.8rem;
+      color: ${color.deppGray};
+    }
+
+    img {
+      width: 8rem;
+    }
+
+    svg path {
+      fill: ${color.red};
     }
   }
 `;

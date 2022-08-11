@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { PrimaryButton } from '../../../../styles/commons/PrimaryButton';
 import { useModal } from '../../hooks';
 import Modal from '../../Modal';
 import CashModal from '../Cash/CashModal';
@@ -23,9 +24,9 @@ function PaymentSelectModalTrigger() {
 
   return (
     <>
-      <button type="button" onClick={paymentSelect.openModal}>
+      <PrimaryButton type="button" onClick={paymentSelect.openModal}>
         결제하기
-      </button>
+      </PrimaryButton>
       <Modal
         isModalOpen={paymentSelect.isModalOpen}
         closeModal={paymentSelect.closeModal}

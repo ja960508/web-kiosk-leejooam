@@ -1,4 +1,6 @@
 import React from 'react';
+import { XButton } from '../../assets/icons';
+import { DeleteButton } from '../../styles/commons/DeleteButton';
 import { CartType } from '../../types/cart';
 import ProductThumbnail from '../ProductList/ProductThumbnail/ProductThumbnail';
 import CartItemOption from './CartItemOption';
@@ -15,13 +17,13 @@ function CartItem({ cartItem, handleProductFromCart }: Props) {
 
   return (
     <li>
-      <button className="delete-cart-btn" onClick={onDelete}>
-        X
-      </button>
+      <DeleteButton onClick={onDelete}>
+        <XButton />
+      </DeleteButton>
       <ProductThumbnail thumbnail={product.thumbnail} />
       <div className="product-meta">
-        <div>{product.name}</div>
-        <div>{quantity} 개</div>
+        <div className="product-name">{product.name}</div>
+        <div className="product-quantity">{`${quantity} 개`}</div>
         {Object.entries(options).map(([optionName, value], idx) => (
           <CartItemOption key={idx} optionName={optionName} value={value} />
         ))}
