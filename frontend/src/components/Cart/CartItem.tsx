@@ -1,5 +1,5 @@
 import React from 'react';
-import { CartType } from '../../types/Cart';
+import { CartType } from '../../types/cart';
 import ProductThumbnail from '../Modal/ProductModal/ProductThumbnail/ProductThumbnail';
 import CartItemOption from './CartItemOption';
 
@@ -9,15 +9,13 @@ interface Props {
 }
 
 function CartItem({ cartItem, handleProductFromCart }: Props) {
-  const { quantity, ...options } = cartItem.options;
-  const { product } = cartItem;
+  const { quantity, options, product } = cartItem;
+
+  const onDelete = () => handleProductFromCart(cartItem);
 
   return (
     <li>
-      <button
-        className="delete-cart-btn"
-        onClick={() => handleProductFromCart(cartItem)}
-      >
+      <button className="delete-cart-btn" onClick={onDelete}>
         X
       </button>
       <ProductThumbnail thumbnail={product.thumbnail} />

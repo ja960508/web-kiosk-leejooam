@@ -5,13 +5,17 @@ export interface openModalType<T> {
   targetValue?: T;
 }
 
+type eventType =
+  | React.MouseEvent<HTMLElement, MouseEvent>
+  | React.FormEvent<HTMLFormElement>;
+
 export function useModal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const openModal = (event: eventType) => {
     event.stopPropagation();
 
-    setIsModalOpen(true);
+    setIsModalOpen(() => true);
   };
 
   const closeModal = () => {

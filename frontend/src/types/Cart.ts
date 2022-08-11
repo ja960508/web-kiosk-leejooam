@@ -2,8 +2,8 @@ import { ProductType } from './product';
 
 export interface CartType {
   product: ProductType;
+  quantity: number;
   options: {
-    quantity: number;
     [key: string]: string | number;
   };
 }
