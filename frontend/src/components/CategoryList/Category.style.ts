@@ -10,7 +10,7 @@ export const StyledCategoryItem = styled.li<{ isSelected: boolean }>`
   box-shadow: ${shadow.lowShadow};
   text-align: center;
   padding: 1.5rem 0;
-  margin-right: 0.5rem;
+  margin: 0.5rem;
   border-radius: 10px;
   font-size: 1.25rem;
   font-weight: 600;

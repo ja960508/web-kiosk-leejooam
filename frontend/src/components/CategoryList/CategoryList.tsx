@@ -2,6 +2,7 @@ import React from 'react';
 import { CategoryType } from '../../types/category';
 import CategoryAddModalTrigger from '../Modal/CategoryModal/CategoryAddModalTrigger';
 import Slider from '../Slider/Slider';
+import { StyledContainer } from './Category.style';
 import CategoryItem from './CategoryItem';
 
 interface CategoryListProps {
@@ -18,7 +19,7 @@ function CategoryList({
   selectedCategory,
 }: CategoryListProps) {
   return (
-    <>
+    <StyledContainer>
       <CategoryAddModalTrigger setCategories={setCategories} />
       <Slider offset={6}>
         {categories.map((category) => (
@@ -31,7 +32,7 @@ function CategoryList({
           />
         ))}
       </Slider>
-    </>
+    </StyledContainer>
   );
 }
 
