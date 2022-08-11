@@ -9,6 +9,12 @@ interface Props {
   };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const paymentMethodMap: any = {
+  cash: '현금',
+  card: '카드',
+};
+
 function ReceiptModal({ paymentInfo }: Props) {
   const {
     receipt: {
@@ -19,21 +25,22 @@ function ReceiptModal({ paymentInfo }: Props) {
       inputAmount,
     },
   } = useReceipt({ paymentInfo });
+  const changes = inputAmount - paymentAmount;
 
   return (
     <StyledReceiptModal>
       <strong>{`주문번호 ${orderNumber}`}</strong>
       <ul>
         {products.map(({ name, count }, idx) => (
-          <li key={idx}>
-            <span>{name}</span>
-            <span>{count}</span>
+          <li className="product" key={idx}>
+            <span>{`${name} ${count}개`}</span>
           </li>
         ))}
       </ul>
-      <div>{`결제방식 ${paymentMethod}`}</div>
-      <div>{`투입금액 ${inputAmount}`}</div>
-      <div>{`총 결제금액 ${paymentAmount}`}</div>
+      <div className="receipt-meta">{`결제방식: ${paymentMethodMap[paymentMethod]}`}</div>
+      <div className="receipt-meta">{`투입금액: ${inputAmount}`}</div>
+      <div className="receipt-meta">{changes ? `잔돈: ${changes}원` : ''}</div>
+      <div className="receipt-meta payment-amount">{`지불금액: ${paymentAmount}`}</div>
     </StyledReceiptModal>
   );
 }

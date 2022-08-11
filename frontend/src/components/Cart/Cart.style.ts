@@ -17,7 +17,8 @@ export const StyledCartContainer = styled.div`
 
     button {
       margin-top: 0;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
+      min-width: 180px;
     }
 
     .total-price {
