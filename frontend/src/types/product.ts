@@ -34,7 +34,8 @@ export const initialProductOptionValue = {
 export const initialProductValue = {
   id: 0,
   name: '',
-  thumbnail: '',
+  thumbnail:
+    'http://www.mmthcoffee.com/data/file/mm_32oz/thumb-3546841901_BLR1xZ0O_ed12d06aab14b28bad6150579cf14be30d2a95aa_216x216.png',
   price: '',
   categoryId: 0,
   isPopular: false,
@@ -44,7 +45,8 @@ export const initialProductValue = {
 
 export const initialProductAddValue = {
   name: '',
-  thumbnail: '',
+  thumbnail:
+    'http://www.mmthcoffee.com/data/file/mm_32oz/thumb-3546841901_BLR1xZ0O_ed12d06aab14b28bad6150579cf14be30d2a95aa_216x216.png',
   price: '',
   categoryId: 0,
   isPopular: false,
