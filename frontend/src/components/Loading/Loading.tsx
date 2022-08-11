@@ -7,8 +7,6 @@ interface Props {
 }
 
 function Loading({ isLoading }: Props) {
-  console.log(isLoading);
-
   if (!isLoading) return <></>;
 
   return (

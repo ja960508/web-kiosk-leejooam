@@ -5,6 +5,7 @@ interface CartContextType {
   cart: CartType[];
   addCartItem: (newCartItem: CartType) => void;
   deleteCartItem: (cartItem: CartType) => void;
+  getTotalPrice: () => number;
   clearCart: () => void;
 }
 
@@ -13,6 +14,7 @@ export const cartContext = createContext<CartContextType>({
   addCartItem: () => undefined,
   deleteCartItem: () => undefined,
   clearCart: () => undefined,
+  getTotalPrice: () => 0,
 });
 
 function isSameProduct(cartItem: CartType, newCartItem: CartType) {
@@ -50,6 +52,13 @@ function CartProvider({ children }: { children: React.ReactNode }) {
     setCart((prev) => prev.filter((v) => v.product.id !== cartItem.product.id));
   };
 
+  const getTotalPrice = () =>
+    cart.reduce(
+      (acc, cartItem) =>
+        acc + Number(cartItem.product.price) * cartItem.quantity,
+      0,
+    );
+
   const clearCart = () => {
     setCart([]);
   };
@@ -59,6 +68,7 @@ function CartProvider({ children }: { children: React.ReactNode }) {
     addCartItem,
     deleteCartItem,
     clearCart,
+    getTotalPrice,
   };
 
   return (

@@ -6,10 +6,8 @@ import { StyledCartContainer, StyledCartList } from './Cart.style';
 import CartItem from './CartItem';
 
 function Cart() {
-  const { cart, deleteCartItem, clearCart } = useContext(cartContext);
-  const totalPrice = cart.reduce((prev, cartItem) => {
-    return prev + parseInt(cartItem.product.price) * cartItem.quantity;
-  }, 0);
+  const { cart, deleteCartItem, clearCart, getTotalPrice } =
+    useContext(cartContext);
   const isCartEmpty = !cart.length;
 
   const handleProductFromCart = (cartItem: CartType) => {
@@ -25,7 +23,7 @@ function Cart() {
           전체삭제
         </button>
         <PaymentSelectModalTrigger />
-        <span>{`${totalPrice}원`}</span>
+        <span>{`${getTotalPrice()}원`}</span>
       </div>
       <StyledCartList>
         {cart.map((cartItem, idx) => (
