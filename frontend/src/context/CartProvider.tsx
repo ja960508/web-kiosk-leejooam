@@ -28,7 +28,6 @@ function CartProvider({ children }: { children: React.ReactNode }) {
   let isAlreadyIn = false;
 
   const addCartItem = (newCartItem: CartType) => {
-    console.log(newCartItem);
     cart.forEach((cartItem, idx) => {
       if (isSameProduct(newCartItem, cartItem)) {
         const newCart = [...cart];

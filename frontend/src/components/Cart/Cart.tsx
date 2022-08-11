@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { cartContext } from '../../context/CartProvider';
 import { CartType } from '../../types/cart';
-import PaymentSelectModalTrigger from '../Modal/PaymentModal/PaymentSelectModalTrigger';
+import PaymentSelectModalTrigger from '../Modal/PaymentModal/PaymentSelect/PaymentSelectModalTrigger';
 import { StyledCartContainer, StyledCartList } from './Cart.style';
 import CartItem from './CartItem';
 

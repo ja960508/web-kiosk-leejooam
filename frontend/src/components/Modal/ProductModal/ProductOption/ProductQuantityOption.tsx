@@ -16,8 +16,8 @@ function ProductQuantityOption({ option, cartInputs }: Props) {
   return (
     <li>
       <label htmlFor={optionName}>{optionName}</label>
-      <button type="button" onClick={cartInputs.increment(optionName)}>
-        +
+      <button type="button" onClick={cartInputs.decrement(optionName)}>
+        -
       </button>
       <input
         type="number"
@@ -26,8 +26,8 @@ function ProductQuantityOption({ option, cartInputs }: Props) {
         value={cartInputs.getValue(optionName)}
         readOnly
       />
-      <button type="button" onClick={cartInputs.decrement(optionName)}>
-        -
+      <button type="button" onClick={cartInputs.increment(optionName)}>
+        +
       </button>
     </li>
   );
