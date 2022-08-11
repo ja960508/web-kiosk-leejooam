@@ -24,3 +24,8 @@ export const StyledHeader = styled.header`
     }
   }
 `;
+
+export const HeaderContent = styled.div`
+  max-width: 1080px;
+  margin: 0 auto;
+`;

@@ -1,14 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import categoryAPI from '../api/categoryAPI';
 import { storeContext } from '../context/StoreProvider';
-import { CategoryType } from '../types/category';
+import { CategoryType, initialCategoryValue } from '../types/category';
 
 const useCategory = () => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>({
-    name: '',
-    id: 0,
-    storeId: 0,
+    ...initialCategoryValue,
   });
   const { store } = useContext(storeContext);
 
@@ -17,7 +15,7 @@ const useCategory = () => {
       if (store.id) {
         const response = await categoryAPI.getCategoriesById(store.id);
         setCategories(response);
-        setSelectedCategory(response[0]);
+        setSelectedCategory(response[0] || { ...initialCategoryValue });
       }
     };
 

@@ -1,36 +1,16 @@
-import { AxiosError } from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
-import { storeContext } from '../../context/StoreProvider';
 import { useNavigate } from '../../lib/Router';
 import { getItemFromLocalStorage } from '../../lib/storage';
-import { handleLogin, handleRegister } from './auth.handler';
 import { AuthForm } from './Entrance.style';
+import { useAuthForm } from './hooks';
 
 function Entrance() {
-  const { changeStoreInfo } = useContext(storeContext);
   const [isRegister, setIsRegister] = useState(false);
-  const [error, setError] = useState('');
+  const { data, handleChange, onAuthSubmit } = useAuthForm({
+    isRegister,
+  });
   const navigate = useNavigate();
-
-  const onAuthSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    try {
-      if (isRegister) {
-        const store = await handleRegister(event);
-        changeStoreInfo(store);
-        return;
-      }
-
-      const store = await handleLogin(event);
-      changeStoreInfo(store);
-      navigate('/admin');
-    } catch (error) {
-      const err = error as AxiosError;
-      setError(err.message);
-    }
-  };
 
   useEffect(() => {
     const storeId = getItemFromLocalStorage('storeId');
@@ -51,6 +31,8 @@ function Entrance() {
           name="storeId"
           type="text"
           autoComplete="off"
+          value={data.storeId}
+          onChange={handleChange('storeId')}
           placeholder="가게 id를 입력해주세요."
         />
         {isRegister && (
@@ -59,12 +41,16 @@ function Entrance() {
               name="name"
               type="text"
               autoComplete="off"
+              value={data.name}
+              onChange={handleChange('name')}
               placeholder="매장명을 입력해주세요."
             />
             <input
               name="branchName"
               type="text"
               autoComplete="off"
+              value={data.branchName}
+              onChange={handleChange('branchName')}
               placeholder="점표명을 입력해주세요."
             />
           </>
@@ -73,6 +59,8 @@ function Entrance() {
           name="password"
           type="password"
           autoComplete="off"
+          value={data.password}
+          onChange={handleChange('password')}
           placeholder="비밀번호를 입력해주세요."
         />
         {isRegister && (
@@ -80,11 +68,12 @@ function Entrance() {
             name="passwordConfirm"
             type="password"
             autoComplete="off"
+            value={data.passwordConfirm}
+            onChange={handleChange('passwordConfirm')}
             placeholder="비밀번호를 확인해주세요."
           />
         )}
         <button type="submit">{isRegister ? '회원가입' : '로그인'}</button>
-        {error && <div>${error}</div>}
         <div>
           <button type="button" onClick={() => setIsRegister(false)}>
             로그인
