@@ -27,6 +27,7 @@ function Entrance() {
         <h2>가게 로그인을 진행해주세요.</h2>
       </Header>
       <AuthForm onSubmit={onAuthSubmit}>
+        <label htmlFor="storeId">가게 아이디</label>
         <input
           name="storeId"
           type="text"
@@ -37,6 +38,7 @@ function Entrance() {
         />
         {isRegister && (
           <>
+            <label htmlFor="storeId">가게 이름</label>
             <input
               name="name"
               type="text"
@@ -45,6 +47,7 @@ function Entrance() {
               onChange={handleChange('name')}
               placeholder="매장명을 입력해주세요."
             />
+            <label htmlFor="storeId">점포명</label>
             <input
               name="branchName"
               type="text"
@@ -55,6 +58,7 @@ function Entrance() {
             />
           </>
         )}
+        <label htmlFor="storeId">비밀번호</label>
         <input
           name="password"
           type="password"
@@ -64,20 +68,26 @@ function Entrance() {
           placeholder="비밀번호를 입력해주세요."
         />
         {isRegister && (
-          <input
-            name="passwordConfirm"
-            type="password"
-            autoComplete="off"
-            value={data.passwordConfirm}
-            onChange={handleChange('passwordConfirm')}
-            placeholder="비밀번호를 확인해주세요."
-          />
+          <>
+            <label htmlFor="storeId">비밀번호 확인</label>
+            <input
+              name="passwordConfirm"
+              type="password"
+              autoComplete="off"
+              value={data.passwordConfirm}
+              onChange={handleChange('passwordConfirm')}
+              placeholder="비밀번호를 확인해주세요."
+            />
+          </>
         )}
-        <button type="submit">{isRegister ? '회원가입' : '로그인'}</button>
-        <div>
+        <button type="submit" className="submit-btn">
+          {isRegister ? '회원가입' : '로그인'}
+        </button>
+        <div className="auth-type-selector">
           <button type="button" onClick={() => setIsRegister(false)}>
             로그인
           </button>
+          <div className="divider">|</div>
           <button type="button" onClick={() => setIsRegister(true)}>
             회원가입
           </button>

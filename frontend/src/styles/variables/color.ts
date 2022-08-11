@@ -6,6 +6,7 @@ const color = {
   burgundy: '#2f0000',
   carmine: '#490000',
   red: '#650000',
+  lightGray: '#EEEEEE',
 };
 
 export default color;

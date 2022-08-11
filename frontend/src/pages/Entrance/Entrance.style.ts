@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import color from '../../styles/variables/color';
+import shadow from '../../styles/variables/shadow';
 
 export const AuthForm = styled.form`
   display: flex;
@@ -9,7 +11,34 @@ export const AuthForm = styled.form`
   input {
     width: 100%;
     padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: ${color.lightGray};
+  }
+
+  label {
     margin-bottom: 0.5rem;
-    background-color: orange;
+  }
+
+  .submit-btn {
+    padding: 1rem;
+    background-color: ${color.black};
+    color: ${color.white};
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .auth-type-selector {
+    display: flex;
+    align-items: center;
+
+    button,
+    .divider {
+      color: ${color.black};
+    }
+
+    .divider {
+      margin: 0.5rem;
+    }
   }
 `;
