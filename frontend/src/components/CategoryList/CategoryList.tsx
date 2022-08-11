@@ -26,9 +26,11 @@ function CategoryList({
           <CategoryItem
             key={category.id}
             category={category}
+            categories={categories}
             setCategories={setCategories}
             setSelectedCategory={setSelectedCategory}
             isSelected={category.id === selectedCategory.id}
+            selectedCategory={selectedCategory}
           />
         ))}
       </Slider>
