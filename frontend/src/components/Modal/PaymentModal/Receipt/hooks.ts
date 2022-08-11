@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { cartContext } from '../../../../context/CartProvider';
 import { storeContext } from '../../../../context/StoreProvider';
 import receiptAPI from '../../../../api/receiptAPI';
@@ -11,16 +11,61 @@ interface Props {
   };
 }
 
+interface ReceiptInfoType {
+  paymentMethod: string;
+  orderNumber: number;
+  paymentAmount: number;
+  inputAmount: number;
+  name: string;
+  count: number;
+}
+
+interface ReceiptProductsType {
+  name: string;
+  count: number;
+}
+
+interface ReceiptType {
+  paymentMethod: string;
+  orderNumber: number;
+  paymentAmount: number;
+  inputAmount: number;
+  products: ReceiptProductsType[];
+}
+
+const initialReceiptValue = {
+  paymentMethod: '',
+  orderNumber: 0,
+  paymentAmount: 0,
+  inputAmount: 0,
+  products: [],
+};
+
 export const useReceipt = ({ paymentInfo }: Props) => {
   const { cart, getTotalPrice } = useContext(cartContext);
   const {
     store: { id: storeId },
   } = useContext(storeContext);
+  const [receipt, setReceipt] = useState<ReceiptType>({
+    ...initialReceiptValue,
+  });
 
   useEffect(() => {
     const createReceipt = async (receipt: ReceiptAddType) => {
-      console.log('call');
-      await receiptAPI.addReceipt(receipt);
+      const receiptInfo: ReceiptInfoType[] = await receiptAPI.addReceipt(
+        receipt,
+      );
+      const { paymentMethod, orderNumber, inputAmount, paymentAmount } =
+        receiptInfo[0];
+      const products = receiptInfo.map(({ name, count }) => ({ name, count }));
+
+      setReceipt({
+        paymentMethod,
+        orderNumber,
+        inputAmount,
+        paymentAmount,
+        products,
+      });
     };
 
     const products = cart.map((cartItem) => ({
@@ -39,4 +84,6 @@ export const useReceipt = ({ paymentInfo }: Props) => {
 
     createReceipt(receipt);
   }, [getTotalPrice, paymentInfo, storeId, cart]);
+
+  return { receipt };
 };
