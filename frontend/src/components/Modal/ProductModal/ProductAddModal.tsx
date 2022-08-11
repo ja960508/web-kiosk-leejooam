@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import productAPI from '../../../api/productAPI';
 import { useTextInputs } from '../../../hooks';
+import { FormInput } from '../../../styles/commons/FormInput';
 import { PrimaryButton } from '../../../styles/commons/PrimaryButton';
 import {
   ProductAddType,
@@ -59,7 +60,7 @@ function ProductAddModal({
   return (
     <StyledProductAddForm onSubmit={handleAddProduct}>
       <strong>추가할 상품의 이름을 입력해주세요.</strong>
-      <input
+      <FormInput
         type="text"
         name="productName"
         value={data.name}
@@ -67,7 +68,7 @@ function ProductAddModal({
         autoComplete="off"
       />
       <strong>추가할 상품의 가격을 입력해주세요.</strong>
-      <input
+      <FormInput
         type="text"
         name="productPrice"
         value={data.price}

@@ -1,11 +1,11 @@
 import React from 'react';
 import { TrashCanIcon } from '../../../assets/icons';
+import { DeleteButton } from '../../../styles/commons/DeleteButton';
 import { CategoryType } from '../../../types/category';
 import withCheckAdmin from '../../HOC/withCheckAdmin';
 import { useModal } from '../hooks';
 import Modal from '../Modal';
 import CategoryDeleteModal from './CategoryDeleteModal';
-import { StyledCategoryDeleteModal } from './CategoryDeleteModal.style';
 
 interface Props {
   category: CategoryType;
@@ -25,10 +25,10 @@ function CategoryDeleteModalTrigger({
   const { isModalOpen, openModal, closeModal } = useModal();
 
   return (
-    <StyledCategoryDeleteModal>
-      <button className="delete-btn" type="button" onClick={openModal}>
+    <>
+      <DeleteButton type="button" onClick={openModal}>
         <TrashCanIcon />
-      </button>
+      </DeleteButton>
       <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
         <CategoryDeleteModal
           category={category}
@@ -39,7 +39,7 @@ function CategoryDeleteModalTrigger({
           selectedCategory={selectedCategory}
         />
       </Modal>
-    </StyledCategoryDeleteModal>
+    </>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PlusIcon } from '../../../../../assets/icons';
 import { useTextInputs } from '../../../../../hooks';
+import { FormInput } from '../../../../../styles/commons/FormInput';
 import { ProductOptionType } from '../../../../../types/product';
 import { StyledChoiceOptionContainer } from './ProductAddOption.style';
 
@@ -60,7 +61,7 @@ function ChoiceOptionAddContainer({ setOptions, closeOptionContainer }: Props) {
         옵션(선택) 이름을 입력해주세요.
       </div>
       <div className="container">
-        <input
+        <FormInput
           type="text"
           name="optionName"
           value={data.optionName}
@@ -80,7 +81,7 @@ function ChoiceOptionAddContainer({ setOptions, closeOptionContainer }: Props) {
         ))}
       </div>
       <div className="container">
-        <input
+        <FormInput
           type="text"
           value={data.optionDetailValue}
           onChange={handleChange('optionDetailValue')}

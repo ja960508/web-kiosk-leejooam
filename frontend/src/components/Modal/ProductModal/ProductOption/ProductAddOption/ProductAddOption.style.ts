@@ -35,10 +35,6 @@ export const StyledChoiceOptionContainer = styled.div`
     margin-bottom: 0.5rem;
   }
 
-  input {
-    padding: 0.5rem;
-  }
-
   .option-detail-values {
     font-size: 0.8rem;
     color: ${color.black};

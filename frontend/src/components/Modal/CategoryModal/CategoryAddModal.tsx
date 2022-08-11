@@ -1,11 +1,10 @@
 import React from 'react';
 import { CategoryType } from '../../../types/category';
 import categoryAPI from '../../../api/categoryAPI';
-import styled from 'styled-components';
-import shadow from '../../../styles/variables/shadow';
-import color from '../../../styles/variables/color';
 import { useTextInputs } from '../../../hooks';
 import { PrimaryButton } from '../../../styles/commons/PrimaryButton';
+import { FormInput } from '../../../styles/commons/FormInput';
+import { StyledModalForm } from '../../../styles/commons/StyledModalForm';
 
 interface CategoryAddModalProps {
   storeId: number;
@@ -36,9 +35,9 @@ function CategoryAddModal({
   };
 
   return (
-    <StyledCategoryAddForm onSubmit={handleAddCategory}>
+    <StyledModalForm onSubmit={handleAddCategory}>
       <strong>추가할 카테고리 이름을 입력해주세요.</strong>
-      <input
+      <FormInput
         type="text"
         name="categoryName"
         autoFocus
@@ -47,29 +46,8 @@ function CategoryAddModal({
         onChange={handleChange('categoryName')}
       />
       <PrimaryButton type="submit">추가</PrimaryButton>
-    </StyledCategoryAddForm>
+    </StyledModalForm>
   );
 }
 
 export default CategoryAddModal;
-
-const StyledCategoryAddForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  padding: 2.5rem;
-  box-shadow: ${shadow.normalShadow};
-
-  strong {
-    font-size: 1.25rem;
-    margin-bottom: 1rem;
-  }
-
-  input {
-    width: 20rem;
-    padding: 10px 20px;
-    border: 1px solid ${color.gray};
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-  }
-`;

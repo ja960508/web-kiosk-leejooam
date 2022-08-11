@@ -1,4 +1,6 @@
 import React from 'react';
+import { ManagementIcon } from '../../../assets/icons';
+import { LinkButton } from '../../../styles/commons/LinkButton';
 import { useModal } from '../hooks';
 import Modal from '../Modal';
 import MoveAdminModal from './MoveAdminModal';
@@ -8,9 +10,10 @@ function MoveAdminModalTrigger() {
 
   return (
     <>
-      <button type="button" onClick={openModal}>
+      <LinkButton type="button" onClick={openModal}>
+        <ManagementIcon />
         매장관리
-      </button>
+      </LinkButton>
       <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
         <MoveAdminModal />
       </Modal>
