@@ -59,8 +59,8 @@ function Admin() {
           categories={categories}
           setSelectedCategory={setSelectedCategory}
           setCategories={setCategories}
+          selectedCategory={selectedCategory}
         />
-        <h3>{selectedCategory.name}</h3>
         <ProductList
           setProducts={setProducts}
           products={products}

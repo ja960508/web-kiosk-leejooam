@@ -1,23 +1,24 @@
 import styled from 'styled-components';
+import color from '../../styles/variables/color';
 import shadow from '../../styles/variables/shadow';
 
-export const StyledContainer = styled.div`
-  li {
-    cursor: pointer;
-    border: 1px solid black;
-    box-shadow: ${shadow.normalShadow};
-    text-align: center;
-    padding: 1.5rem 0;
-    position: relative;
-  }
+export const StyledContainer = styled.div``;
 
-  .categoryEdit {
-    position: absolute;
-    right: 0rem;
-    top: 0;
+export const StyledCategoryItem = styled.li<{ isSelected: boolean }>`
+  position: relative;
+  cursor: pointer;
+  box-shadow: ${shadow.lowShadow};
+  text-align: center;
+  padding: 1.5rem 0;
+  margin-right: 0.5rem;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  font-weight: 600;
 
-    button {
-      margin-right: 0.5rem;
-    }
-  }
+  ${({ isSelected }) => {
+    return isSelected
+      ? `background-color: ${color.lightGray};
+    `
+      : null;
+  }};
 `;

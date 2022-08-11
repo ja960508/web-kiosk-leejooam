@@ -1,9 +1,11 @@
 import React from 'react';
+import { TrashCanIcon } from '../../../assets/icons';
 import { CategoryType } from '../../../types/category';
 import withCheckAdmin from '../../HOC/withCheckAdmin';
 import { useModal } from '../hooks';
 import Modal from '../Modal';
 import CategoryDeleteModal from './CategoryDeleteModal';
+import { StyledCategoryDeleteModal } from './CategoryDeleteModal.style';
 
 interface Props {
   category: CategoryType;
@@ -14,9 +16,9 @@ function CategoryDeleteModalTrigger({ category, setCategories }: Props) {
   const { isModalOpen, openModal, closeModal } = useModal();
 
   return (
-    <>
-      <button type="button" onClick={openModal}>
-        삭제
+    <StyledCategoryDeleteModal>
+      <button className="delete-btn" type="button" onClick={openModal}>
+        <TrashCanIcon />
       </button>
       <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
         <CategoryDeleteModal
@@ -25,7 +27,7 @@ function CategoryDeleteModalTrigger({ category, setCategories }: Props) {
           setCategories={setCategories}
         />
       </Modal>
-    </>
+    </StyledCategoryDeleteModal>
   );
 }
 
