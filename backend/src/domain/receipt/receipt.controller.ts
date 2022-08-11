@@ -8,9 +8,12 @@ export class ReceiptController {
 
   @Post()
   async createReceipt(@Body() receipt: receiptCreateType) {
-    await this.receiptService.createReceipt(receipt);
+    const insertId = await this.receiptService.createReceipt(receipt);
+    const createdReceipt = await this.receiptService.getReceiptInfoById(
+      insertId,
+    );
 
-    return 'created';
+    return createdReceipt;
   }
 
   @Get()
