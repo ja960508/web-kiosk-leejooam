@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { cartContext } from '../../../context/CartProvider';
 import { initialProductOptionValue, ProductType } from '../../../types/product';
+import { StyledProductAddCartModal } from './ProductAddCartModal.style';
 import { useCart } from './ProductOption/hooks';
 import ProductOption from './ProductOption/ProductOption';
 import ProductQuantityOption from './ProductOption/ProductQuantityOption';
@@ -31,7 +32,7 @@ function ProductAddCartModal({ product, closeModal }: Props) {
   };
 
   return (
-    <form onSubmit={handleAddProductToCart}>
+    <StyledProductAddCartModal onSubmit={handleAddProductToCart}>
       <ProductThumbnail thumbnail={thumbnail} />
       <span>{name}</span>
       <span>{`가격 ${price}원`}</span>
@@ -43,7 +44,7 @@ function ProductAddCartModal({ product, closeModal }: Props) {
         />
       </div>
       <button type="submit">담기</button>
-    </form>
+    </StyledProductAddCartModal>
   );
 }
 

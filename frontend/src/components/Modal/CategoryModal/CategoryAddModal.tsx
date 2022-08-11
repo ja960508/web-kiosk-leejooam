@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import shadow from '../../../styles/variables/shadow';
 import color from '../../../styles/variables/color';
 import { useTextInputs } from '../../../hooks';
+import { PrimaryButton } from '../../../styles/commons/PrimaryButton';
 
 interface CategoryAddModalProps {
   storeId: number;
@@ -45,7 +46,7 @@ function CategoryAddModal({
         value={data.categoryName}
         onChange={handleChange('categoryName')}
       />
-      <button type="submit">추가</button>
+      <PrimaryButton type="submit">추가</PrimaryButton>
     </StyledCategoryAddForm>
   );
 }
@@ -70,13 +71,5 @@ const StyledCategoryAddForm = styled.form`
     border-radius: 10px;
     margin-bottom: 1rem;
     font-size: 1rem;
-  }
-
-  button[type='submit'] {
-    padding: 0.75rem;
-    border-radius: 10px;
-    color: ${color.white};
-    font-size: 1rem;
-    background-color: ${color.maroon};
   }
 `;

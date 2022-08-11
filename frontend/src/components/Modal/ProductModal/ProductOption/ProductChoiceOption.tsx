@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProductOptionType } from '../../../../types/product';
+import { StyledProductChioceOption } from './ProductOption.style';
 
 interface Props {
   option: ProductOptionType;
@@ -15,7 +16,7 @@ function ProductChoiceOption({ option, cartInputs }: Props) {
   const { optionName, content } = option;
 
   return (
-    <li>
+    <StyledProductChioceOption>
       <div>{optionName}</div>
       {content.map((optionContent, idx) => (
         <label key={idx}>
@@ -29,7 +30,7 @@ function ProductChoiceOption({ option, cartInputs }: Props) {
           />
         </label>
       ))}
-    </li>
+    </StyledProductChioceOption>
   );
 }
 

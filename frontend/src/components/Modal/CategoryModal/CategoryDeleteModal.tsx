@@ -1,6 +1,7 @@
 import React from 'react';
 import categoryAPI from '../../../api/categoryAPI';
 import { StyledDeleteModalForm } from '../../../styles/commons/DeleteModalForm';
+import { PrimaryButton } from '../../../styles/commons/PrimaryButton';
 import { CategoryType, initialCategoryValue } from '../../../types/category';
 
 interface Props {
@@ -52,7 +53,7 @@ function CategoryDeleteModal({
       onClick={stopPropagation}
     >
       <strong className="modal-guide-text">{`${category.name} 카테고리를 삭제하시겠습니까?`}</strong>
-      <button type="submit">삭제</button>
+      <PrimaryButton type="submit">삭제</PrimaryButton>
     </StyledDeleteModalForm>
   );
 }

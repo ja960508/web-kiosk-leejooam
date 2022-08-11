@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProductOptionType } from '../../../../types/product';
+import { StyledProductQuantityOption } from './ProductOption.style';
 
 interface Props {
   option: ProductOptionType;
@@ -14,7 +15,7 @@ interface Props {
 function ProductQuantityOption({ option, cartInputs }: Props) {
   const { optionName } = option;
   return (
-    <li>
+    <StyledProductQuantityOption>
       <label htmlFor={optionName}>{optionName}</label>
       <button type="button" onClick={cartInputs.decrement(optionName)}>
         -
@@ -29,7 +30,7 @@ function ProductQuantityOption({ option, cartInputs }: Props) {
       <button type="button" onClick={cartInputs.increment(optionName)}>
         +
       </button>
-    </li>
+    </StyledProductQuantityOption>
   );
 }
 

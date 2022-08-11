@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import productAPI from '../../../api/productAPI';
 import { useTextInputs } from '../../../hooks';
+import { PrimaryButton } from '../../../styles/commons/PrimaryButton';
 import {
   ProductAddType,
   initialProductAddValue,
@@ -103,7 +104,7 @@ function ProductAddModal({
           </div>
         ))}
       </div>
-      <button type="submit">상품 추가</button>
+      <PrimaryButton type="submit">상품 추가</PrimaryButton>
     </StyledProductAddForm>
   );
 }

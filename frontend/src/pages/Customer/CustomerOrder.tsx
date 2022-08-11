@@ -6,6 +6,7 @@ import MoveAdminModalTrigger from '../../components/Modal/MoveAdminModal/MoveAdm
 import ProductList from '../../components/ProductList/ProductList';
 import { storeContext } from '../../context/StoreProvider';
 import { useCategory, useProduct } from '../../hooks';
+import { SectionContainer } from '../../styles/global';
 
 function CustomerOrder() {
   const { categories, setCategories, selectedCategory, setSelectedCategory } =
@@ -24,17 +25,20 @@ function CustomerOrder() {
           <MoveAdminModalTrigger />
         </div>
       </Header>
-      <CategoryList
-        categories={categories}
-        setSelectedCategory={setSelectedCategory}
-        setCategories={setCategories}
-        selectedCategory={selectedCategory}
-      />
-      <ProductList
-        setProducts={setProducts}
-        products={products}
-        selectedCategory={selectedCategory}
-      />
+      <SectionContainer>
+        <CategoryList
+          categories={categories}
+          setSelectedCategory={setSelectedCategory}
+          setCategories={setCategories}
+          selectedCategory={selectedCategory}
+        />
+        <ProductList
+          setProducts={setProducts}
+          products={products}
+          selectedCategory={selectedCategory}
+        />
+      </SectionContainer>
+
       <Cart />
     </>
   );

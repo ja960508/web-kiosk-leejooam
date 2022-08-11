@@ -37,14 +37,6 @@ export const StyledProductAddForm = styled.form`
     }
   }
 
-  button[type='submit'] {
-    background-color: ${color.red};
-    color: ${color.white};
-    padding: 0.75rem;
-    font-size: 1rem;
-    border-radius: 10px;
-  }
-
   .add-options {
     font-size: 0.9rem;
     color: ${color.black};
