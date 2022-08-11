@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import color from '../../styles/variables/color';
 
 export const StyledHeader = styled.header`
-  background: #1e2222;
-  color: #fcfcfc;
+  background: ${color.black};
+  color: ${color.white};
   padding: 1rem;
   margin-bottom: 3rem;
 
@@ -17,10 +17,16 @@ export const StyledHeader = styled.header`
     right: 1rem;
     display: flex;
     flex-direction: column;
+
     button {
       background-color: ${color.white};
       padding: 0.25rem;
       margin-bottom: 1rem;
     }
   }
+`;
+
+export const HeaderContent = styled.div`
+  max-width: 1080px;
+  margin: 0 auto;
 `;

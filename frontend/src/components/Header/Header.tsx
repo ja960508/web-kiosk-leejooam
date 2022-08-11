@@ -1,8 +1,12 @@
 import React from 'react';
-import { StyledHeader } from './Header.style';
+import { HeaderContent, StyledHeader } from './Header.style';
 
 function Header({ children }: { children: React.ReactNode }) {
-  return <StyledHeader>{children}</StyledHeader>;
+  return (
+    <StyledHeader>
+      <HeaderContent>{children}</HeaderContent>
+    </StyledHeader>
+  );
 }
 
 export default Header;

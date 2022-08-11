@@ -10,6 +10,14 @@ export interface StoreRegisterType {
   branchName: string;
 }
 
+export interface StoreInputsType {
+  storeId: string;
+  name: string;
+  password: string;
+  passwordConfirm: string;
+  branchName: string;
+}
+
 export interface StoreType {
   id: number;
   storeId: string;
@@ -21,5 +29,13 @@ export const initialStoreValue = {
   id: 0,
   storeId: '',
   name: '',
+  branchName: '',
+};
+
+export const initialStoreInputsValue = {
+  storeId: '',
+  name: '',
+  password: '',
+  passwordConfirm: '',
   branchName: '',
 };
