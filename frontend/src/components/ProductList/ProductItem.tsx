@@ -10,9 +10,10 @@ import { StyledProductItem } from './Product.style';
 interface ProductItemType {
   product: ProductType;
   setProducts: React.Dispatch<React.SetStateAction<ProductType[]>>;
+  index: number;
 }
 
-function ProductItem({ product, setProducts }: ProductItemType) {
+function ProductItem({ product, setProducts, index }: ProductItemType) {
   const { adminAuthority } = useContext(adminAuthorityContext);
   const { isModalOpen, openModal, closeModal } = useModal();
 
@@ -25,7 +26,10 @@ function ProductItem({ product, setProducts }: ProductItemType) {
   };
 
   return (
-    <StyledProductItem onClick={(event) => handleProductClick(event)}>
+    <StyledProductItem
+      onClick={(event) => handleProductClick(event)}
+      duration={index * 0.1 + 0.5}
+    >
       <ProductDeleteModalTrigger setProducts={setProducts} product={product} />
       <div className="extra-info">
         {!!product.isPopular && <span>인기</span>}

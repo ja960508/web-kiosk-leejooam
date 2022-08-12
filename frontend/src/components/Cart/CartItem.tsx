@@ -16,7 +16,7 @@ function CartItem({ cartItem, handleProductFromCart }: Props) {
   const onDelete = () => handleProductFromCart(cartItem);
 
   return (
-    <li>
+    <li className="cart-item">
       <DeleteButton onClick={onDelete}>
         <XButton />
       </DeleteButton>

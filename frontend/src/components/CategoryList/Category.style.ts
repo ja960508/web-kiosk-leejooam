@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { fadein } from '../../styles/animation';
 import color from '../../styles/variables/color';
 import shadow from '../../styles/variables/shadow';
 
@@ -16,6 +17,7 @@ export const StyledCategoryItem = styled.li<{ isSelected: boolean }>`
   border-radius: 10px;
   font-size: 1.25rem;
   font-weight: 600;
+  animation: ${fadein} 0.5s;
 
   ${({ isSelected }) => {
     return isSelected

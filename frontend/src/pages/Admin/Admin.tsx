@@ -40,7 +40,9 @@ function Admin() {
   return (
     <>
       <Header>
-        <h1>안녕하세요 사장님.</h1>
+        <h1>
+          안녕하세요<span className="jumpper-text">{`사장님`}</span>.
+        </h1>
         <h2>
           {store.name} {store.branchName}점입니다.
         </h2>
