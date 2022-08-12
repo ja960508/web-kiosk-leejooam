@@ -24,8 +24,9 @@ function ProductList({
         selectedCategoryId={selectedCategory.id}
       />
       <Slider offset={9} line={3}>
-        {products.map((product) => (
+        {products.map((product, index) => (
           <ProductItem
+            index={index}
             key={product.id}
             product={product}
             setProducts={setProducts}

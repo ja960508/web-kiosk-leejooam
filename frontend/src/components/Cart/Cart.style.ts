@@ -36,8 +36,8 @@ export const StyledCartList = styled.ul`
   display: flex;
   overflow-x: scroll;
 
-  li {
-    background-color: ${color.lightGray};
+  .cart-item {
+    background-color: ${color.white};
     border-radius: 10px;
     box-shadow: ${shadow.normalShadow};
     padding: 1.5rem 0;
@@ -48,7 +48,6 @@ export const StyledCartList = styled.ul`
     opacity: 1;
     min-width: 300px;
     display: flex;
-
     .product-meta {
       flex: 1 1 100%;
 

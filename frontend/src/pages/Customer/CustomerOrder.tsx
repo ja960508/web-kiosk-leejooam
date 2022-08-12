@@ -17,7 +17,9 @@ function CustomerOrder() {
   return (
     <>
       <Header>
-        <h1>어서오세요 고객님.</h1>
+        <h1>
+          어서오세요 <span className="jumpper-text">고객님</span>.
+        </h1>
         <h2>
           {store.name} {store.branchName}점입니다.
         </h2>

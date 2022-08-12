@@ -23,7 +23,9 @@ function Entrance() {
   return (
     <>
       <Header>
-        <h1>안녕하세요 사장님.</h1>
+        <h1>
+          안녕하세요 <span className="jumpper-text">사장님</span>.
+        </h1>
         <h2>가게 로그인을 진행해주세요.</h2>
       </Header>
       <AuthForm onSubmit={onAuthSubmit}>

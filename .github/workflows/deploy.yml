@@ -12,6 +12,8 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
+            cd ~/web-kiosk-leejooam
+            git pull origin dev
             cd ~/web-kiosk-leejooam/frontend
             npm install
             npm run build
